@@ -1,0 +1,30 @@
+@media only screen and (max-width: 767px) {
+	.travel-auth-img{
+		display: none;
+	}
+	.auth-details h1 span{
+		display: inline-block;
+	}
+	.auth-details{
+		padding: 30px;
+		height: 100%;
+	}
+	.auth-form {
+    	margin-top: 30px;
+	}
+	.topbar{
+		display: none;
+	}
+	header.header-area {
+    	padding: 5px 0;
+	}
+	.header-menu-area .logo .sticky-logo img{
+		max-width: 150px;
+	}
+	.chat-right {
+    	display: none !important;
+	}
+	.chat-left {
+    	width: 100%;
+	}
+}
