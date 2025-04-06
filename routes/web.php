@@ -7,11 +7,11 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LeadController;
 use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/signup', [RegisteredUserController::class, 'create'])->name('signup');
 Route::post('/signup', [RegisteredUserController::class, 'store']);
@@ -64,6 +64,10 @@ Route::get('/shipping', function () {
     return view('shipping');
 })->name('shipping');
 
+Route::get('/registration-success', function () {
+    return view('auth.registration-success');
+})->name('registration.success');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -81,6 +85,8 @@ Route::middleware('auth')->group(function () {
         $request->user()->sendEmailVerificationNotification();
         return back()->with('message', 'Verification link sent!');
     })->middleware(['throttle:6,1'])->name('verification.send');
+
+    Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
 });
 
 /*require __DIR__.'/auth.php';*/

@@ -8,7 +8,7 @@
 
 
     <title>Task 365</title>
-    <link rel="icon" type="image/png" href="assets/images/task-img/Task-365-Logo.png" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -101,6 +101,45 @@
 </header>
 <!-- Header End !-->
 
+<!-- Menu Sidebar Section Start -->
+<div class="menu-sidebar-area">
+    <div class="menu-sidebar-wrapper">
+        <div class="menu-sidebar-close">
+            <button class="menu-sidebar-close-btn" id="menu_sidebar_close_btn">
+                <i class="fal fa-times"></i>
+            </button>
+        </div>
+        <div class="menu-sidebar-content">
+            <div class="menu-sidebar-logo">
+                <a href="index.php"><img src="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" alt="logo" /></a>
+            </div>
+            <div class="mobile-nav-menu"></div>
+            <div class="menu-sidebar-content">
+                <div class="menu-sidebar-single-widget">
+                    <h5 class="menu-sidebar-title">Contact Info</h5>
+                    <div class="header-contact-info">
+                        <span><i class="fa-solid fa-location-dot"></i>20, Bordeshi, New York, US</span>
+                        <span><a href="mailto:hello@transico.com"><i
+                                    class="fa-solid fa-envelope"></i>task365.in@gmail.com</a> </span>
+                        <span><a href="tel:+123-456-7890"><i class="fa-solid fa-phone"></i>+123-456-7890</a></span>
+                    </div>
+                    <div class="social-profile">
+                        <a href="javasceipt:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="javasceipt:void(0);"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="javasceipt:void(0);"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="javasceipt:void(0);"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Menu Sidebar Section Start -->
+<div class="body-overlay"></div>
+
+@include('common.login-form')
+
 @yield('content')
 
 
@@ -113,7 +152,7 @@
                  <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 pe-md-5">
                      <div class="footer-widget footer-widget-info">
                          <div class="footer-logo">
-                             <a href="index.html"><img src="assets/images/task-img/Task-365-Logo.png" alt="Footer Logo"
+                             <a href="index.html"><img src="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" alt="Footer Logo"
                                      class="img-fluid" style="width: 120px;" /></a>
                          </div>
                          <div class="footer-widget-contact">

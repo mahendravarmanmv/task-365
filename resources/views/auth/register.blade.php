@@ -12,7 +12,7 @@
         <div class="col-md-6 auth-details">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7">
-                    <form method="POST" action="{{ route('signup') }}">
+                    <form method="POST" action="{{ route('signup') }}" enctype="multipart/form-data">
                         @csrf
                         <span class="short-title">signup
                         </span>
@@ -35,18 +35,18 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Password</label>
-                                <input type="text" name="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" value="{{ old('password') }}" class="form-control" placeholder="Password">
                                 @error('password')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
                                 <label>Company name (optional)</label>
-                                <input type="text" name="company_name" class="form-control">
+                                <input type="text" name="company_name" value="{{ old('company_name') }}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Website (optional)</label>
-                                <input type="text" name="" class="form-control" placeholder="Website Address">
+                                <input type="text" name="website" class="form-control" value="{{ old('website') }}" placeholder="Website Address">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Phone</label>
@@ -57,36 +57,47 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Whats App Number</label>
-                                <input type="text" name="" class="form-control">
+                                <input type="text" name="whatsapp_number" value="{{ old('whatsapp_number') }}" class="form-control">
+                                @error('whatsapp_number')
+                                <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group mb-3">
-                                <label>Category </label>
-                                <select class="form-select">
-                                    <option>Select Option</option>
-                                    <option>Option one</option>
-                                    <option>Option Two</option>
-                                    <option>Option Three</option>
-
+                                <label>Category</label>
+                                <select name="category[]" class="form-select" multiple>
+                                    <option value="">Select a Category</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ in_array($category->id, (array) old('category', [])) ? 'selected' : '' }}>
+                                        {{ $category->category_title }}
+                                    </option>
+                                    @endforeach
                                 </select>
+                                @error('category')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <div class="form-group mb-3 ">
+                            <div class="form-group mb-3">
                                 <label>Upload Identify Proof (Business)</label>
                                 <span class="upload-file form-control">
                                     <label class="w-100 m-0">
-                                        <input type="file" name="" class="">
+                                        <input type="file" id="business_proof" name="business_proof" class="" onchange="updateFileName(this, 'business_proof_name')">
                                         <span><i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload</span>
                                     </label>
+                                    <span id="business_proof_name" class="file-name"></span> <!-- This will show the file name -->
                                 </span>
                             </div>
-                            <div class="form-group mb-3 ">
+
+                            <div class="form-group mb-3">
                                 <label>Upload Identify Proof (PAN/Adhar)</label>
                                 <span class="upload-file form-control">
                                     <label class="w-100 m-0">
-                                        <input type="file" name="" class="">
+                                        <input type="file" id="identity_proof" name="identity_proof" class="" onchange="updateFileName(this, 'identity_proof_name')">
                                         <span><i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload</span>
                                     </label>
+                                    <span id="identity_proof_name" class="file-name"></span> <!-- This will show the file name -->
                                 </span>
                             </div>
+
                             <div class="form-group mb-3 d-flex flex-column sign_chek">
                                 <div class="d-flex align-items-center">
                                     <input class="form-check-input me-2" type="checkbox" name="agree_terms" id="agree_terms">
@@ -118,5 +129,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function updateFileName(input, displayId) {
+        const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
+        document.getElementById(displayId).textContent = fileName;
+    }
+</script>
 
 @endsection

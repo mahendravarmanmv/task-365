@@ -23,7 +23,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'company_name',
         'website',
         'phone',
-        'password',
+        'whatsapp_number',
+        'category',
+        'business_proof',
+        'identity_proof',
+        'password', 
+		'approved'
     ];
 
     /**
@@ -47,5 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'user_categories')->withTimestamps();
     }
 }
