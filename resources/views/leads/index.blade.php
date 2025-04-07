@@ -339,30 +339,26 @@
             @forelse($leads as $lead)
             <div class="col-md-12  mb-4 ">
                 <div class="procuct_card">
-                    <img src="./assets/images/user/user.png" alt="user" class="user_img">
+                    <!--<img src="./assets/images/user/user.png" alt="user" class="user_img">-->
                     <div class="product_body">
                         <div class="user_info">
                             <div class="product_title">
                                 <div>
-                                    <h6>salman</h6>
-                                    <p>Mobile App Devloper</p>
+                                    <h6>{{ $lead->website_type }}</h6>
+                                    <p>Category : {{ $lead->category->category_title }}</p>
+                                    <p>{{ $lead->industry }}</p>
                                     <p>
-                                        <i class="fa-solid fa-location-dot me-2"></i>20, Bordeshi, New York, USA
+                                        <i class="fa-solid fa-location-dot me-2"></i>{{ $lead->location }}
                                     </p>
-                                    <h6 class="mt-1">$ 253560</h6>
+                                    <h6 class="mt-1">$ {{ $lead->budget_min }}-{{ $lead->budget_max }}</h6>
                                 </div>
                                 <div class="d-flex align-items-center procut_btn">
                                     <button class="theme-btn py-2" type="submit">Buy Now</button>
                                     <span class="fav ms-3"><i class="fa-solid fa-heart"></i></span>
                                 </div>
                             </div>
-                            <p class="pt-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe tenetur
-                                dignissimos, vero
-                                aut eveniet magni doloremque. Quasi, aliquid sed deserunt accusamus corporis
-                                voluptates,
-                                nisi veniam quos laborum accusantium sint, voluptate nam aut quisquam consequuntur
-                                earum
-                                blanditiis quia placeat soluta doloribus?</p>
+                            <p class="pt-2"> {{ $lead->notes }}</p>
+                            <p class="pt-2"> {{ $lead->service_timeframe }}</p>
                         </div>
                     </div>
                 </div>

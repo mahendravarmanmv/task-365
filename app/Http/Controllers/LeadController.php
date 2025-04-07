@@ -15,8 +15,11 @@ class LeadController extends Controller
         // Get all category IDs this user belongs to
         $categoryIds = $user->categories->pluck('id');
 
-        // Fetch leads belonging to those categories
-        $leads = Lead::whereIn('category_id', $categoryIds)->latest()->get();
+        // Fetch leads belonging to those categories, with category relationship
+        $leads = Lead::whereIn('category_id', $categoryIds)
+            ->with('category') // Eager load the category
+            ->latest()
+            ->get();
 
         return view('leads.index', compact('leads'));
     }
