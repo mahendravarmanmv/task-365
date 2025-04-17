@@ -350,7 +350,7 @@
                                     <p>
                                         <i class="fa-solid fa-location-dot me-2"></i>{{ $lead->location }}
                                     </p>
-                                    <h6 class="mt-1">$ {{ $lead->budget_min }}-{{ $lead->budget_max }}</h6>
+                                    <h6 class="mt-1">₹ {{ $lead->budget_min }}-{{ $lead->budget_max }}</h6>
                                 </div>
                                 <div class="d-flex align-items-center procut_btn">
                                     <button class="theme-btn py-2" type="submit">Buy Now</button>

@@ -78,13 +78,14 @@
                                     <li><a href="{{ route('blog') }}">Blog</a></li>
                                     <li><a href="{{ route('about') }}">About Us</a></li>
                                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                                    <li><a href="{{ route('faq') }}">FAQs</a></li>
                                     <!-- <li><a href="javasceipt:void(0);">More</a></li> -->
-                                    <li class="dropdown"><a href="javasceipt:void(0);" class="profile-link">More</a>
+                                    <!-- <li class="dropdown"><a href="javasceipt:void(0);" class="profile-link">More</a>
                                         <ul class="submenu">
                                             <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                                             <li><a href="{{ route('faq') }}">FAQs</a></li>
                                         </ul>
-                                    </li>
+                                    </li>-->
 
                                 </ul>
                             </nav>
@@ -187,9 +188,11 @@
                                     <li><a href="{{ route('home') }}">Home</a></li>
                                     <li><a href="{{ route('about') }}">About Us</a></li>
                                     <li><a href="{{ route('faq') }}">FAQs</a></li>
-                                    <li><a href="{{ route('blog') }}">Blog</a></li>
-                                    <li><a href="{{ route('shipping') }}">Shipping</a></li>
-                                    <li><a href="javasceipt:void(0);">Track Order</a></li>
+                                    <li><a href="{{ route('blog') }}">Blog</a></li>                                    
+                                    <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+                                    <li><a href="{{ route('terms') }}">Terms and Conditions</a></li>
+                                    <!--<li><a href="{{ route('shipping') }}">Shipping</a></li>
+                                    <li><a href="javasceipt:void(0);">Track Order</a></li>-->
                                 </ul>
                             </div>
                         </div>
@@ -250,7 +253,7 @@
                                 <div class="footer-widget-contact">
                                     <div class="footer-contact">
                                         <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                                        <div class="contact-text"><a href="tel:+012-345-6789">012-345-6789</a></div>
+                                        <div class="contact-text"><a href="tel:+917995115182">+91 7995115182</a></div>
                                     </div>
                                 </div>
                             </div>
