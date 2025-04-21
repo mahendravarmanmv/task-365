@@ -191,6 +191,7 @@
                                     <li><a href="{{ route('blog') }}">Blog</a></li>                                    
                                     <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                                     <li><a href="{{ route('terms') }}">Terms and Conditions</a></li>
+                                    <li><a href="{{ route('refund-policy') }}">Refund Policy</a></li>
                                     <!--<li><a href="{{ route('shipping') }}">Shipping</a></li>
                                     <li><a href="javasceipt:void(0);">Track Order</a></li>-->
                                 </ul>
@@ -300,8 +301,9 @@
                                 <div class="footer-bottom-menu">
                                     <ul>
                                         <li><a href="javasceipt:void(0);">Contact</a></li>
-                                        <li><a href="javasceipt:void(0);">Privacy policy</a></li>
-                                        <li><a href="javasceipt:void(0);">Terms & conditions</a></li>
+                                        <li><a href="{{ route('privacy-policy') }}">Privacy policy</a></li>
+                                        <li><a href="{{ route('terms') }}">Terms & conditions</a></li>
+                                        <li><a href="{{ route('refund-policy') }}">Refund Policy</a></li>
                                     </ul>
                                 </div>
                             </div>
