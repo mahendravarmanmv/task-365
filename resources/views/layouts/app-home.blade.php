@@ -132,10 +132,10 @@
                     <div class="menu-sidebar-single-widget">
                         <h5 class="menu-sidebar-title">Contact Info</h5>
                         <div class="header-contact-info">
-                            <span><i class="fa-solid fa-location-dot"></i>20, Bordeshi, New York, US</span>
+                            <span><i class="fa-solid fa-location-dot"></i>Flat No. 07/3, Second Floor, 18th Main Jaya Nagar, 9th Block Banglore, Bangalore, Karnataka - 560041 India</span>
                             <span><a href="mailto:hello@transico.com"><i
                                         class="fa-solid fa-envelope"></i>task365.in@gmail.com</a> </span>
-                            <span><a href="tel:+123-456-7890"><i class="fa-solid fa-phone"></i>+123-456-7890</a></span>
+                            <span><a href="tel:+123-456-7890"><i class="fa-solid fa-phone"></i>+91 7995115182</a></span>
                         </div>
                         <div class="social-profile">
                             <a href="javasceipt:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
