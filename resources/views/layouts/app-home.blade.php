@@ -294,13 +294,13 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="copyright-text">
-                                    <p> © Copyright Task 365 Pvt Ltd 2023</a></p>
+                                    <p> © Copyright Lorhan spot Earn Pvt Ltd</a></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="footer-bottom-menu">
                                     <ul>
-                                        <li><a href="javasceipt:void(0);">Contact</a></li>
+                                        <li><a href="{{ route('contact') }}">Contact</a></li>
                                         <li><a href="{{ route('privacy-policy') }}">Privacy policy</a></li>
                                         <li><a href="{{ route('terms') }}">Terms & conditions</a></li>
                                         <li><a href="{{ route('refund-policy') }}">Refund Policy</a></li>

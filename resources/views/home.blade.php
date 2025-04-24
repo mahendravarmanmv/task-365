@@ -92,11 +92,11 @@
         <div class="slider-feature-area">
             <div class="single-feature-item style-1">
                 <div class="icon"><i class="icon-heart-2"></i></div>
-                <p class="desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p class="desc"> </p>
             </div>
             <div class="single-feature-item style-1">
                 <div class="icon"><i class="icon-heart-2"></i></div>
-                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p class="desc"></p>
             </div>
         </div>
     </div>
@@ -268,7 +268,7 @@
                         <h4 class="title">
                             Best Quality</h4>
                         <p class="desc">It’s content strategy gone awry right from the start. Forswearing the use of
-                            Lorem Ipsum.
+                            
                         </p>
                     </div>
                 </div>
