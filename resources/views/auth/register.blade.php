@@ -1,12 +1,12 @@
 @extends('layouts.app-register')
 
 @section('content')
-
+<script id="otpless-sdk" src="https://otpless.com/v4/headless.js" data-appid="{{ config('otp.app_id') }}"></script>
 <div class="container-fluid p-0 h-100">
     <div class="row g-0 align-items-center h-100">
         <div class="col-md-6">
             <div class="travel-auth-img">
-                <img src="./assets/images/task-img/leads.jpg" class="img-fluid">
+                <img src="{{ asset('assets/images/task-img/leads.jpg') }}" class="img-fluid">
             </div>
         </div>
         <div class="col-md-6 auth-details">
@@ -21,43 +21,56 @@
                         <div class="auth-form">
                             <div class="form-group mb-3">
                                 <label>Name</label>
-                                <input type="text" name="name" value="{{ old('name') }}" autofocus class="form-control">
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Enter Name" autofocus class="form-control">
                                 @error('name')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
                                 <label>Email</label>
-                                <input type="email" name="email" value="{{ old('email') }}" class="form-control">
+                                <input type="email" name="email" placeholder="Enter Email" value="{{ old('email') }}" class="form-control">
                                 @error('email')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
                                 <label>Password</label>
-                                <input type="password" name="password" value="{{ old('password') }}" class="form-control" placeholder="Password">
+                                <input type="password" name="password" value="{{ old('password') }}" class="form-control" placeholder="Enter Password">
                                 @error('password')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
                                 <label>Company name (optional)</label>
-                                <input type="text" name="company_name" value="{{ old('company_name') }}" class="form-control">
+                                <input type="text" name="company_name" placeholder="Enter Company name" value="{{ old('company_name') }}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Website (optional)</label>
-                                <input type="text" name="website" class="form-control" value="{{ old('website') }}" placeholder="Website Address">
+                                <input type="text" name="website" class="form-control" value="{{ old('website') }}" placeholder="Enter Website Address">
                             </div>
                             <div class="form-group mb-3">
-                                <label>Phone</label>
-                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control">
+                                <label>Mobile</label>
+                                <div class="input-group">
+                                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter Mobile Number" class="form-control">
+                                    <button type="button" class="btn btn-outline-primary" id="send-otp-btn" onclick="phoneAuth()">Send OTP</button>
+                                </div>
                                 @error('phone')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
+							
+							<div class="form-group mb-3" id="otp-section" style="display: none;">
+                                <label>Enter OTP</label>
+                                <div class="input-group">
+                                    <input type="text" id="otp-input" name="otp-input" placeholder="Enter OTP" class="form-control">
+                                    <button type="button" class="btn btn-outline-primary" onclick="verifyOTP()">Verify OTP</button>
+                                </div>
+                                <div class="text-danger mt-1" id="status-message"></div>
+                            </div>
+
                             <div class="form-group mb-3">
                                 <label>Whats App Number</label>
-                                <input type="text" name="whatsapp_number" value="{{ old('whatsapp_number') }}" class="form-control">
+                                <input type="text" name="whatsapp_number" placeholder="Enter WhatsApp Number" value="{{ old('whatsapp_number') }}" class="form-control">
                                 @error('whatsapp_number')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -130,11 +143,6 @@
     </div>
 </div>
 
-<script>
-    function updateFileName(input, displayId) {
-        const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
-        document.getElementById(displayId).textContent = fileName;
-    }
-</script>
+<script src="{{ asset('assets/js/signup.js') }}"></script>
 
 @endsection
