@@ -74,11 +74,31 @@
                             </div>
                             <nav id="main-menu" class="main-menu">
                                 <ul>
-                                    <li><a href="{{ route('home') }}">Home</a></li>
-                                    <li><a href="{{ route('blog') }}">Blog</a></li>
-                                    <li><a href="{{ route('about') }}">About Us</a></li>
-                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                                    <li><a href="{{ route('faq') }}">FAQs</a></li>
+                                    <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
+                                        <a href="{{ route('home') }}">Home</a>
+                                    </li>
+
+                                    @if (auth()->check())
+                                    <li class="{{ request()->routeIs('leads.index') ? 'active' : '' }}">
+                                        <a href="{{ route('leads.index') }}">Leads</a>
+                                    </li>
+                                    @endif
+
+                                    <li class="{{ request()->routeIs('blog') ? 'active' : '' }}">
+                                        <a href="{{ route('blog') }}">Blog</a>
+                                    </li>
+
+                                    <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
+                                        <a href="{{ route('about') }}">About Us</a>
+                                    </li>
+
+                                    <li class="{{ request()->routeIs('contact') ? 'active' : '' }}">
+                                        <a href="{{ route('contact') }}">Contact Us</a>
+                                    </li>
+
+                                    <li class="{{ request()->routeIs('faq') ? 'active' : '' }}">
+                                        <a href="{{ route('faq') }}">FAQs</a>
+                                    </li>
                                     <!-- <li><a href="javasceipt:void(0);">More</a></li> -->
                                     <!-- <li class="dropdown"><a href="javasceipt:void(0);" class="profile-link">More</a>
                                         <ul class="submenu">
@@ -86,7 +106,6 @@
                                             <li><a href="{{ route('faq') }}">FAQs</a></li>
                                         </ul>
                                     </li>-->
-
                                 </ul>
                             </nav>
                         </div>
@@ -188,7 +207,7 @@
                                     <li><a href="{{ route('home') }}">Home</a></li>
                                     <li><a href="{{ route('about') }}">About Us</a></li>
                                     <li><a href="{{ route('faq') }}">FAQs</a></li>
-                                    <li><a href="{{ route('blog') }}">Blog</a></li>                                    
+                                    <li><a href="{{ route('blog') }}">Blog</a></li>
                                     <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                                     <li><a href="{{ route('terms') }}">Terms and Conditions</a></li>
                                     <li><a href="{{ route('refund-policy') }}">Refund Policy</a></li>

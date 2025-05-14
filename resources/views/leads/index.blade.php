@@ -353,11 +353,11 @@
                                     <h6 class="mt-1">₹ {{ $lead->budget_min }}-{{ $lead->budget_max }}</h6>
                                 </div>
                                 <div class="d-flex align-items-center procut_btn">
-                                    <button class="theme-btn py-2" type="submit">Buy Now</button>
+                                    <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">Buy Now</a>
                                     <span class="fav ms-3"><i class="fa-solid fa-heart"></i></span>
                                 </div>
                             </div>
-                            <p class="pt-2"> {{ $lead->notes }}</p>
+                            <p class="pt-2"> {{ $lead->lead_notes }}</p>
                             <p class="pt-2"> {{ $lead->service_timeframe }}</p>
                         </div>
                     </div>

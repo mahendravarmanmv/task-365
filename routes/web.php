@@ -76,6 +76,10 @@ Route::get('/registration-success', function () {
     return view('auth.registration-success');
 })->name('registration.success');
 
+Route::get('/category-details', function () {
+    return view('category-details');
+})->name('category-details');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -95,6 +99,9 @@ Route::middleware('auth')->group(function () {
     })->middleware(['throttle:6,1'])->name('verification.send');
 
     Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
+	Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
+    Route::get('/leads/{lead}/payment', [LeadController::class, 'payment'])->name('leads.payment');
+
 });
 
 /*require __DIR__.'/auth.php';*/
