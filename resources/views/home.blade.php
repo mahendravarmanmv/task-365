@@ -139,14 +139,14 @@
                         data-wow-delay="0s">
                         <div class="location-card style-2">
                             <div class="image-wrapper">
-                                <a href="{{ route('category-details') }}" class="image-inner">
+                                <a href="{{ route('leads.index', ['category' => $category->id]) }}" class="image-inner">
                                     <img src="{{ 'https://admin.task365.in/storage/' . $category->category_image }}"
                                         alt="{{ $category->category_title }}">
                                 </a>
                             </div>
                             <div class="content-wrapper">
                                 <div class="content-inner">
-                                    <h3 class="content-title w-100"><a href="{{ route('category-details') }}">{{ $category->category_title }}</a></h3>
+                                    <h3 class="content-title w-100"><a href="{{ route('leads.index', ['category' => $category->id]) }}">{{ $category->category_title }}</a></h3>
                                     <p class="title">{{ strlen($content) > $limit ? substr($content, 0, $limit) . '...' : $content }}</p>
                                 </div>
                             </div>

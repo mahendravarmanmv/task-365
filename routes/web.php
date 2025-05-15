@@ -80,6 +80,8 @@ Route::get('/category-details', function () {
     return view('category-details');
 })->name('category-details');
 
+Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -98,7 +100,7 @@ Route::middleware('auth')->group(function () {
         return back()->with('message', 'Verification link sent!');
     })->middleware(['throttle:6,1'])->name('verification.send');
 
-    Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
+    
 	Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
     Route::get('/leads/{lead}/payment', [LeadController::class, 'payment'])->name('leads.payment');
 
