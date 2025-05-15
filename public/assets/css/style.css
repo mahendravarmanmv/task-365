@@ -13019,7 +13019,7 @@ ul.children {
   font-size: 12px;
   font-weight: 500;
   line-height: 170%;
-  text-transform: lowercase;
+  /*text-transform: lowercase;*/
   margin: 0px;
 }
 

@@ -21,9 +21,17 @@
                             <div class="slider-content-wrapper">
                                 <div class="slider-content">
                                     <span class="slider-short-title">Welcome to Task365</span>
-                                    <h1 class="slider-title">For Everything and Everyone</h1>
-                                    <p class="slider-short-desc">Even if your less into design and more into content
-                                        strategy you may find some redeeming value with, wait for it, dummy copy.
+                                    <h1 class="slider-title">One stop solution for leads</h1>
+                                    <p class="slider-short-desc">
+
+                                        Your One-Stop Hub for Verified Leads
+
+                                        Whether you're growing your business, looking for partnerships, or seeking clients, our high-quality leads help you connect with the right people faster and smarter.
+
+
+                                        We Provide High-Quality Leads You Can Trust
+
+                                        Our leads are handpicked and verified to ensure relevance, accuracy, and value because your time is too valuable to waste on cold or irrelevant data.
                                     </p>
                                     <div class="slider-btn-wrapper"><a href="javasceipt:void(0);"
                                             class="style-2 me-3 active_btn">To
@@ -38,7 +46,7 @@
         </div>
         <!-- single slider end -->
         <!-- single slider start -->
-        <div class="single-slider-wrapper">
+        <!--<div class="single-slider-wrapper">
             <div class="single-slider" style="background-image: url('./assets/images/task-img/banner-2.jpg')">
                 <div class="container h-100 align-self-center">
                     <div class="row h-100">
@@ -60,10 +68,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- single slider end -->
         <!-- single slider start -->
-        <div class="single-slider-wrapper">
+        <!--<div class="single-slider-wrapper">
             <div class="single-slider" style="background-image: url('./assets/images/task-img/banner-3.jpg')">
                 <div class="container h-100 align-self-center">
                     <div class="row h-100">
@@ -85,7 +93,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- single slider end -->
     </div>
     <div class="container">
@@ -113,18 +121,20 @@
                     </span>
                     <h2 class="title">We Provide High Quality Leads</h2>
                     <img class="bottom-shape m-auto" src="./assets/images/bottom-bar.png" alt="Bottom Shape">
-                    <p>A client that's unhappy for a reason is a problem, a client that's unhappy though he
-                        or her
-                        can't
+                    <p>Task365 is a powerful lead generation company dedicated to helping businesses grow by delivering high-quality leads through data-driven strategies, innovative technology, and consistent performance—365 days a year.
                     </p>
                 </div>
             </div>
             <div class="isotope-grid">
                 <div class="row gy-4">
                     @if($categories->isEmpty())
-                    
+
                     @else
                     @foreach($categories as $category)
+                    <?php
+                    $content = $category->category_description;
+                    $limit = 80;
+                    ?>
                     <div class="col-lg-4 col-md-6 masonry-portfolio-item resort beach wow fadeInUp"
                         data-wow-delay="0s">
                         <div class="location-card style-2">
@@ -137,7 +147,7 @@
                             <div class="content-wrapper">
                                 <div class="content-inner">
                                     <h3 class="content-title w-100"><a href="{{ route('category-details') }}">{{ $category->category_title }}</a></h3>
-                                    <p class="title">{{ $category->category_description }}</p>
+                                    <p class="title">{{ strlen($content) > $limit ? substr($content, 0, $limit) . '...' : $content }}</p>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +218,7 @@
                 <h2 class="title w-100">We Provide High Quality Leads
                 </h2>
                 <img class="bottom-shape m-auto" src="./assets/images/bottom-bar.png" alt="Bottom Shape">
-                <p>A client that's unhappy for a reason is a problem, a client that's unhappy though he or her can't
+                <p>Task365 is a powerful lead generation company dedicated to helping businesses grow by delivering high-quality leads through data-driven strategies, innovative technology, and consistent performance—365 days a year.
 
                 </p>
             </div>
@@ -240,9 +250,8 @@
                     </div>
                     <div class="content-wrapper">
                         <h4 class="title">
-                            Fast Delivery</h4>
-                        <p class="desc">Chances are there wasn’t collaboration and checkpoints, there wasn’t a
-                            process.
+                            Verified Leads</h4>
+                        <p class="desc">Genuine, pre-screened leads ready to convert into real opportunities.
                         </p>
                     </div>
                 </div>
@@ -267,8 +276,8 @@
                     <div class="content-wrapper">
                         <h4 class="title">
                             Best Quality</h4>
-                        <p class="desc">It’s content strategy gone awry right from the start. Forswearing the use of
-                            
+                        <p class="desc">High-intent, accurate leads that drive better conversions and real results.
+
                         </p>
                     </div>
                 </div>
@@ -291,9 +300,8 @@
                     </div>
                     <div class="content-wrapper">
                         <h4 class="title">
-                            Free Return </h4>
-                        <p class="desc">True enough, but that’s not all that it takes to get things back on track
-                            out there for a text.
+                            Trusted </h4>
+                        <p class="desc">Leads you can count on—verified, authentic, and ready for action.
                         </p>
                     </div>
                 </div>

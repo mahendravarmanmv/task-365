@@ -55,95 +55,44 @@
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckDefault">
-                                                            Anlog watch
+                                                            Web Development
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckChecked">
-                                                            Dress or Duppta
+                                                            Astrology
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckDefault">
-                                                            Bike Cover
+                                                            Logo Designers
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckChecked">
-                                                            Women Jacet
+                                                            Automobile
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckDefault">
-                                                            Bedsheet
+                                                            Food Buisness
                                                         </label>
                                                     </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            shofa and bad
-                                                        </label>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="gender">
-                                    <div class="accordion" id="gender">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingOne">
-                                                <button class="accordion-button" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#item-2"
-                                                    aria-expanded="true" aria-controls="item-2">
-                                                    Gender
-                                                </button>
-                                            </h2>
-                                            <div id="item-2" class="accordion-collapse collapse "
-                                                aria-labelledby="headingOne" data-bs-parent="#gender">
-                                                <div class="accordion-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="flexRadioDefault1">
-                                                        <label class="form-check-label" for="flexRadioDefault1">
-                                                            Men
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                                        <label class="form-check-label" for="flexRadioDefault2">
-                                                            Women
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="flexRadioDefault1">
-                                                        <label class="form-check-label" for="flexRadioDefault1">
-                                                            boys
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                                        <label class="form-check-label" for="flexRadioDefault2">
-                                                            Girls
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="gender">
                                     <div class="accordion" id="prices">
                                         <div class="accordion-item">
@@ -182,152 +131,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="size">
-                                <div class="accordion" id="size">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#item-3" aria-expanded="true"
-                                                aria-controls="item-3">
-                                                Size
-                                            </button>
-                                        </h2>
-                                        <div id="item-3" class="accordion-collapse collapse "
-                                            aria-labelledby="headingOne" data-bs-parent="#size">
-                                            <div class="accordion-body">
-                                                <form class="my-2" role="search">
-                                                    <input class="form-control me-2" type="search"
-                                                        placeholder="Search" aria-label="Search">
-                                                </form>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        0-2 Years
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        1.5 meters
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        10-16 years
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        15 to 35 years
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="Color">
-                                <div class="accordion" id="color">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#item-5" aria-expanded="true"
-                                                aria-controls="item-5">
-                                                Color
-                                            </button>
-                                        </h2>
-                                        <div id="item-5" class="accordion-collapse collapse "
-                                            aria-labelledby="headingOne" data-bs-parent="#color">
-                                            <div class="accordion-body">
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        Red
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        Green
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        Blue
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        Black
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="delivery">
-                                <div class="accordion" id="brand">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#item-7" aria-expanded="true"
-                                                aria-controls="item-7">
-                                                Delivery Type
-                                            </button>
-                                        </h2>
-                                        <div id="item-7" class="accordion-collapse collapse "
-                                            aria-labelledby="headingOne" data-bs-parent="#delivery">
-                                            <div class="accordion-body">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio"
-                                                        name="flexRadioDefault" id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                        All
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio"
-                                                        name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                                    <label class="form-check-label" for="flexRadioDefault2">
-                                                        Free
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio"
-                                                        name="flexRadioDefault" id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                        Paid
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            </div>                          
                         </div>
                         <div class="mt-2">
                             <select class="form-select" aria-label="Default select example">
-                                <option selected> Loaction</option>
+                                <option selected> Location</option>
                                 <option value="1">USA</option>
                                 <option value="2">India</option>
                                 <option value="3">Japan</option>
@@ -345,7 +153,7 @@
                             <div class="product_title">
                                 <div>
                                     <h6>{{ $lead->website_type }}</h6>
-                                    <p>Category : {{ $lead->category->category_title }}</p>
+                                    <strong>Category : {{ $lead->category->category_title }}</strong>
                                     <p>{{ $lead->industry }}</p>
                                     <p>
                                         <i class="fa-solid fa-location-dot me-2"></i>{{ $lead->location }}

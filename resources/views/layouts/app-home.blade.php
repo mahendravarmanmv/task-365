@@ -84,9 +84,9 @@
                                     </li>
                                     @endif
 
-                                    <li class="{{ request()->routeIs('blog') ? 'active' : '' }}">
+                                    <!--<li class="{{ request()->routeIs('blog') ? 'active' : '' }}">
                                         <a href="{{ route('blog') }}">Blog</a>
-                                    </li>
+                                    </li>--->
 
                                     <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
                                         <a href="{{ route('about') }}">About Us</a>
@@ -96,9 +96,9 @@
                                         <a href="{{ route('contact') }}">Contact Us</a>
                                     </li>
 
-                                    <li class="{{ request()->routeIs('faq') ? 'active' : '' }}">
+                                    <!-- <li class="{{ request()->routeIs('faq') ? 'active' : '' }}">
                                         <a href="{{ route('faq') }}">FAQs</a>
-                                    </li>
+                                    </li>-->
                                     <!-- <li><a href="javasceipt:void(0);">More</a></li> -->
                                     <!-- <li class="dropdown"><a href="javasceipt:void(0);" class="profile-link">More</a>
                                         <ul class="submenu">
@@ -182,7 +182,7 @@
         <div class="footer-sec">
             <div class="container">
                 <div class="row">
-                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 pe-md-5">
+                    <div class="col-xxl-6 col-xl-3 col-lg-3 col-md-6 col-sm-12 pe-md-5">
                         <div class="footer-widget footer-widget-info">
                             <div class="footer-logo">
                                 <a href="index.html"><img src="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" alt="Footer Logo"
@@ -191,9 +191,11 @@
                             <div class="footer-widget-contact">
                                 <div class="footer-contact align-items-start">
                                     <!-- <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div> -->
-                                    <div class="contact-text w-100"><span>Flat No. 07/3, Second Floor, 18th Main Jaya
+                                    <div class="contact-text w-100">
+                                    <p style="justify-content: center;">At Task365, we are a results-driven digital marketing company specializing in lead generation across a wide range of business categories. Our mission is to streamline the customer acquisition process for business owners by delivering ready-to-convert leads, thereby eliminating the hassle and high costs typically associated with traditional digital marketing efforts.</p>    
+                                    <p>Flat No. 07/3, Second Floor, 18th Main Jaya
                                             Nagar, 9th
-                                            Block Banglore, Bangalore, Karnataka - 560041 India</span></div>
+                                            Block Banglore, Bangalore, Karnataka - 560041 India</p></div>
                                 </div>
                             </div>
                         </div>
@@ -206,8 +208,8 @@
                                 <ul class="menu footer_link">
                                     <li><a href="{{ route('home') }}">Home</a></li>
                                     <li><a href="{{ route('about') }}">About Us</a></li>
-                                    <li><a href="{{ route('faq') }}">FAQs</a></li>
-                                    <li><a href="{{ route('blog') }}">Blog</a></li>
+                                    <!--<li><a href="{{ route('faq') }}">FAQs</a></li>
+                                    <li><a href="{{ route('blog') }}">Blog</a></li>--->
                                     <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                                     <li><a href="{{ route('terms') }}">Terms and Conditions</a></li>
                                     <li><a href="{{ route('refund-policy') }}">Refund Policy</a></li>
@@ -245,7 +247,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
+                    <!--<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                         <div class="footer-widget-menu-wrapper ps-0">
                             <div class="footer-widget widget_nav_menu">
                                 <h2 class="footer-widget-title">Recent Posts
@@ -264,7 +266,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="divider"></div>
                     <div class="row">
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 ">
