@@ -7,8 +7,10 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\CashfreeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -103,6 +105,15 @@ Route::middleware('auth')->group(function () {
     
 	Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
     Route::get('/leads/{lead}/payment', [LeadController::class, 'payment'])->name('leads.payment');
+
+    Route::post('/payment/create', [PaymentController::class, 'createOrder'])->name('payment.create');
+    Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::post('/payment/webhook', [PaymentController::class, 'webhook'])->name('payment.webhook');
+    
+    Route::get('/payment/result', [PaymentController::class, 'result'])->name('payment.result');
+Route::post('/cashfree/payments/store', [CashfreeController::class, 'payment'])->name('cashfree.payment');
+Route::any('/cashfree/payments/success', [CashfreeController::class, 'success'])->name('cashfree.success');
+
 
 });
 

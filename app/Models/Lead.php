@@ -15,6 +15,16 @@ class Lead extends Model
         'lead_email',
         'lead_phone',
         'lead_notes',
+        'location',
+        'business_name',
+        'industry',
+        'website_type',
+        'features_needed',
+        'reference_website',
+        'budget_min',
+        'budget_max',
+        'lead_cost',
+        'service_timeframe',
     ];
 
     public function category()

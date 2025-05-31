@@ -86,13 +86,13 @@
                                                             Food Buisness
                                                         </label>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="gender">
                                     <div class="accordion" id="prices">
                                         <div class="accordion-item">
@@ -131,7 +131,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                         <div class="mt-2">
                             <select class="form-select" aria-label="Default select example">
@@ -160,10 +160,14 @@
                                     </p>
                                     <h6 class="mt-1">₹ {{ $lead->budget_min }}-{{ $lead->budget_max }}</h6>
                                 </div>
-                                <div class="d-flex align-items-center procut_btn">
-                                    <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">Buy Now</a>
-                                    <span class="fav ms-3"><i class="fa-solid fa-heart"></i></span>
+                                <div class="d-flex align-items-start procut_btn">
+                                    <div class="d-flex flex-column">
+                                        <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">Buy Now</a>
+                                        <p class="mt-2 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</p>
+                                    </div>
+                                    <span class="fav ms-3 mt-1"><i class="fa-solid fa-heart"></i></span>
                                 </div>
+
                             </div>
                             <p class="pt-2"> {{ $lead->lead_notes }}</p>
                             <p class="pt-2"> {{ $lead->service_timeframe }}</p>
@@ -172,9 +176,9 @@
                 </div>
             </div>
             @empty
-        <p>No leads found for your categories.</p>
-    @endforelse
-            
+            <p>No leads found for your categories.</p>
+            @endforelse
+
 
         </div>
 

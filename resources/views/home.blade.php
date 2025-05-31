@@ -20,18 +20,11 @@
                         <div class="col-md-6 align-self-center order-2 order-md-1">
                             <div class="slider-content-wrapper">
                                 <div class="slider-content">
-                                    <span class="slider-short-title">Welcome to Task365</span>
-                                    <h1 class="slider-title">One stop solution for leads</h1>
+                                    <span class="slider-short-title">{{ $banner->welcome_text ?? '' }}</span>
+                                    <h1 class="slider-title">{{ $banner->banner_title ?? '' }}</h1>
                                     <p class="slider-short-desc">
 
-                                        Your One-Stop Hub for Verified Leads
-
-                                        Whether you're growing your business, looking for partnerships, or seeking clients, our high-quality leads help you connect with the right people faster and smarter.
-
-
-                                        We Provide High-Quality Leads You Can Trust
-
-                                        Our leads are handpicked and verified to ensure relevance, accuracy, and value because your time is too valuable to waste on cold or irrelevant data.
+                                        {{ $banner->banner_description ?? '' }}
                                     </p>
                                     <div class="slider-btn-wrapper"><a href="javasceipt:void(0);"
                                             class="style-2 me-3 active_btn">To
@@ -133,7 +126,7 @@
                     @foreach($categories as $category)
                     <?php
                     $content = $category->category_description;
-                    $limit = 80;
+                    $limit =70;
                     ?>
                     <div class="col-lg-4 col-md-6 masonry-portfolio-item resort beach wow fadeInUp"
                         data-wow-delay="0s">
