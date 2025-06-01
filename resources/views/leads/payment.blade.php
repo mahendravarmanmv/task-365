@@ -15,10 +15,10 @@
             <!-- Lead Details -->
             <div class="mb-4">
                 <p class="mb-2">
-                    <strong>Lead:</strong> <span class="text-muted">{{ $lead->lead_name }}</span>
+                    <strong>Lead Name:</strong> <span class="text-muted">{{ $lead->lead_name }}</span>
                 </p>
                 <p>
-                    <strong>Amount:</strong>
+                    <strong>Lead Cost:</strong>
                     <span class="text-muted">₹ {{ $lead->lead_cost }}</span>
                 </p>
             </div>
