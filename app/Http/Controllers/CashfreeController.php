@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Models\Lead;
 
 class CashfreeController extends Controller
 {
@@ -24,6 +25,7 @@ class CashfreeController extends Controller
         // Generate unique order IDs
         $orderId = 'order_'.rand(1111111111, 9999999999);
         $customerId = 'customer_'.rand(111111111, 999999999);
+        $lead_id = $request->lead_id;
 
         $url = env('CASHFREE_ENV') === 'sandbox'
             ? "https://sandbox.cashfree.com/pg/orders"
@@ -47,7 +49,7 @@ class CashfreeController extends Controller
                 "customer_phone" => $request->phone,
             ],
             "order_meta" => [
-                "return_url" => route('cashfree.success').'?order_id={order_id}&order_token={order_token}'
+                "return_url" => route('cashfree.success') . "?order_id={order_id}&order_token={order_token}&lead_id=" . $lead_id
             ],
         ]);
 
@@ -85,6 +87,7 @@ class CashfreeController extends Controller
     public function success(Request $request)
     {
         $orderId = $request->input('order_id');
+        $lead_id = $request->input('lead_id');
 
         if (!$orderId) {
             return redirect('/')->with('error', 'Payment verification failed: Missing order ID');
@@ -133,6 +136,7 @@ class CashfreeController extends Controller
             ]);
 
             if ($status === 1) {
+                Lead::where('id', $lead_id)->decrement('stock');
                 return redirect('payment/result')->with([
                     'success' => 'Payment Successful!',
                     'payment' => $payment,

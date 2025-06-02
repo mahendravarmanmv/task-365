@@ -162,8 +162,20 @@
                                 </div>
                                 <div class="d-flex align-items-start procut_btn">
                                     <div class="d-flex flex-column">
-                                        <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">Buy Now</a>
+                                        <?php
+                                        if ($lead->stock == 0 || $lead->stock < 1) {
+                                        ?>
+                                            <a href="#" class="btn btn-danger">{{ $lead->button_text }}</a>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">{{ $lead->button_text }}</a>
+                                        <?php
+                                        }
+                                        ?>
+
                                         <p class="mt-2 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</p>
+                                        <p class="mt-2 mb-0"><strong>Stock:</strong> {{ $lead->stock }}</p>
                                     </div>
                                     <span class="fav ms-3 mt-1"><i class="fa-solid fa-heart"></i></span>
                                 </div>

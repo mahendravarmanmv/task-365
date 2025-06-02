@@ -30,6 +30,7 @@
 				<input type="hidden" name="phone" value="{{ auth()->user()->phone }}">
 				<input type="hidden" name="name" value="{{ auth()->user()->name }}">
                 <input type="hidden" name="amount" value="{{ $lead->lead_cost }}">
+                <input type="hidden" name="lead_id" value="{{ $lead->id }}">
 
                 <div class="d-grid">
                     <button type="submit" class="btn btn-lg rounded-pill text-white" style="background-color: #033796;">

@@ -24,6 +24,8 @@ class Lead extends Model
         'budget_min',
         'budget_max',
         'lead_cost',
+        'stock',
+        'button_text',
         'service_timeframe',
     ];
 
