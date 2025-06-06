@@ -2,6 +2,7 @@
 
 @section('content')
 <script id="otpless-sdk" src="https://otpless.com/v4/headless.js" data-appid="{{ config('otp.app_id') }}"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container-fluid p-0 h-100">
     <div class="row g-0 align-items-center h-100">
         <div class="col-md-6">
@@ -28,11 +29,30 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Email</label>
-                                <input type="email" name="email" placeholder="Enter Email" value="{{ old('email') }}" class="form-control">
+                                <div class="input-group">
+                                    <input type="email" name="email" id="email" placeholder="Enter Email" value="{{ old('email') }}" class="form-control">
+                                    <button type="button" class="btn btn-outline-primary" id="send-otp-btn" onclick="sendemailOtp()">Send OTP</button>
+                                </div>
                                 @error('email')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                            <div class="form-group mb-3" id="email-otp-section" style="display: none;">
+                                <label>Enter OTP</label>
+                                <div class="input-group">
+                                    <input type="text" id="email-otp-input" name="email-otp-input" placeholder="Enter OTP" class="form-control">
+                                    <button type="button" class="btn btn-outline-primary" id="verify-email-otp-btn" onclick="emailverifyOtp()">Verify OTP</button>
+                                </div>
+                                <div class="text-danger mt-1" id="email-status-message"></div>
+                            </div>
+
+                            <!-- Hidden input for Laravel validation -->
+                            <input type="hidden" name="email_otp_verified" id="email_otp_verified" value="0">
+                            @error('email_otp_verified')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                            @enderror
+
                             <div class="form-group mb-3">
                                 <label>Password</label>
                                 <input type="password" name="password" value="{{ old('password') }}" class="form-control" placeholder="Enter Password">
@@ -58,8 +78,8 @@
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
-							
-							<div class="form-group mb-3" id="otp-section" style="display: none;">
+
+                            <div class="form-group mb-3" id="otp-section" style="display: none;">
                                 <label>Enter OTP</label>
                                 <div class="input-group">
                                     <input type="text" id="otp-input" name="otp-input" placeholder="Enter OTP" class="form-control">
@@ -67,6 +87,10 @@
                                 </div>
                                 <div class="text-danger mt-1" id="status-message"></div>
                             </div>
+                            <input type="hidden" name="otp_verified" id="otp_verified" value="0">
+                            @error('otp_verified')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                            @enderror
 
                             <div class="form-group mb-3">
                                 <label>Whats App Number</label>

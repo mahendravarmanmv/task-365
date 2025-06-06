@@ -11,12 +11,16 @@ use App\Http\Controllers\CashfreeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Auth\EmailOtpController;
 use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/signup', [RegisteredUserController::class, 'create'])->name('signup');
 Route::post('/signup', [RegisteredUserController::class, 'store']);
+
+Route::post('/send-otp-email', [EmailOtpController::class, 'sendOtp']);
+Route::post('/verify-otp-email', [EmailOtpController::class, 'verifyOtp']);
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);

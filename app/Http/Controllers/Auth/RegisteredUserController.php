@@ -35,14 +35,19 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email_otp_verified' => 'in:1',
             'password' => ['required', Rules\Password::defaults()],
             'phone' => ['required', 'string', 'regex:/^[0-9]{10}$/'],
+            'otp_verified' => 'accepted',
             'whatsapp_number' => ['nullable', 'string', 'regex:/^[0-9]{10}$/'],
             'category' => ['required', 'array'], // Validate category as an array
             'category.*' => ['exists:categories,id'], // Ensure selected values exist in the categories table
             'agree_terms' => 'accepted',
             'business_proof' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
             'identity_proof' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+        ], [
+            'otp_verified.accepted' => 'OTP verification failed. Please verify your phone number before submitting the form.',
+            'email_otp_verified.in' => 'Email OTP verification failed. Please verify your email before submitting the form.',
         ]);
 
         // Handle file uploads
