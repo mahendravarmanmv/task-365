@@ -196,3 +196,97 @@ function emailverifyOtp() {
     });
 }
 /*email otp end */
+
+/*form validations start */
+$(document).ready(function () {
+  $('form').on('submit', function (e) {
+    $('.text-danger.dynamic-error').remove(); // Remove previous messages
+
+    let isValid = true;
+
+    // Helper to show error below a field
+    function showError(selector, message) {
+    const $field = $(selector);
+
+    if ($field.closest('.input-group').length > 0) {
+        // If inside .input-group, append after its parent
+        $field.closest('.input-group').after('<div class="text-danger dynamic-error mt-1">' + message + '</div>');
+    } else {
+        // Regular field
+        $field.after('<div class="text-danger dynamic-error mt-1">' + message + '</div>');
+    }
+
+    isValid = false;
+}
+
+
+    const name = $('input[name="name"]');
+    const email = $('#email');
+    const emailOtpVerified = $('#email_otp_verified').val();
+    const password = $('input[name="password"]');
+    const phone = $('#phone');
+    const phoneOtpVerified = $('#otp_verified').val();
+    const whatsapp = $('input[name="whatsapp_number"]');
+    const category = $('select[name="category[]"]');
+    const terms = $('#agree_terms');
+
+    // Name
+    if (!name.val().trim()) {
+      showError(name, "Name is required.");
+    }
+
+    // Email
+    const emailVal = email.val().trim();
+    if (!emailVal) {
+      $("#email-otp-section").hide();
+      showError(email, "Email is required.");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+      $("#email-otp-section").hide();
+      showError(email, "Enter a valid email address.");
+    }
+    else if (emailOtpVerified !== "1"){
+      $("#email-otp-section").show();
+      showError($('#email-otp-input'), "Please verify your email OTP.");
+    }    
+
+    // Password
+    if (!password.val().trim()) {
+      showError(password, "Password is required.");
+    }
+
+    // Phone
+    const phoneVal = phone.val().trim();
+    if (!phoneVal) {
+      $("#otp-section").hide();
+      showError(phone, "Mobile number is required.");
+    } else if (!/^\d{10}$/.test(phoneVal)) {
+      $("#otp-section").hide();
+      showError(phone, "Enter a valid 10-digit mobile number.");
+    } else if (phoneOtpVerified !== "1") {
+      $("#otp-section").show();
+      showError($('#otp-input'), "Please verify your phone OTP.");
+    }  
+
+    // WhatsApp
+    if (!whatsapp.val().trim()) {
+      showError(whatsapp, "WhatsApp number is required.");
+    }
+
+    // Category
+    if (!category.val() || category.val().length === 0) {
+      showError(category, "Please select at least one category.");
+    }
+
+    // Agree to terms
+    if (!$('#agree_terms').is(':checked')) {
+      isValid = false;
+      $('#agree_terms').closest('.form-group').append('<div class="text-danger dynamic-error mt-1">You must agree to the Terms and Privacy Policy.</div>');
+    }
+
+    if (!isValid) {
+      e.preventDefault();
+    }
+  });
+});
+/*form validations end */
+

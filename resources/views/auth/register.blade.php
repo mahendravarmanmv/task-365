@@ -30,7 +30,7 @@
                             <div class="form-group mb-3">
                                 <label>Email</label>
                                 <div class="input-group">
-                                    <input type="email" name="email" id="email" placeholder="Enter Email" value="{{ old('email') }}" class="form-control">
+                                    <input type="text" name="email" id="email" placeholder="Enter Email" value="{{ old('email') }}" class="form-control">
                                     <button type="button" class="btn btn-outline-primary" id="send-otp-btn" onclick="sendemailOtp()">Send OTP</button>
                                 </div>
                                 @error('email')
@@ -136,18 +136,24 @@
                             </div>
 
                             <div class="form-group mb-3 d-flex flex-column sign_chek">
-                                <div class="d-flex align-items-center">
-                                    <input class="form-check-input me-2" type="checkbox" name="agree_terms" id="agree_terms">
-                                    <label for="agree_terms">By signing up, you agree to the <a href="#">Terms of Service</a> and
+                                <div class="d-flex align-items-start">
+                                    <input class="form-check-input me-2 mt-1" type="checkbox" name="agree_terms" id="agree_terms">
+                                    <label for="agree_terms" class="text-start">
+                                        By signing up, you agree to the
+                                        <a href="#">Terms of Service</a> and
                                         <a href="#">Privacy Policy</a>.
                                     </label>
                                 </div>
 
-                                <!-- Error Message for Checkbox -->
+                                <!-- Error Message Displayed Below -->
                                 @error('agree_terms')
-                                <p class="text-danger mt-1">{{ $message }}</p>
+                                <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
+
+                                <!-- Optional: JavaScript error message container -->
+                                <div id="agree_terms_error" class="text-danger mt-1 d-none"></div>
                             </div>
+
 
                             <div class="form-group mb-3">
                                 <button type="submit" class="theme-btn w-100 text-center d-block">Sign Up</button>
