@@ -9,7 +9,7 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'phone', 'amount', 'order_id', 'payment_id', 'status', 'other'];
+    protected $fillable = ['name', 'email', 'phone', 'amount', 'order_id', 'lead_id', 'payment_id', 'status', 'other'];
 
     protected $casts = [
         'other' => 'array',

@@ -77,7 +77,8 @@ class CashfreeController extends Controller
             'phone' => $request->phone,
             'amount' => $request->amount,
             'order_id' => $orderId,
-            'status' => 0 // pending
+            'lead_id' => $lead_id,
+            'status' => 0, // pending
         ]);
 
         // Redirect to Cashfree payment page
@@ -132,7 +133,8 @@ class CashfreeController extends Controller
                 'status' => $status,
                 'other' => $responseData,
                 'payment_id' => $responseData->cf_order_id ?? null,
-                'payment_method' => $responseData->payment_method ?? null
+                'payment_method' => $responseData->payment_method ?? null,
+                'lead_id' => $lead_id,
             ]);
 
             if ($status === 1) {
