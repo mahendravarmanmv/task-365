@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\EmailOtpController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -54,9 +55,8 @@ Route::get('/about-us', function () {
     return view('about-us');
 })->name('about');
 
-Route::get('/contact-us', function () {
-    return view('contact-us');
-})->name('contact');
+Route::get('/contact-us', fn() => view('contact-us'))->name('contact');
+Route::post('/contact-submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');

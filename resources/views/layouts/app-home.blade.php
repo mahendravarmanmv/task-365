@@ -383,6 +383,8 @@
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    @yield('jquery_scripts')
 </body>
 
 </html>
