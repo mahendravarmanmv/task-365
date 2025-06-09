@@ -53,7 +53,7 @@
                         </div>
                         <div class="item-text headline pera-content">
                             <h3>Phone:</h3>
-                            <p>+91 7995115182</p>
+                            <p>+91 8790399660</p>
                         </div>
                     </div>
                 </div>
