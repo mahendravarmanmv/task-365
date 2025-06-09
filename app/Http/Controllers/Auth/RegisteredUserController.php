@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', Rules\Password::defaults()],
             'phone' => ['required', 'string', 'regex:/^[0-9]{10}$/'],
             'otp_verified' => 'accepted',
-            'whatsapp_number' => ['nullable', 'string', 'regex:/^[0-9]{10}$/'],
+            'alternative_number' => ['nullable', 'string', 'regex:/^[0-9]{10}$/'],
             'category' => ['required', 'array'], // Validate category as an array
             'category.*' => ['exists:categories,id'], // Ensure selected values exist in the categories table
             'agree_terms' => 'accepted',
@@ -66,7 +66,7 @@ class RegisteredUserController extends Controller
             'company_name' => $request->company_name,
             'website' => $request->website,
             'phone' => $request->phone,
-            'whatsapp_number' => $request->whatsapp_number,
+            'alternative_number' => $request->alternative_number,
             'business_proof' => $businessProofPath,
             'identity_proof' => $identityProofPath,
         ]);

@@ -22,6 +22,8 @@ Route::post('/signup', [RegisteredUserController::class, 'store']);
 
 Route::post('/send-otp-email', [EmailOtpController::class, 'sendOtp']);
 Route::post('/verify-otp-email', [EmailOtpController::class, 'verifyOtp']);
+Route::post('/check-email-exists', [EmailOtpController::class, 'checkEmail']);
+
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);

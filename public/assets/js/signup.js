@@ -36,15 +36,25 @@ const OTPlessSignin = new OTPless(callback);
 
 // Function to request OTP
 const phoneAuth = () => {
-  const phone = document.getElementById('phone').value.trim();
+  const phoneInput = document.getElementById('phone');
+  const phone = phoneInput.value.trim();
+  const phoneError = document.getElementById('phone-error');
+
+  // Clear previous message
+  phoneError.innerText = "";
+
+  // Validate phone number
+  const isValidIndianMobile = /^[6-9]\d{9}$/.test(phone);
   if (!phone) {
-    alert("Please enter your mobile number.");
+    phoneError.innerText = "Please enter your mobile number.";
+    return;
+  } else if (!isValidIndianMobile) {
+    phoneError.innerText = "Enter a valid 10-digit Indian mobile number starting with 6-9.";
     return;
   }
 
-  document.getElementById("send-otp-btn").disabled = true;
-  document.getElementById("send-otp-btn").innerText = "Sending...";
-
+  document.getElementById("send-otp-mobile").disabled = true;
+  document.getElementById("send-otp-mobile").innerText = "Sending...";
   document.getElementById("otp-section").style.display = "block";
 
   OTPlessSignin.initiate({
@@ -54,14 +64,15 @@ const phoneAuth = () => {
   }).then((res) => {
     console.log("OTP Sent Response: ", res);
     document.getElementById("status-message").innerHTML = "<div class='alert alert-info'>OTP sent to your phone number!</div>";
-    document.getElementById("send-otp-btn").innerText = "OTP Sent";
+    document.getElementById("send-otp-mobile").innerText = "OTP Sent";
   }).catch((err) => {
     console.log("Error while sending OTP: ", err);
     document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>Error: " + err.message + "</div>";
-    document.getElementById("send-otp-btn").disabled = false;
-    document.getElementById("send-otp-btn").innerText = "Send OTP";
+    document.getElementById("send-otp-mobile").disabled = false;
+    document.getElementById("send-otp-mobile").innerText = "Send OTP";
   });
 };
+
 
 // Function to verify OTP
 const verifyOTP = () => {
@@ -89,7 +100,7 @@ const verifyOTP = () => {
       verifyButton.classList.add('btn-success');
       verifyButton.disabled = true;
 
-      document.getElementById("send-otp-btn").innerText = "OTP Sent";
+      document.getElementById("send-otp-mobile").innerText = "OTP Sent";
       document.getElementById("otp_verified").value = "1"; // ✅ Mark as verified
     } else {
       document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>❌ OTP Verification Failed. Please check the OTP and try again.</div>";
@@ -122,19 +133,21 @@ function updateFileName(input, displayId) {
 /*email otp start */
 function sendemailOtp() {
     const email = document.getElementById('email').value.trim();
+    const statusMessage = document.getElementById('email-status-message');
+    const checkMessage = document.getElementById('email-check-message');
+    const sendBtn = document.getElementById('send-otp-btn');
+
+    // Reset messages
+    statusMessage.innerHTML = '';
+    checkMessage.innerHTML = '';
 
     if (!email) {
-        alert("Please enter an email.");
+        checkMessage.innerHTML = "<div class='text-danger mt-1'>Please enter an email address.</div>";
         return;
     }
 
-    const sendBtn = document.getElementById('send-otp-btn');
-    const statusMessage = document.getElementById('email-status-message');
-
-    sendBtn.disabled = true;
-    sendBtn.innerText = "Sending...";
-
-    fetch('/send-otp-email', {
+    // First: Check if email already exists
+    fetch('/check-email-exists', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -144,17 +157,42 @@ function sendemailOtp() {
     })
     .then(res => res.json())
     .then(data => {
-        sendBtn.innerText = "OTP Sent";
-        document.getElementById('email-otp-section').style.display = 'block';
-        statusMessage.innerHTML = "<div class='alert alert-info'>OTP sent to your email address!</div>";
+        if (data.exists) {
+            checkMessage.innerHTML = "<div class='text-danger mt-1'>This email is already registered.</div>";
+            return; // Stop here
+        }
+
+        // Proceed to send OTP
+        sendBtn.disabled = true;
+        sendBtn.innerText = "Sending...";
+
+        fetch('/send-otp-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({ email: email })
+        })
+        .then(res => res.json())
+        .then(data => {
+            sendBtn.innerText = "OTP Sent";
+            document.getElementById('email-otp-section').style.display = 'block';
+            statusMessage.innerHTML = "<div class='alert alert-info mt-1'>OTP sent to your email address!</div>";
+        })
+        .catch(err => {
+            console.error(err);
+            sendBtn.disabled = false;
+            sendBtn.innerText = "Send OTP";
+            statusMessage.innerHTML = "<div class='alert alert-danger mt-1'>Failed to send OTP</div>";
+        });
     })
     .catch(err => {
         console.error(err);
-        sendBtn.disabled = false;
-        sendBtn.innerText = "Send OTP";
-        statusMessage.innerHTML = "<div class='alert alert-danger'>Failed to send OTP</div>";
+        checkMessage.innerHTML = "<div class='text-danger mt-1'>Error checking email. Please try again.</div>";
     });
 }
+
 
 function emailverifyOtp() {
     const email = document.getElementById('email').value.trim();
@@ -206,19 +244,16 @@ $(document).ready(function () {
 
     // Helper to show error below a field
     function showError(selector, message) {
-    const $field = $(selector);
+      const $field = $(selector);
 
-    if ($field.closest('.input-group').length > 0) {
-        // If inside .input-group, append after its parent
+      if ($field.closest('.input-group').length > 0) {
         $field.closest('.input-group').after('<div class="text-danger dynamic-error mt-1">' + message + '</div>');
-    } else {
-        // Regular field
+      } else {
         $field.after('<div class="text-danger dynamic-error mt-1">' + message + '</div>');
+      }
+
+      isValid = false;
     }
-
-    isValid = false;
-}
-
 
     const name = $('input[name="name"]');
     const email = $('#email');
@@ -226,7 +261,7 @@ $(document).ready(function () {
     const password = $('input[name="password"]');
     const phone = $('#phone');
     const phoneOtpVerified = $('#otp_verified').val();
-    const whatsapp = $('input[name="whatsapp_number"]');
+    const alternative_number = $('input[name="alternative_number"]');
     const category = $('select[name="category[]"]');
     const terms = $('#agree_terms');
 
@@ -243,11 +278,10 @@ $(document).ready(function () {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
       $("#email-otp-section").hide();
       showError(email, "Enter a valid email address.");
-    }
-    else if (emailOtpVerified !== "1"){
+    } else if (emailOtpVerified !== "1") {
       $("#email-otp-section").show();
       showError($('#email-otp-input'), "Please verify your email OTP.");
-    }    
+    }
 
     // Password
     if (!password.val().trim()) {
@@ -255,21 +289,30 @@ $(document).ready(function () {
     }
 
     // Phone
-    const phoneVal = phone.val().trim();
-    if (!phoneVal) {
-      $("#otp-section").hide();
-      showError(phone, "Mobile number is required.");
-    } else if (!/^\d{10}$/.test(phoneVal)) {
-      $("#otp-section").hide();
-      showError(phone, "Enter a valid 10-digit mobile number.");
-    } else if (phoneOtpVerified !== "1") {
-      $("#otp-section").show();
-      showError($('#otp-input'), "Please verify your phone OTP.");
-    }  
+const phoneVal = phone.val().trim();
+$('#phone-error').text(''); // Clear previous message
 
-    // WhatsApp
-    if (!whatsapp.val().trim()) {
-      showError(whatsapp, "WhatsApp number is required.");
+if (!phoneVal) {
+  $("#otp-section").hide();
+  $('#phone-error').text("Mobile number is required.");
+  isValid = false;
+} else if (!/^[6-9]\d{9}$/.test(phoneVal)) {
+  $("#otp-section").hide();
+  $('#phone-error').text("Enter a valid 10-digit Indian mobile number starting with 6-9.");
+  isValid = false;
+} else if (phoneOtpVerified !== "1") {
+  $("#otp-section").show();
+  $('#phone-error').text("Please verify your phone OTP.");
+  isValid = false;
+}
+
+
+    // Alternative Number
+    const altVal = alternative_number.val().trim();
+    if (!altVal) {
+      showError(alternative_number, "Alternative number is required.");
+    } else if (!/^[6-9]\d{9}$/.test(altVal)) {
+      showError(alternative_number, "Enter a valid 10-digit Indian mobile number starting with 6-9.");
     }
 
     // Category
@@ -277,10 +320,10 @@ $(document).ready(function () {
       showError(category, "Please select at least one category.");
     }
 
-    // Agree to terms
-    if (!$('#agree_terms').is(':checked')) {
+    // Terms and Conditions
+    if (!terms.is(':checked')) {
       isValid = false;
-      $('#agree_terms').closest('.form-group').append('<div class="text-danger dynamic-error mt-1">You must agree to the Terms and Privacy Policy.</div>');
+      terms.closest('.form-group').append('<div class="text-danger dynamic-error mt-1">You must agree to the Terms and Privacy Policy.</div>');
     }
 
     if (!isValid) {
@@ -288,5 +331,6 @@ $(document).ready(function () {
     }
   });
 });
+
 /*form validations end */
 

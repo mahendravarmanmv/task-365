@@ -28,24 +28,26 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
-                                <label>Email</label>
-                                <div class="input-group">
-                                    <input type="text" name="email" id="email" placeholder="Enter Email" value="{{ old('email') }}" class="form-control">
-                                    <button type="button" class="btn btn-outline-primary" id="send-otp-btn" onclick="sendemailOtp()">Send OTP</button>
-                                </div>
-                                @error('email')
-                                <div class="text-danger mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
+    <label>Email</label>
+    <div class="input-group">
+        <input type="text" name="email" id="email" placeholder="Enter Email" value="{{ old('email') }}" class="form-control">
+        <button type="button" class="btn btn-outline-primary" id="send-otp-btn" onclick="sendemailOtp()">Send OTP</button>
+    </div>
+    <div class="text-danger mt-1" id="email-check-message"></div> <!-- Add this -->
+    @error('email')
+    <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
 
-                            <div class="form-group mb-3" id="email-otp-section" style="display: none;">
-                                <label>Enter OTP</label>
-                                <div class="input-group">
-                                    <input type="text" id="email-otp-input" name="email-otp-input" placeholder="Enter OTP" class="form-control">
-                                    <button type="button" class="btn btn-outline-primary" id="verify-email-otp-btn" onclick="emailverifyOtp()">Verify OTP</button>
-                                </div>
-                                <div class="text-danger mt-1" id="email-status-message"></div>
-                            </div>
+<div class="form-group mb-3" id="email-otp-section" style="display: none;">
+    <label>Enter OTP</label>
+    <div class="input-group">
+        <input type="text" id="email-otp-input" name="email-otp-input" placeholder="Enter OTP" class="form-control">
+        <button type="button" class="btn btn-outline-primary" id="verify-email-otp-btn" onclick="emailverifyOtp()">Verify OTP</button>
+    </div>
+    <div class="text-danger mt-1" id="email-status-message"></div>
+</div>
+
 
                             <!-- Hidden input for Laravel validation -->
                             <input type="hidden" name="email_otp_verified" id="email_otp_verified" value="0">
@@ -69,15 +71,19 @@
                                 <input type="text" name="website" class="form-control" value="{{ old('website') }}" placeholder="Enter Website Address">
                             </div>
                             <div class="form-group mb-3">
-                                <label>Mobile</label>
-                                <div class="input-group">
-                                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter Mobile Number" class="form-control">
-                                    <button type="button" class="btn btn-outline-primary" id="send-otp-btn" onclick="phoneAuth()">Send OTP</button>
-                                </div>
-                                @error('phone')
-                                <div class="text-danger mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
+    <label>Mobile</label>
+    <div class="input-group">
+        <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter Mobile Number" class="form-control">
+        <button type="button" class="btn btn-outline-primary" id="send-otp-mobile" onclick="phoneAuth()">Send OTP</button>
+    </div>
+    <div id="phone-error" class="text-danger mt-1"></div> <!-- shared error div -->
+    <small class="text-muted">Note : OTP will be sent to your WhatsApp number.</small>
+    @error('phone')
+    <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
+
 
                             <div class="form-group mb-3" id="otp-section" style="display: none;">
                                 <label>Enter OTP</label>
@@ -93,9 +99,9 @@
                             @enderror
 
                             <div class="form-group mb-3">
-                                <label>Whats App Number</label>
-                                <input type="text" name="whatsapp_number" placeholder="Enter WhatsApp Number" value="{{ old('whatsapp_number') }}" class="form-control">
-                                @error('whatsapp_number')
+                                <label>Alternative Number</label>
+                                <input type="text" name="alternative_number" placeholder="Enter your alternative number" value="{{ old('alternative_number') }}" class="form-control">
+                                @error('alternative_number')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
