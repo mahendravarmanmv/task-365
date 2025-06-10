@@ -11,42 +11,43 @@
         </div>
         <div class="col-md-6">
             <div class="row justify-content-center align-items-center">
-                @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-                @endif
+                <div class="col-lg-7">
+                    <div class="auth-details">
+                        <h1>Forgot Password?</h1>
+                        <p>Please enter your registered Email. We’ll send you password reset OTP.</p>
 
-                <form method="POST" action="{{ route('password.email') }}">
-                    @csrf
-                    <div class="col-lg-7">
-                        <div class="auth-details">
+                        @if (session('status'))
+                            <div class="alert alert-success">{{ session('status') }}</div>
+                        @endif
 
-                            <h1>Forgot Password?</h1>
-                            <p>Please enter your registered Email. We’ll send you password reset OTP.</p>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                {{ $errors->first() }}
+                            </div>
+                        @endif
+
+                        <form id="forgot-password-form" method="POST" action="{{ route('password.email') }}">
+                            @csrf
                             <div class="auth-form">
                                 <div class="form-group mb-3">
                                     <label>Enter Email</label>
-                                    <input id="email" type="email" name="email" class="form-control" value="{{ old('email') }}" autofocus>
-                                    @error('email')
-                                    <div class="text-danger mt-1">{{ $message }}</div>
-                                    @enderror
+                                    <input type="text" name="email" class="form-control" value="{{ old('email') }}">
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <button type="submit" class="theme-btn w-100 text-center d-block">Submit</button>
                                 </div>
-
                             </div>
-                        </div>
+                        </form>
 
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-
-
 </div>
 
+<!-- jQuery Validation -->
+@section('jquery_scripts')
+<script src="{{ asset('assets/js/validations/forgot-password.js') }}"></script>
 @endsection
