@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Lead;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentSuccessMail;
 
 class CashfreeController extends Controller
 {
@@ -139,6 +141,8 @@ class CashfreeController extends Controller
 
             if ($status === 1) {
                 Lead::where('id', $lead_id)->decrement('stock');
+                // Send email notification to task365.in@gmail.com
+                Mail::to('task365.in@gmail.com')->send(new PaymentSuccessMail($payment));
                 return redirect('payment/result')->with([
                     'success' => 'Payment Successful!',
                     'payment' => $payment,
