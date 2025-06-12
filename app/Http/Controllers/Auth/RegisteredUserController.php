@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\WelcomeUserMail;
+use App\Mail\AdminNotificationMail;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -76,6 +78,14 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('registration.success')->with('message', 'You have successfully registered. Your account will be activated soon. You will receive a confirmation email once it is activated.');
+        // Send welcome email to the user
+        Mail::to($user->email)->send(new WelcomeUserMail($user));
+
+        // Send admin notification email
+        Mail::to('task365.in@gmail.com')->send(new AdminNotificationMail($user));
+
+        return redirect()->route('registration.success')
+            ->with('registration_success', true)
+            ->with('message', 'You have successfully registered. Your account will be activated soon. You will receive a confirmation email once it is activated.');
     }
 }
