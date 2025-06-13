@@ -40,6 +40,11 @@
                             </div>
                         </form>
 
+                        <!-- Optional: Link to Home (below the form) -->
+                        <div class="text-center mt-2">
+                            <a href="{{ route('login') }}" class="text-secondary">← Back to Login</a>
+                        </div>
+
                     </div>
                 </div>
             </div>

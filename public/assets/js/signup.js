@@ -1,4 +1,3 @@
-
 // Initialize OTPLESS SDK
 const callback = (eventCallback) => {
   const ONETAP = () => {
@@ -14,12 +13,15 @@ const callback = (eventCallback) => {
 
   const FAILED = () => {
     const { response } = eventCallback;
-    console.log("Failed Response: ", response);
+    console.error("OTP Sending Failed: ", response);
+    document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>Failed to send OTP. Try again later.</div>";
+    document.getElementById("send-otp-mobile").disabled = false;
+    document.getElementById("send-otp-mobile").innerText = "Send OTP";
   };
 
   const FALLBACK_TRIGGERED = () => {
     const { response } = eventCallback;
-    console.log("Fallback Triggered: ", response);
+    console.warn("Fallback Triggered: ", response);
   };
 
   const EVENTS_MAP = {
@@ -39,40 +41,52 @@ const phoneAuth = () => {
   const phoneInput = document.getElementById('phone');
   const phone = phoneInput.value.trim();
   const phoneError = document.getElementById('phone-error');
-
-  // Clear previous message
   phoneError.innerText = "";
 
-  // Validate phone number
-  const isValidIndianMobile = /^[6-9]\d{9}$/.test(phone);
   if (!phone) {
     phoneError.innerText = "Please enter your mobile number.";
     return;
-  } else if (!isValidIndianMobile) {
+  }
+
+  if (!/^[6-9]\d{9}$/.test(phone)) {
     phoneError.innerText = "Enter a valid 10-digit Indian mobile number starting with 6-9.";
     return;
   }
 
-  document.getElementById("send-otp-mobile").disabled = true;
-  document.getElementById("send-otp-mobile").innerText = "Sending...";
-  document.getElementById("otp-section").style.display = "block";
+  fetch("/check-phone-exists", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+    },
+    body: JSON.stringify({ phone: phone })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.exists) {
+      phoneError.innerText = data.message;
+      return;
+    }
 
-  OTPlessSignin.initiate({
-    channel: "PHONE",
-    phone: phone,
-    countryCode: "+91",  // India
-  }).then((res) => {
-    console.log("OTP Sent Response: ", res);
-    document.getElementById("status-message").innerHTML = "<div class='alert alert-info'>OTP sent to your phone number!</div>";
-    document.getElementById("send-otp-mobile").innerText = "OTP Sent";
-  }).catch((err) => {
-    console.log("Error while sending OTP: ", err);
-    document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>Error: " + err.message + "</div>";
-    document.getElementById("send-otp-mobile").disabled = false;
-    document.getElementById("send-otp-mobile").innerText = "Send OTP";
+    document.getElementById("send-otp-mobile").disabled = true;
+    document.getElementById("send-otp-mobile").innerText = "Sending...";
+    document.getElementById("otp-section").style.display = "block";
+
+    OTPlessSignin.initiate({
+      channel: "PHONE",
+      phone: phone,
+      countryCode: "+91",
+    }).then((res) => {
+      document.getElementById("status-message").innerHTML = "<div class='alert alert-info'>OTP sent to your phone number!</div>";
+      document.getElementById("send-otp-mobile").innerText = "OTP Sent";
+    }).catch((err) => {
+      console.error("OTP Send Error: ", err);
+      document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>Error: " + err.message + "</div>";
+      document.getElementById("send-otp-mobile").disabled = false;
+      document.getElementById("send-otp-mobile").innerText = "Send OTP";
+    });
   });
 };
-
 
 // Function to verify OTP
 const verifyOTP = () => {
@@ -91,8 +105,6 @@ const verifyOTP = () => {
     otp: otp,
     countryCode: "+91",
   }).then((res) => {
-    console.log("Verification Response: ", res);
-
     if (res.success && res.response && res.response.verification === "COMPLETED") {
       document.getElementById("status-message").innerHTML = "<div class='alert alert-success'>✅ OTP Verified Successfully!</div>";
       verifyButton.innerHTML = '<span style="color: white;">&#10004;</span> Verified';
@@ -101,24 +113,27 @@ const verifyOTP = () => {
       verifyButton.disabled = true;
 
       document.getElementById("send-otp-mobile").innerText = "OTP Sent";
-      document.getElementById("otp_verified").value = "1"; // ✅ Mark as verified
+      document.getElementById("otp_verified").value = "1"; // Correctly match "accepted"
     } else {
-      document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>❌ OTP Verification Failed. Please check the OTP and try again.</div>";
-      document.getElementById("otp_verified").value = "0"; // ❌ Not verified
+      document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>❌ OTP Verification Failed. Please try again.</div>";
+      document.getElementById("otp_verified").value = "0";
     }
   }).catch((err) => {
-    console.log("Error while verifying OTP: ", err);
-    document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>❌ Error occurred while verifying OTP.</div>";
-    document.getElementById("otp_verified").value = "0"; // ❌ Not verified
+    console.error("Verification Error: ", err);
+    document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>❌ Verification failed. Try again later.</div>";
+    document.getElementById("otp_verified").value = "0";
   });
 };
 
 // Optional: Prevent form submission if OTP not verified
+// Prevent form submission if phone or email OTP not verified
 document.querySelector('form').addEventListener('submit', function (e) {
-  const otpVerified = document.getElementById("otp_verified").value;
-  if (otpVerified !== "1") {
-    //e.preventDefault();
-    //alert("Please verify your OTP before submitting the form.");
+  const phoneOtpVerified = document.getElementById("otp_verified").value;
+  const emailOtpVerified = document.getElementById("email_otp_verified").value;
+
+  if (phoneOtpVerified !== "1" || emailOtpVerified !== "1") {
+    e.preventDefault();
+    alert("Please verify both Phone and Email OTPs before submitting the form.");
   }
 });
 
@@ -314,6 +329,10 @@ if (!phoneVal) {
     } else if (!/^[6-9]\d{9}$/.test(altVal)) {
       showError(alternative_number, "Enter a valid 10-digit Indian mobile number starting with 6-9.");
     }
+    else if (phoneVal && phoneVal === altVal) {
+      showError(alternative_number, "Mobile and alternative number should not be the same.");
+    }
+
 
     // Category
     if (!category.val() || category.val().length === 0) {
