@@ -315,7 +315,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="copyright-text">
-                                    <p> © Copyright Lorhan spot Earn Pvt Ltd</a></p>
+                                    <p> © {{ date('Y') }} Copyright</a></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
