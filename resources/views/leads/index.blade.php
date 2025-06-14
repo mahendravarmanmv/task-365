@@ -176,6 +176,8 @@
 
                                         <p class="mt-2 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</p>
                                         <p class="mt-2 mb-0"><strong>Stock:</strong> {{ $lead->stock }}</p>
+                                        <!-- ✅ Unique Lead ID below stock -->
+                                        <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
                                     </div>
                                     <span class="fav ms-3 mt-1"><i class="fa-solid fa-heart"></i></span>
                                 </div>

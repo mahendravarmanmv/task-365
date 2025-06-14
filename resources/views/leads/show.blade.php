@@ -2,79 +2,102 @@
 
 @section('content')
 <style>
-    .custom-lead-title {
-        color: #033796;
+    .lead-section {
+        background-color: #f8f9fa;
+        border-radius: 1rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #6c757d;
+    }
+
+    .info-value {
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: #212529;
     }
 
     .custom-payment-btn {
         background-color: #033796;
         color: white;
-        border: none;
     }
 
     .custom-payment-btn:hover {
         background-color: #022e6b;
     }
 </style>
-<div class="container py-2">
+
+<div class="container py-0">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <!-- Lead Card -->
-            <div class="card shadow rounded-4 border-0">
-                <div class="card-body p-1">
-                    <div class="text-center mb-4">
-                        <h4 class="fw-bold custom-lead-title">{{ $lead->lead_name }}</h4>
-                        <p class="text-muted mb-0">{{ $lead->category->category_title }}</p>
+        <div class="col-lg-8">
+            <div class="lead-section">
+                <!-- Lead ID -->
+                <div class="text-center mb-4">
+                    <span class="badge bg-light text-success fs-6">
+                        Lead ID: {{ $lead->lead_unique_id }}
+                    </span>
+                </div>
+                <!-- Header Section -->
+                <div class="lead-header d-flex flex-column flex-md-row justify-content-between align-items-start mb-3">
+                    <div class="text-center text-md-start mb-2 mb-md-0">
+                       <strong>Lead Name:</strong> {{ $lead->lead_name }}
                     </div>
-
-                    <ul class="list-group list-group-flush mb-4">
-                        <li class="list-group-item">
-                            <strong>Website Type:</strong>
-                            <span class="float-end">{{ $lead->website_type ?: 'N/A' }}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Location:</strong>
-                            <span class="float-end">{{ $lead->location }}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Client Budget Range:</strong>
-                            <span class="float-end">₹{{ $lead->budget_min }} - ₹{{ $lead->budget_max }}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Lead Cost:</strong>
-                            <span class="float-end">₹{{ $lead->lead_cost }}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Timeline:</strong>
-                            <span class="float-end">{{ $lead->service_timeframe }}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Description:</strong>
-                            <p class="mt-2">{{ $lead->lead_notes }}</p>
-                        </li>
-                    </ul>
-
-                    <!-- Proceed to Payment -->
-                    <!-- Proceed to Payment -->
-                    <!-- Action Buttons Row -->
-                    <div class="d-flex justify-content-between p-4 mt-4 mb-2 border rounded-4 shadow-sm">
-
-                        <!-- Back to Leads Button -->
-                        <a href="{{ route('leads.index') }}" class="btn btn-outline-secondary btn-sm rounded-pill">
-                            ← Back to Leads
-                        </a>
-
-                        <!-- Proceed to Payment Button -->
-                        <form action="{{ route('leads.payment', $lead->id) }}" method="GET">
-                            @csrf
-                            <button type="submit" class="btn custom-payment-btn btn-sm rounded-pill">
-                                Proceed to Payment →
-                            </button>
-                        </form>
-
+                    <div class="text-center text-md-end">
+                        <strong>Category:</strong> {{ $lead->category->category_title }}
                     </div>
+                </div>
 
+                
 
+                <!-- Details Two-Column Grid -->
+                <div class="row mb-4">
+                    <div class="col-sm-6 mb-3 text-center text-md-start">
+                        <div class="info-label">Website Type</div>
+                        <div class="info-value">{{ $lead->website_type ?? 'N/A' }}</div>
+                    </div>
+                    <div class="col-sm-6 mb-3 text-center text-md-end">
+                        <div class="info-label">Location</div>
+                        <div class="info-value">{{ $lead->location }}</div>
+                    </div>
+                    <div class="col-sm-6 mb-3 text-center text-md-start">
+                        <div class="info-label">Budget Range</div>
+                        <div class="info-value">₹{{ $lead->budget_min }} - ₹{{ $lead->budget_max }}</div>
+                    </div>
+                    <div class="col-sm-6 mb-3 text-center text-md-end">
+                        <div class="info-label">Lead Cost</div>
+                        <div class="info-value text-danger">₹{{ $lead->lead_cost }}</div>
+                    </div>
+                    <div class="col-sm-6 mb-3 text-center text-md-start">
+                        <div class="info-label">Timeline</div>
+                        <div class="info-value">{{ $lead->service_timeframe }}</div>
+                    </div>
+                    <div class="col-sm-6 mb-3 text-center text-md-end">
+                        <div class="info-label">Stock</div>
+                        <div class="info-value">{{ $lead->stock }}</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-4 text-center text-md-start">
+                    <div class="info-label">Description</div>
+                    <div class="info-value">{{ $lead->lead_notes }}</div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex flex-column flex-md-row justify-content-between border-top pt-4 gap-3 text-center text-md-start">
+                    <a href="{{ route('leads.index') }}" class="btn btn-outline-secondary btn-sm rounded-pill w-100 w-md-auto">
+                        ← Back to Leads
+                    </a>
+
+                    <form action="{{ route('leads.payment', $lead->id) }}" method="GET" class="w-100 w-md-auto text-center text-md-end">
+                        @csrf
+                        <button type="submit" class="btn custom-payment-btn btn-sm rounded-pill w-100 w-md-auto">
+                            Proceed to Payment →
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
