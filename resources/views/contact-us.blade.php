@@ -15,7 +15,7 @@
                     </div>
                     <div class="breadcrumb-list">
                         <ul>
-                            <li><a href="javascript:void(0);">Home</a></li>
+                            <li><a href="{{ url('/') }}">Home</a></li>
                             <li class="active"><a href="javascript:void(0);">Contact Us</a></li>
                         </ul>
                     </div>
