@@ -24,6 +24,16 @@ class CashfreeController extends Controller
             'amount' => 'required|numeric|min:1',
         ]);
 
+        // Check for duplicate purchase
+        $existing = Payment::where('email', $request->email)
+            ->where('lead_id', $request->lead_id)
+            ->where('status', 1)
+            ->exists();
+
+        if ($existing) {
+            return redirect()->route('leads.index')->with('error', 'You have already purchased this lead.');
+        }
+
         // Generate unique order IDs
         $orderId = 'order_'.rand(1111111111, 9999999999);
         $customerId = 'customer_'.rand(111111111, 999999999);

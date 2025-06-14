@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="{{ asset('assets/css/leads.css') }}" />
 <div class="procuct_sec page-breadcrumb-area page-bg py-5 mb-3">
     <div class="container">
+        @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="row">
             <div class="col-12 d-flex justify-content-end align-items-center mb-5">
                 <button class="btn filter_btn me-3" type="button" data-bs-toggle="offcanvas"
@@ -162,22 +168,19 @@
                                 </div>
                                 <div class="d-flex align-items-start procut_btn">
                                     <div class="d-flex flex-column">
-                                        <?php
-                                        if ($lead->stock == 0 || $lead->stock < 1) {
-                                        ?>
-                                            <a href="#" class="btn btn-danger">{{ $lead->button_text }}</a>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">{{ $lead->button_text }}</a>
-                                        <?php
-                                        }
-                                        ?>
 
-                                        <p class="mt-2 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</p>
-                                        <p class="mt-2 mb-0"><strong>Stock:</strong> {{ $lead->stock }}</p>
-                                        <!-- ✅ Unique Lead ID below stock -->
-                                        <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
+                                        @if(in_array($lead->id, $purchasedLeadIds))
+                                        <a href="#" class="btn btn-secondary disabled">{{ $lead->button_text }}</a>
+                                        @elseif($lead->stock == 0 || $lead->stock < 1)
+                                            <a href="#" class="btn btn-danger">{{ $lead->button_text }}</a>
+                                            @else
+                                            <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">{{ $lead->button_text }}</a>
+                                            @endif
+
+                                            <p class="mt-2 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</p>
+                                            <p class="mt-2 mb-0"><strong>Stock:</strong> {{ $lead->stock }}</p>
+                                            <!-- ✅ Unique Lead ID below stock -->
+                                            <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
                                     </div>
                                     <span class="fav ms-3 mt-1" data-lead-id="{{ $lead->id }}">
                                         <i class="fa-solid fa-heart {{ in_array($lead->id, $wishlistedIds) ? 'text-danger' : 'text-white' }}"></i>
