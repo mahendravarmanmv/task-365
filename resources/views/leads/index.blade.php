@@ -179,7 +179,10 @@
                                         <!-- ✅ Unique Lead ID below stock -->
                                         <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
                                     </div>
-                                    <span class="fav ms-3 mt-1"><i class="fa-solid fa-heart"></i></span>
+                                    <span class="fav ms-3 mt-1" data-lead-id="{{ $lead->id }}">
+                                        <i class="fa-solid fa-heart {{ in_array($lead->id, $wishlistedIds) ? 'text-danger' : 'text-white' }}"></i>
+                                    </span>
+                                    <p class="wishlist-msg mt-1 text-success small d-none">Wishlist added</p>
                                 </div>
 
                             </div>
@@ -198,4 +201,38 @@
 
     </div>
 </div>
+@endsection
+
+@section('jquery_scripts')
+<script>
+    $(document).on('click', '.fav', function() {
+        let $this = $(this);
+        let leadId = $this.data('lead-id');
+        let icon = $this.find('i');
+        let msg = $this.closest('.procut_btn').find('.wishlist-msg');
+
+        $.ajax({
+            url: "{{ route('wishlist.toggle') }}",
+            method: "POST",
+            data: {
+                lead_id: leadId,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(res) {
+                if (res.status === 'added') {
+                    icon.removeClass('text-white').addClass('text-danger');
+                    msg.text('Wishlist added').removeClass('d-none');
+                } else {
+                    icon.removeClass('text-danger').addClass('text-white');
+                    msg.text('Removed from wishlist').removeClass('d-none');
+                }
+
+                // Hide message after 2 seconds
+                setTimeout(function() {
+                    msg.addClass('d-none');
+                }, 2000);
+            }
+        });
+    });
+</script>
 @endsection

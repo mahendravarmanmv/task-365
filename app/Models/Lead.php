@@ -29,9 +29,19 @@ class Lead extends Model
         'service_timeframe',
     ];
 
+    /**
+     * Get the category for this lead.
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-}
 
+    /**
+     * Get all wishlists this lead appears in.
+     */
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+}

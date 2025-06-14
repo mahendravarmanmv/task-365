@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Lead;
+use App\Models\Wishlist;
 
 class LeadController extends Controller
 {
@@ -37,7 +38,12 @@ class LeadController extends Controller
         $selectedCategory = null;
     }
 
-    return view('leads.index', compact('leads', 'selectedCategory'));
+    // Safe wishlist fetch: only if logged in
+    $wishlistedIds = $user
+        ? Wishlist::where('user_id', $user->id)->pluck('lead_id')->toArray()
+        : [];
+
+    return view('leads.index', compact('leads', 'selectedCategory', 'wishlistedIds'));
 }
     public function show(Lead $lead)
     {

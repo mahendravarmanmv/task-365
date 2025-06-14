@@ -13,6 +13,7 @@ use App\Http\Controllers\LeadController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\EmailOtpController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -117,11 +118,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/create', [PaymentController::class, 'createOrder'])->name('payment.create');
     Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
     Route::post('/payment/webhook', [PaymentController::class, 'webhook'])->name('payment.webhook');
-    
-    Route::get('/payment/result', [PaymentController::class, 'result'])->name('payment.result');
-Route::post('/cashfree/payments/store', [CashfreeController::class, 'payment'])->name('cashfree.payment');
-Route::any('/cashfree/payments/success', [CashfreeController::class, 'success'])->name('cashfree.success');
 
+    Route::get('/payment/result', [PaymentController::class, 'result'])->name('payment.result');
+    Route::post('/cashfree/payments/store', [CashfreeController::class, 'payment'])->name('cashfree.payment');
+    Route::any('/cashfree/payments/success', [CashfreeController::class, 'success'])->name('cashfree.success');
+
+    Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->middleware('auth')->name('wishlist.toggle');
+    Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth')->name('wishlist.index');
 
 });
 
