@@ -32,6 +32,11 @@
                 </div>
             </div>
 
+            <!-- 👈 NEW: Visible Leads Count -->
+            <div class="col-12 mb-3">
+                <h6 id="leadsCount" class="text-muted">Total Leads: {{ count($leads) }}</h6>
+            </div>
+
             @forelse($leads as $lead)
             <div class="col-md-12  mb-4 ">
                 <div class="procuct_card">

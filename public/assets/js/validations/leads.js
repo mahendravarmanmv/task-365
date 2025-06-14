@@ -46,42 +46,53 @@ $(document).ready(function () {
     function filterLeads() {
         let searchTerm = $('#globalSearch').val().toLowerCase();
         let filterOption = $('#inlineFormSelectPref').val();
-        let visibleCount = 0;
+        let leadsWrapper = $('.procuct_sec .row');
+        let leadCards = $('.procuct_card').parent('.col-md-12');
 
-        let leads = $('.procuct_card').parent('.col-md-12');
+        let filtered = [];
 
-        leads.each(function () {
+        leadCards.each(function () {
             let card = $(this);
             let cardText = card.text().toLowerCase();
             let show = cardText.includes(searchTerm);
 
-            // Additional filter logic
             switch (filterOption) {
-                case '1': // Sort by Date – no-op unless custom sort logic added
-                    break;
-                case '2': // Budget high to low – not applicable in front-end text filtering
-                    break;
-                case '3': // Budget low to high – same as above
-                    break;
                 case '4': // In stock
-                    if (card.text().toLowerCase().includes("out of stock")) show = false;
+                    if (cardText.includes("out of stock")) show = false;
                     break;
                 case '5': // Out of stock
-                    show = card.text().toLowerCase().includes("out of stock");
+                    show = cardText.includes("out of stock");
                     break;
                 case '6': // Wishlist only
                     show = card.find('i.fa-heart').hasClass('text-danger');
                     break;
             }
 
-            if (show) {
-                card.show();
-                visibleCount++;
-            } else {
-                card.hide();
-            }
+            if (show) filtered.push(card);
         });
 
-        $('#noResultsMessage').toggleClass('d-none', visibleCount > 0);
+        // Sorting by budget
+        if (filterOption === '2' || filterOption === '3') {
+            filtered.sort(function (a, b) {
+                let budgetA = parseInt(a.find('.product_title').text().match(/Budget Range:\s*₹\s*(\d+)/)?.[1] || 0);
+                let budgetB = parseInt(b.find('.product_title').text().match(/Budget Range:\s*₹\s*(\d+)/)?.[1] || 0);
+                return filterOption === '2' ? budgetB - budgetA : budgetA - budgetB;
+            });
+        }
+
+        // Clear all and append sorted/filtered
+        leadCards.hide();
+        if (filtered.length > 0) {
+            $('#noResultsMessage').addClass('d-none');
+            filtered.forEach(card => leadsWrapper.append(card.show()));
+        } else {
+            $('#noResultsMessage').removeClass('d-none');
+        }
+
+        // ✅ Update the visible leads count
+        $('#leadsCount').text(`Total Leads: ${filtered.length}`);
     }
+
+    // Run once on page load
+    filterLeads();
 });
