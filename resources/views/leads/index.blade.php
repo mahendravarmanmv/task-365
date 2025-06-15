@@ -46,7 +46,7 @@
                             <div class="product_title">
                                 <div>
                                     <p><strong>Category :</strong> {{ $lead->category->category_title }}</p>
-                                    <p class="my-2"><strong>Website type :</strong> <span style="font-weight: normal;">{{ $lead->website_type }}</span></p>
+                                    <p class="my-2"><strong>Website type :</strong> <span style="font-weight: normal;">{{ $lead->website_type_name  }}</span></p>
 
                                     <p>
                                         <i class="fa-solid fa-location-dot me-2"></i>{{ strtoupper($lead->location) }}

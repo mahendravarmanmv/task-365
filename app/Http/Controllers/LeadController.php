@@ -19,7 +19,7 @@ class LeadController extends Controller
         if ($categoryId) {
             // Show leads for a specific category
             $leads = Lead::where('category_id', $categoryId)
-                ->with('category')
+                ->with(['category', 'websiteType'])
                 ->latest()
                 ->get();
 
@@ -28,7 +28,7 @@ class LeadController extends Controller
             // Logged-in user: show leads for their categories
             $categoryIds = $user->categories->pluck('id');
             $leads = Lead::whereIn('category_id', $categoryIds)
-                ->with('category')
+                ->with(['category', 'websiteType'])
                 ->latest()
                 ->get();
 
@@ -87,7 +87,7 @@ class LeadController extends Controller
             abort(403); // Forbidden
         }
         // 2. Prevent access if lead already purchased
-        $alreadyPurchased = \App\Models\Payment::where('email', $user->email) // or 'user_id' if available
+        $alreadyPurchased = Payment::where('email', $user->email) // or 'user_id' if available
             ->where('lead_id', $lead->id)
             ->where('status', 1) // successful payment
             ->exists();
