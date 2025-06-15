@@ -70,6 +70,15 @@ $(document).ready(function () {
 
             if (show) filtered.push(card);
         });
+		
+		if (filterOption === '1') {
+		filtered.sort(function (a, b) {
+		let dateA = parseInt(a.find('.procuct_card').data('date') || 0);
+		let dateB = parseInt(b.find('.procuct_card').data('date') || 0);
+		return dateB - dateA; // Newest first
+		});
+		}
+
 
         // Sorting by budget
         if (filterOption === '2' || filterOption === '3') {

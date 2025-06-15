@@ -39,7 +39,7 @@
 
             @forelse($leads as $lead)
             <div class="col-md-12  mb-4 ">
-                <div class="procuct_card">
+                <div class="procuct_card" data-date="{{ $lead->created_at->timestamp }}">
                     <!--<img src="./assets/images/user/user.png" alt="user" class="user_img">-->
                     <div class="product_body">
                         <div class="user_info">
@@ -96,8 +96,11 @@
             <p>No leads found for your categories.</p>
             @endforelse
 
+
+            @if(count($leads)>0)
             <!-- No Results Message for Global Search -->
-            <p id="noResultsMessage" class="text-center text-danger fw-bold d-none">No leads match your search.</p>
+            <p id="noResultsMessage" class="d-none">No leads match your search.</p>
+            @endif
         </div>
 
     </div>

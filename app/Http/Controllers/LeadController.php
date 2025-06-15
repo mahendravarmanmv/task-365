@@ -45,10 +45,12 @@ class LeadController extends Controller
             : [];
 
         // Get all lead_ids already purchased by this user
-        $purchasedLeadIds = Payment::where('email', $user->email)
+        $purchasedLeadIds = $user
+            ? Payment::where('email', $user->email)
             ->where('status', 1)
             ->pluck('lead_id')
-            ->toArray();
+            ->toArray()
+            : [];
 
         return view('leads.index', compact('leads', 'selectedCategory', 'wishlistedIds', 'purchasedLeadIds'));
     }
