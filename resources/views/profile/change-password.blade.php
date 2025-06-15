@@ -14,7 +14,7 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
 
-            <form method="POST" action="{{ route('change.password.update') }}">
+            <form id="changepassword" method="POST" action="{{ route('change.password.update') }}">
                 @csrf
 
                 {{-- Old Password --}}
@@ -59,7 +59,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Update Password</button>
+                <button type="submit" class="theme-btn py-2">Update Password</button>
             </form>
         </div>
     </div>
@@ -67,23 +67,6 @@
 @endsection
 
 @section('jquery_scripts')
-<script>
-    document.querySelectorAll('.toggle-password').forEach(function(button) {
-        button.addEventListener('click', function() {
-            const input = document.getElementById(this.getAttribute('data-target'));
-            const icon = this.querySelector('i');
-
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
-        });
-    });
-</script>
-
+<script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/js/validations/change-password.js') }}"></script>
 @endsection

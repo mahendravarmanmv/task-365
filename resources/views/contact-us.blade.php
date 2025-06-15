@@ -2,8 +2,6 @@
 
 @section('content')
 
-@include('common.login-form')
-
 <!-- Page Header Start -->
 <div class="page-breadcrumb-area page-bg">
     <div class="container">
