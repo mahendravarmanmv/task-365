@@ -17,24 +17,27 @@ use Illuminate\Support\Facades\Validator;
 class ProfileController extends Controller
 {
     public function index()
-    {
-        $user = auth()->user();
+{
+    $user = auth()->user();
 
-        // Purchased leads
-        $leadIds = Payment::where('email', $user->email)
-            ->where('status', 1)
-            ->pluck('lead_id');
-        $leads = Lead::whereIn('id', $leadIds)->get();
+    // Get all successful payments for the user
+    $payments = Payment::with('lead') // assumes a 'lead' relationship exists
+        ->where('email', $user->email)
+        ->where('status', 1)
+        ->latest()
+        ->get();
 
-        // Wishlist
-        $wishlist = Wishlist::with('lead')
-            ->where('user_id', $user->id)
-            ->get();
-       // User categories via pivot table
+    // Wishlist
+    $wishlist = Wishlist::with('lead')
+        ->where('user_id', $user->id)
+        ->get();
+
+    // User categories
     $categoryList = $user->categories()->pluck('category_title')->unique();
 
-        return view('profile.index', compact('user', 'leads', 'wishlist', 'categoryList'));
-    }
+    return view('profile.index', compact('user', 'payments', 'wishlist', 'categoryList'));
+}
+
 
     /**
      * Display the user's profile form.
