@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Lead;
+use App\Models\Payment;
+use App\Models\Wishlist;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +14,24 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        $user = auth()->user();
+
+        // Purchased leads
+        $leadIds = Payment::where('email', $user->email)
+            ->where('status', 1)
+            ->pluck('lead_id');
+        $leads = Lead::whereIn('id', $leadIds)->get();
+
+        // Wishlist
+        $wishlist = Wishlist::with('lead')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('profile.index', compact('user', 'leads', 'wishlist'));
+    }
+
     /**
      * Display the user's profile form.
      */

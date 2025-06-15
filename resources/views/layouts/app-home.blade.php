@@ -95,7 +95,11 @@
                                     <li class="{{ request()->routeIs('contact') ? 'active' : '' }}">
                                         <a href="{{ route('contact') }}">Contact Us</a>
                                     </li>
-
+                                    @if (auth()->check())
+                                    <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">
+                                        <a href="{{ route('profile') }}">My Profile</a>
+                                    </li>
+                                    @endif
                                     <!-- <li class="{{ request()->routeIs('faq') ? 'active' : '' }}">
                                         <a href="{{ route('faq') }}">FAQs</a>
                                     </li>-->
