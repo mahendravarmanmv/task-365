@@ -56,7 +56,7 @@
                 <div class="row mb-4">
                     <div class="col-sm-6 mb-3 text-center text-md-start">
                         <div class="info-label">Website Type</div>
-                        <div class="info-value">{{ $lead->website_type ?? 'N/A' }}</div>
+                        <div class="info-value">{{ $lead->website_type_name ?? 'N/A' }}</div>
                     </div>
                     <div class="col-sm-6 mb-3 text-center text-md-end">
                         <div class="info-label">Location</div>
