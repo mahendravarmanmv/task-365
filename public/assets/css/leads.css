@@ -359,3 +359,14 @@
         display: block;
     }
 }
+
+/* Increase width of all Toastr messages */
+#toast-container > .toast {
+    width: 400px !important; /* You can change this value */
+    word-wrap: break-word;
+    
+    font-size: 13px !important;     /* Optional: smaller font */
+    line-height: 1.5 !important;    /* Tighter line spacing */
+    min-height: auto !important;    /* Remove fixed min-height */
+    opacity: 1 !important;
+}

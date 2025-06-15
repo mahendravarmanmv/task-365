@@ -47,43 +47,44 @@
                                 <div>
                                     <p><strong>Category :</strong> {{ $lead->category->category_title }}</p>
                                     <p class="my-2"><strong>Website type :</strong> <span style="font-weight: normal;">{{ $lead->website_type }}</span></p>
-                                    
+
                                     <p>
                                         <i class="fa-solid fa-location-dot me-2"></i>{{ strtoupper($lead->location) }}
                                     </p>
                                     <p class="mt-1 mb-0"><strong>Budget Range:</strong> ₹ {{ $lead->budget_min }} - {{ $lead->budget_max }}</p>
                                 </div>
-                                <div class="d-flex align-items-start procut_btn">
-                                    <div class="d-flex align-items-center flex-column">
 
+                                <div class="procut_btn d-flex flex-column align-items-start">
+                                    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center mb-2 gap-2 gap-sm-0">
+
+                                        
                                         @if(in_array($lead->id, $purchasedLeadIds))
-                                        <a href="#" class="btn btn-secondary disabled">{{ $lead->button_text }}</a>
+                                        <a href="#" class="grey-btn py-2 disabled">{{ $lead->button_text }}</a>
                                         @elseif($lead->stock == 0 || $lead->stock < 1)
-                                            <a href="#" class="btn btn-secondary disabled">{{ $lead->button_text }}</a>
+                                            <a href="#" class="grey-btn py-2 disabled">{{ $lead->button_text }}</a>
                                             @else
                                             <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">{{ $lead->button_text }}</a>
                                             @endif
 
-                                            <h6 class="mt-1">Lead Cost: ₹ {{ $lead->lead_cost }}</h6>
-
-                                            <p class="mt-2 mb-0">
-                                                @if($lead->stock != 0)
-                                                <strong>Stock:</strong>
-                                                @endif
-                                                @if($lead->stock == 0)
-                                                <span class="text-danger"><strong>Out of stock</strong></span>
-                                                @else
-                                                {{ $lead->stock }}
-                                                @endif
-                                            </p>
-                                            <!-- ✅ Unique Lead ID below stock -->
-                                            <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
+                                        <span class="fav ms-3" data-lead-id="{{ $lead->id }}"><i class="fa-solid fa-heart {{ in_array($lead->id, $wishlistedIds) ? 'text-danger' : 'text-white' }}"></i></span>
+                                        
                                     </div>
-                                    <span class="fav ms-3 mt-1" data-lead-id="{{ $lead->id }}">
-                                        <i class="fa-solid fa-heart {{ in_array($lead->id, $wishlistedIds) ? 'text-danger' : 'text-white' }}"></i>
-                                    </span>
-                                    <p class="wishlist-msg mt-1 text-success small d-none">Wishlist added</p>
+                                    <!--<p class="wishlist-msg mt-1 text-success small d-none">Wishlist added</p>-->
+                                    <h6 class="mt-1 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</h6>
+                                    <p class="mt-2 mb-0">
+                                        @if($lead->stock != 0)
+                                        <strong>Stock:</strong>
+                                        @endif
+                                        @if($lead->stock == 0)
+                                        <span class="text-danger"><strong>Out of stock</strong></span>
+                                        @else
+                                        {{ $lead->stock }}
+                                        @endif
+                                    </p>
+                                    <!-- ✅ Unique Lead ID below stock -->
+                                    <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
                                 </div>
+
 
                             </div>
                             <p class="pt-2"> {{ $lead->lead_notes }}</p>
@@ -109,4 +110,6 @@
 
 @section('jquery_scripts')
 <script src="{{ asset('assets/js/validations/leads.js') }}?v={{ now()->timestamp }}"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @endsection

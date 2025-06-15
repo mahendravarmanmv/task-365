@@ -13,6 +13,13 @@ $(document).ready(function () {
             alert("Please log in to add to wishlist.");
             return;
         }
+		
+		toastr.options = {
+		"progressBar": true,
+		"positionClass": "toast-bottom-right",
+		"timeOut": "1000"
+		};
+
 
         $.ajax({
             url: wishlistUrl,
@@ -24,10 +31,12 @@ $(document).ready(function () {
             success: function (res) {
                 if (res.status === 'added') {
                     icon.removeClass('text-white').addClass('text-danger');
-                    msg.text('Wishlist added').removeClass('d-none');
+					toastr.success('Added to wishlist', 'Wishlist');
+                    //msg.text('Wishlist added').removeClass('d-none');
                 } else {
                     icon.removeClass('text-danger').addClass('text-white');
-                    msg.text('Removed from wishlist').removeClass('d-none');
+					toastr.warning('Removed from wishlist', 'Wishlist');
+                    //msg.text('Removed from wishlist').removeClass('d-none');
                 }
 
                 // Hide message after 2 seconds
