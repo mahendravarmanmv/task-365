@@ -4,7 +4,7 @@
 <!-- Include required meta tags for JS -->
 <meta name="wishlist-toggle-url" content="{{ route('wishlist.toggle') }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<meta name="is-authenticated" content="{{ auth()->check() ? '1' : '0' }}">
 <link rel="stylesheet" href="{{ asset('assets/css/leads.css') }}" />
 <div class="procuct_sec page-breadcrumb-area page-bg py-5 mb-3">
     <div class="container">
@@ -15,7 +15,7 @@
         </div>
         @endif
         <div class="row">
-            <div class="col-12 d-flex justify-content-end align-items-center mb-5">
+            <div class="col-12 d-flex justify-content-end align-items-center mb-2">
                 <input type="text" id="globalSearch" class="form-control me-3" placeholder="Search leads..." style="max-width: 300px;">
                 <div class="srot-by">
                     <div class="option-item">
@@ -33,7 +33,7 @@
             </div>
 
             <!-- 👈 NEW: Visible Leads Count -->
-            <div class="col-12 mb-3">
+            <div class="col-12 mb-1">
                 <h6 id="leadsCount" class="text-muted">Total Leads: {{ count($leads) }}</h6>
             </div>
 
@@ -46,15 +46,14 @@
                             <div class="product_title">
                                 <div>
                                     <strong>Category : {{ $lead->category->category_title }}</strong>
-                                    <h6>{{ $lead->website_type }}</h6>
-                                    <p>{{ $lead->industry }}</p>
+                                    <h6>{{ $lead->website_type }}</h6>                                    
                                     <p>
                                         <i class="fa-solid fa-location-dot me-2"></i>{{ strtoupper($lead->location) }}
                                     </p>
                                     <p class="mt-1 mb-0"><strong>Budget Range:</strong> ₹ {{ $lead->budget_min }} - {{ $lead->budget_max }}</p>
                                 </div>
                                 <div class="d-flex align-items-start procut_btn">
-                                    <div class="d-flex flex-column">
+                                    <div class="d-flex align-items-center flex-column">
 
                                         @if(in_array($lead->id, $purchasedLeadIds))
                                         <a href="#" class="btn btn-secondary disabled">{{ $lead->button_text }}</a>

@@ -1,13 +1,18 @@
 $(document).ready(function () {
     const wishlistUrl = document.querySelector('meta[name="wishlist-toggle-url"]').content;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-
+	const isAuthenticated = document.querySelector('meta[name="is-authenticated"]').content === "1";
     // Wishlist Toggle
     $(document).on('click', '.fav', function () {
         let $this = $(this);
         let leadId = $this.data('lead-id');
         let icon = $this.find('i');
         let msg = $this.closest('.procut_btn').find('.wishlist-msg');
+		
+		if (!isAuthenticated) {
+            alert("Please log in to add to wishlist.");
+            return;
+        }
 
         $.ajax({
             url: wishlistUrl,
