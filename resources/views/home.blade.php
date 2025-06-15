@@ -28,7 +28,7 @@
                                     </p>
                                     <div class="slider-btn-wrapper"><a href="javasceipt:void(0);"
                                             class="style-2 me-3 active_btn">To
-                                            shop</a><a href="javasceipt:void(0);" class="theme-btn style-2 ">Read
+                                            shop</a><a href="{{ url('about-us') }}" class="theme-btn style-2 ">Read
                                             More</a> </div>
                                 </div>
                             </div>
@@ -180,19 +180,19 @@
         <div class="counter-area">
             <div class="single-counter wow fadeInRight" data-wow-delay="0s">
                 <p class="counter-inner"><span class="counter">25</span>K+</p>
-                <p class="title">New users per week</p>
+                <p class="title">No.of leads generated</p>
             </div>
             <div class="single-counter wow fadeInRight" data-wow-delay=".4s">
-                <p class="counter-inner"><span class="counter">100</span>M+</p>
-                <p class="title">Monthly active user</p>
+                <p class="counter-inner"><span class="counter">50</span>K+</p>
+                <p class="title">Monthly active users</p>
             </div>
             <div class="single-counter wow fadeInRight" data-wow-delay=".8s">
-                <p class="counter-inner"><span class="counter">25</span>K+</p>
-                <p class="title">New users per week</p>
+                <p class="counter-inner"><span class="counter">15</span>K+</p>
+                <p class="title">Registered Vendors</p>
             </div>
             <div class="single-counter wow fadeInRight" data-wow-delay=".9s">
-                <p class="counter-inner"><span class="counter">100</span>M+</p>
-                <p class="title">Monthly active user</p>
+                <p class="counter-inner"><span class="counter">20</span>K+</p>
+                <p class="title">Happy clients</p>
             </div>
         </div>
     </div>

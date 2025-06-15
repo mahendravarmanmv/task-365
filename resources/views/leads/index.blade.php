@@ -110,6 +110,6 @@
 
 @section('jquery_scripts')
 <script src="{{ asset('assets/js/validations/leads.js') }}?v={{ now()->timestamp }}"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet"/>
+<script src="{{ asset('assets/js/validations/toastr.min.js') }}"></script>
 @endsection

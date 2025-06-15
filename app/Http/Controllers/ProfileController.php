@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -28,8 +30,10 @@ class ProfileController extends Controller
         $wishlist = Wishlist::with('lead')
             ->where('user_id', $user->id)
             ->get();
+       // User categories via pivot table
+    $categoryList = $user->categories()->pluck('category_title')->unique();
 
-        return view('profile.index', compact('user', 'leads', 'wishlist'));
+        return view('profile.index', compact('user', 'leads', 'wishlist', 'categoryList'));
     }
 
     /**
@@ -78,4 +82,35 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function showChangePasswordForm()
+    {
+        return view('profile.change-password');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = auth()->user();
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return back()->withErrors(['old_password' => 'Old password is incorrect.']);
+        }
+
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return back()->with('success', 'Password updated successfully.');
+    }
+
 }

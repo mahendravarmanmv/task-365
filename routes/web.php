@@ -126,6 +126,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->middleware('auth')->name('wishlist.toggle');
     Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth')->name('wishlist.index');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+    Route::get('/change-password', [ProfileController::class, 'showChangePasswordForm'])->name('change.password.form');
+    Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('change.password.update');
+
 
 });
 

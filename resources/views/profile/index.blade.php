@@ -22,50 +22,44 @@
 
     <!-- Tab Content -->
     <div class="tab-content mt-4" id="profileTabsContent">
-        <!-- 🟦 Leads Tab -->
-        <!-- My Leads Tab -->
-<!-- My Leads Tab -->
-<div class="tab-pane fade show active" id="leads" role="tabpanel">
-    @if($leads->isEmpty())
-        <div class="alert alert-info">You haven't purchased any leads yet.</div>
-    @else
-        @foreach($leads as $lead)
-            <div class="col-md-12 mb-4" style="display: block;">
-                <div class="procuct_card" data-date="{{ strtotime($lead->created_at) }}">
-                    <div class="product_body">
-                        <div class="user_info">
-                            <div class="product_title">
-                                <div>
-                                    <p><strong>Category :</strong> {{ $lead->category->category_title ?? 'N/A' }}</p>
-                                    <p class="my-2">
-                                        <strong>Website type :</strong>
-                                        <span style="font-weight: normal;">{{ $lead->website_type }}</span>
-                                    </p>
-                                    <p><i class="fa-solid fa-location-dot me-2"></i>{{ $lead->location }}</p>
-                                    <p class="mt-1 mb-0"><strong>Budget Range:</strong> ₹ {{ $lead->budget_min }} - {{ $lead->budget_max }}</p>
-                                    <p class="mt-1 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</p>
-                                    <p class="mt-2 mb-0">
-                                        <strong>Stock:</strong>
-                                        @if($lead->stock < 1)
-                                            <span class="text-danger">Out of stock</span>
-                                        @else
-                                            {{ $lead->stock }}
-                                        @endif
-                                    </p>
-                                    <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
+
+        <!-- 🟦 My Leads Tab -->
+        <div class="tab-pane fade show active" id="leads" role="tabpanel">
+            @if($leads->isEmpty())
+                <div class="alert alert-info">You haven't purchased any leads yet.</div>
+            @else
+                @foreach($leads as $lead)
+                    <div class="col-md-12 mb-4" style="display: block;">
+                        <div class="procuct_card" data-date="{{ strtotime($lead->created_at) }}">
+                            <div class="product_body">
+                                <div class="user_info">
+                                    <div class="product_title">
+                                        <div>
+                                            <p><strong>Category :</strong> {{ $lead->category->category_title ?? 'N/A' }}</p>
+                                            <p class="my-2"><strong>Website type :</strong> <span style="font-weight: normal;">{{ $lead->website_type }}</span></p>
+                                            <p><i class="fa-solid fa-location-dot me-2"></i>{{ $lead->location }}</p>
+                                            <p class="mt-1 mb-0"><strong>Budget Range:</strong> ₹ {{ $lead->budget_min }} - {{ $lead->budget_max }}</p>
+                                            <p class="mt-1 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</p>
+                                            <p class="mt-2 mb-0">
+                                                <strong>Stock:</strong>
+                                                @if($lead->stock < 1)
+                                                    <span class="text-danger">Out of stock</span>
+                                                @else
+                                                    {{ $lead->stock }}
+                                                @endif
+                                            </p>
+                                            <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
+                                        </div>
+                                    </div>
+                                    <p class="pt-2">{{ $lead->lead_notes }}</p>
+                                    <p class="pt-2">{{ $lead->service_timeframe }}</p>
                                 </div>
                             </div>
-                            <p class="pt-2">{{ $lead->lead_notes }}</p>
-                            <p class="pt-2">{{ $lead->service_timeframe }}</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        @endforeach
-    @endif
-</div>
-
-
+                @endforeach
+            @endif
+        </div>
 
         <!-- 🟨 Wishlist Tab -->
         <div class="tab-pane fade" id="wishlist" role="tabpanel">
@@ -80,20 +74,6 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div>
-                                            <h5 class="card-title">{{ $lead->website_type }}</h5>
-                                            <h6 class="text-muted">Category: {{ $lead->category->category_title ?? 'N/A' }}</h6>
-                                            <p class="card-text">{{ $lead->industry }}</p>
-                                            <p><i class="fa-solid fa-location-dot me-2"></i>{{ $lead->location }}</p>
-                                            <p class="fw-bold">₹ {{ $lead->budget_min }} - {{ $lead->budget_max }}</p>
-                                            <p class="mb-1"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</p>
-                                            <p class="mb-1">
-                                                <strong>Stock:</strong>
-                                                @if($lead->stock < 1)
-                                                    <span class="text-danger">Out of stock</span>
-                                                @else
-                                                    {{ $lead->stock }}
-                                                @endif
-                                            </p>
                                             <p class="text-success mb-2"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
                                         </div>
                                         <div>
@@ -113,14 +93,30 @@
 
         <!-- 🟩 My Info Tab -->
         <div class="tab-pane fade" id="info" role="tabpanel">
-            <div class="card p-3 shadow-sm">
+            <div class="card p-3 shadow-sm mb-5 pb-4"> <!-- Added spacing classes here -->
                 <p><strong>Name:</strong> {{ $user->name }}</p>
                 <p><strong>Email:</strong> {{ $user->email }}</p>
                 <p><strong>Phone:</strong> {{ $user->phone }}</p>
                 <p><strong>Company:</strong> {{ $user->company_name }}</p>
                 <p><strong>Website:</strong> {{ $user->website }}</p>
+
+                <hr>
+
+                <h6>Assigned Categories</h6>
+                @if($categoryList->isEmpty())
+                    <p class="text-muted">No categories assigned.</p>
+                @else
+                    <ul class="list-group mb-3">
+                        @foreach($categoryList as $category)
+                            <li class="list-group-item">{{ $category }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+
+                <a href="{{ route('change.password.form') }}" class="btn btn-outline-primary">Update Password</a>
             </div>
         </div>
+
     </div>
 </div>
 @endsection

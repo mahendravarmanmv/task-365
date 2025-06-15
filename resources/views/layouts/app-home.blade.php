@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
+    <!-- Google tag (gtag.js) --> 
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T37WSTDEWP"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-T37WSTDEWP'); </script>
+     <script type="text/javascript">     (function(c,l,a,r,i,t,y){         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);     })(window, document, "clarity", "script", "rzv4tc8p76"); </script>
 </head>
 
 <body>
@@ -79,6 +82,12 @@
                                     </li>
 
                                     @if (auth()->check())
+                                    <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">
+                                        <a href="{{ route('profile') }}">My Profile</a>
+                                    </li>
+                                    @endif
+
+                                    @if (auth()->check())
                                     <li class="{{ request()->routeIs('leads.index') ? 'active' : '' }}">
                                         <a href="{{ route('leads.index') }}">Leads</a>
                                     </li>
@@ -95,11 +104,7 @@
                                     <li class="{{ request()->routeIs('contact') ? 'active' : '' }}">
                                         <a href="{{ route('contact') }}">Contact Us</a>
                                     </li>
-                                    @if (auth()->check())
-                                    <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">
-                                        <a href="{{ route('profile') }}">My Profile</a>
-                                    </li>
-                                    @endif
+                                    
                                     <!-- <li class="{{ request()->routeIs('faq') ? 'active' : '' }}">
                                         <a href="{{ route('faq') }}">FAQs</a>
                                     </li>-->
