@@ -17,7 +17,7 @@ $(document).ready(function () {
 		toastr.options = {
 		"progressBar": true,
 		"positionClass": "toast-bottom-right",
-		"timeOut": "1000"
+		"timeOut": "2000"
 		};
 
 
