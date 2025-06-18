@@ -1,6 +1,7 @@
 @extends('layouts.app-register')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/css/signup.css') }}" />
 <script id="otpless-sdk" src="https://otpless.com/v4/headless.js" data-appid="{{ config('otp.app_id') }}"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -14,7 +15,7 @@
         <div class="col-md-6 auth-details">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7">
-                    <form method="POST" action="{{ route('signup') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('signup') }}" id="signupform" enctype="multipart/form-data">
                         @csrf
                         <span class="short-title">signup</span>
                         <h1>Welcome to TASK365</h1>
@@ -34,9 +35,9 @@
                                 <label>Email</label>
                                 <div class="input-group">
                                     <input type="text" name="email" id="email" value="{{ old('email') }}" placeholder="Enter Email" class="form-control">
-                                    <button type="button" class="btn btn-outline-primary" id="send-otp-btn" onclick="sendemailOtp()">Send OTP</button>
+                                    <button type="button" class="btn btn-outline-primary" id="send-otp-email" onclick="sendemailOtp()">Send OTP</button>
                                 </div>
-                                <div class="text-danger mt-1" id="email-check-message"></div>
+                                <!--<div class="text-danger mt-1" id="email-check-message"></div>-->
                                 @error('email') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                             </div>
 
@@ -79,8 +80,8 @@
                                     <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter Mobile Number" class="form-control">
                                     <button type="button" class="btn btn-outline-primary" id="send-otp-mobile" onclick="phoneAuth()">Send OTP</button>
                                 </div>
-                                <div id="phone-error" class="text-danger mt-1"></div>
-                                <small class="text-muted">Note : OTP will be sent to your WhatsApp number.</small>
+                                <!--<div id="phone-error" class="text-danger mt-1"></div>-->
+                                <p><small class="text-muted notemessage">Note : Please enter your WhatsApp number. OTP will be sent to WhatsApp only.</small></p>
                                 @error('phone') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                             </div>
 
@@ -103,47 +104,53 @@
                                 @error('alternative_number') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                             </div>
 
-                            {{-- Category --}}
-                            <div class="form-group mb-3">
-                                <label>Category</label>
-                                <select name="category[]" class="form-select" multiple>
-                                    <option value="">Select a Category</option>
-                                    @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" {{ in_array($category->id, (array) old('category', [])) ? 'selected' : '' }}>
-                                        {{ $category->category_title }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @error('category') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
+							{{-- Category --}}
+							<div class="form-group mb-3">
+							<label>Category <small class="text-muted">(You can select one or more categories.)</small></label>
+							<select name="category[]" class="form-select" multiple required>
+							@foreach($categories as $category)
+							<option value="{{ $category->id }}" {{ in_array($category->id, (array) old('category', [])) ? 'selected' : '' }}>
+							{{ $category->category_title }}
+							</option>
+							@endforeach
+							</select>
+							@error('category') <span class="text-danger">{{ $message }}</span> @enderror
+							</div>
 
-                            {{-- Business Proof --}}
-                            <div class="form-group mb-3">
-                                <label>Upload Identify Proof (Business)</label>
-                                <span class="upload-file form-control">
-                                    <label class="w-100 m-0">
-                                        <input type="file" id="business_proof" name="business_proof" onchange="updateFileName(this, 'business_proof_name')">
-                                        <span><i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload</span>
-                                    </label>
-                                    <span id="business_proof_name" class="file-name"></span>
-                                </span>
-                            </div>
 
-                            {{-- Identity Proof --}}
-                            <div class="form-group mb-3">
-                                <label>Upload Identify Proof (PAN/Adhar)</label>
-                                <span class="upload-file form-control">
-                                    <label class="w-100 m-0">
-                                        <input type="file" id="identity_proof" name="identity_proof" onchange="updateFileName(this, 'identity_proof_name')">
-                                        <span><i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload</span>
-                                    </label>
-                                    <span id="identity_proof_name" class="file-name"></span>
-                                </span>
-                            </div>
+							{{-- Business Proof --}}
+							<div class="form-group mb-3">
+							<label>Upload Identity Proof (Business)</label>
+							<div class="upload-file form-control p-2">
+							<label class="w-100 m-0 d-flex align-items-center justify-content-between">
+							<input type="file" id="business_proof" name="business_proof" onchange="updateFileName(this, 'business_proof_name')" hidden>
+							<span class="text-primary" style="cursor: pointer;">
+							<i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload
+							</span>
+							</label>
+							<div id="business_proof_name" class="file-name mt-2 text-muted small"></div>
+							</div>
+							@error('business_proof') <span class="text-danger">{{ $message }}</span> @enderror
+							</div>
+
+							{{-- Identity Proof --}}
+							<div class="form-group mb-3">
+							<label>Upload Identity Proof (PAN/Adhar)</label>
+							<div class="upload-file form-control p-2">
+							<label class="w-100 m-0 d-flex align-items-center justify-content-between">
+							<input type="file" id="identity_proof" name="identity_proof" onchange="updateFileName(this, 'identity_proof_name')" hidden>
+							<span class="text-primary" style="cursor: pointer;">
+							<i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload
+							</span>
+							</label>
+							<div id="identity_proof_name" class="file-name mt-2 text-muted small"></div>
+							</div>
+							@error('identity_proof') <span class="text-danger">{{ $message }}</span> @enderror
+							</div>
 
                             {{-- Terms --}}
-                            <div class="form-group mb-3 d-flex flex-column sign_chek">
-                                <div class="d-flex align-items-start">
+                            <div class="mb-3 d-flex flex-column sign_chek">
+                                <div class="form-group d-flex align-items-start">
                                     <input class="form-check-input me-2 mt-1" type="checkbox" name="agree_terms" id="agree_terms" {{ old('agree_terms') ? 'checked' : '' }}>
                                     <label for="agree_terms" class="text-start">
                                         By signing up, you agree to the
@@ -171,6 +178,13 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/js/validations/signup/signup.js') }}"></script>
+<script src="{{ asset('assets/js/validations/signup/email-otp.js') }}"></script>
+<script src="{{ asset('assets/js/validations/signup/mobile-otp.js') }}"></script>
+@endsection
 
-<script src="{{ asset('assets/js/signup.js') }}"></script>
+@section('jquery_scripts')
+<link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet"/>
+<script src="{{ asset('assets/js/validations/toastr.min.js') }}"></script>
 @endsection

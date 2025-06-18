@@ -1,0 +1,18 @@
+label.error {
+    color: red !important;
+    
+}
+.file-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
+}
+.notemessage {
+    font-size: 13px;
+    color: #6c757d; /* Bootstrap's muted text color */
+    margin-top: 4px;
+    display: block;
+    line-height: 1.4;
+}
