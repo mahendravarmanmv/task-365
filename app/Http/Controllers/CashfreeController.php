@@ -81,6 +81,12 @@ class CashfreeController extends Controller
         }
 
         $responseData = json_decode($response);
+		
+		// ✅ Add this validation to prevent undefined property error
+		if (!isset($responseData->payment_link)) {
+			\Log::error('Cashfree payment error response', (array) $responseData); // For debugging
+			return back()->with('error', 'Unable to generate payment link. Please try with a lower amount or check payment details.');
+		}
 
         // Store payment details in database
         $payment = Payment::create([
