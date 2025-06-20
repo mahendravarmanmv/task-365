@@ -157,8 +157,8 @@
                                     <input class="form-check-input me-2 mt-1" type="checkbox" name="agree_terms" id="agree_terms" {{ old('agree_terms') ? 'checked' : '' }}>
                                     <label for="agree_terms" class="text-start">
                                         By signing up, you agree to the
-                                        <a href="#">Terms of Service</a> and
-                                        <a href="#">Privacy Policy</a>.
+                                        <a href="{{ route('terms') }}">Terms of Service</a> and
+                                        <a href="{{ route('privacy-policy') }}">Privacy Policy</a>.
                                     </label>
                                 </div>
                                 @error('agree_terms') <div class="text-danger mt-1">{{ $message }}</div> @enderror
