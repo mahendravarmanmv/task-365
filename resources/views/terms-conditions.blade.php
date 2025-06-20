@@ -98,9 +98,9 @@
 
     <h5>Annexures</h5>
     <ul>
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Refund Policy</a></li>
-      <li><a href="#">IPR Infringement Policy</a></li>
+      <li><a>Privacy Policy</a></li>
+      <li><a>Refund Policy</a></li>
+      <li><a>IPR Infringement Policy</a></li>
     </ul>
 
         
