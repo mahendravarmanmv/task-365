@@ -9,7 +9,7 @@
     <div class="row g-0 align-items-center h-100">
         <div class="col-md-6">
             <div class="travel-auth-img">
-                <img src="./assets/images/task-img/leads.jpg" class="img-fluid">
+                <img src="{{ asset('assets/images/task-img/leads.jpg') }}" class="img-fluid">
             </div>
         </div>
         <div class="col-md-6">
@@ -30,8 +30,8 @@
                             <div class="auth-form">
                                 <div class="form-group mb-3">
                                     <label>Phone Or Email</label>
-                                    <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" autofocus>
-                                    @error('email')<div class="text-danger small">{{ $message }}</div>@enderror
+                                    <input type="text" id="login" name="login" class="form-control" value="{{ old('login') }}" autofocus>
+                                    @error('login')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Password</label>
