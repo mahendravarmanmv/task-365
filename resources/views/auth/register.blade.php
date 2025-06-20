@@ -13,6 +13,9 @@
             </div>
         </div>
         <div class="col-md-6 auth-details">
+            <a href="{{ route('home') }}" class=" top-0 end-0 text-decoration-none fw-bold d-flex justify-content-end">
+                ← Back to Home
+            </a>
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7">
                     <form method="POST" action="{{ route('signup') }}" id="signupform" enctype="multipart/form-data">
@@ -104,49 +107,49 @@
                                 @error('alternative_number') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                             </div>
 
-							{{-- Category --}}
-							<div class="form-group mb-3">
-							<label>Category <small class="text-muted">(You can select one or more categories.)</small></label>
-							<select name="category[]" class="form-select" multiple required>
-							@foreach($categories as $category)
-							<option value="{{ $category->id }}" {{ in_array($category->id, (array) old('category', [])) ? 'selected' : '' }}>
-							{{ $category->category_title }}
-							</option>
-							@endforeach
-							</select>
-							@error('category') <span class="text-danger">{{ $message }}</span> @enderror
-							</div>
+                            {{-- Category --}}
+                            <div class="form-group mb-3">
+                                <label>Category <small class="text-muted">(You can select one or more categories.)</small></label>
+                                <select name="category[]" class="form-select" multiple required>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ in_array($category->id, (array) old('category', [])) ? 'selected' : '' }}>
+                                        {{ $category->category_title }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @error('category') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
 
 
-							{{-- Business Proof --}}
-							<div class="form-group mb-3">
-							<label>Upload Identity Proof (Business)</label>
-							<div class="upload-file form-control p-2">
-							<label class="w-100 m-0 d-flex align-items-center justify-content-between">
-							<input type="file" id="business_proof" name="business_proof" onchange="updateFileName(this, 'business_proof_name')" hidden>
-							<span class="text-primary" style="cursor: pointer;">
-							<i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload
-							</span>
-							</label>
-							<div id="business_proof_name" class="file-name mt-2 text-muted small"></div>
-							</div>
-							@error('business_proof') <span class="text-danger">{{ $message }}</span> @enderror
-							</div>
+                            {{-- Business Proof --}}
+                            <div class="form-group mb-3">
+                                <label>Upload Identity Proof (Business)</label>
+                                <div class="upload-file form-control p-2">
+                                    <label class="w-100 m-0 d-flex align-items-center justify-content-between">
+                                        <input type="file" id="business_proof" name="business_proof" onchange="updateFileName(this, 'business_proof_name')" hidden>
+                                        <span class="text-primary" style="cursor: pointer;">
+                                            <i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload
+                                        </span>
+                                    </label>
+                                    <div id="business_proof_name" class="file-name mt-2 text-muted small"></div>
+                                </div>
+                                @error('business_proof') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
 
-							{{-- Identity Proof --}}
-							<div class="form-group mb-3">
-							<label>Upload Identity Proof (PAN/Adhar)</label>
-							<div class="upload-file form-control p-2">
-							<label class="w-100 m-0 d-flex align-items-center justify-content-between">
-							<input type="file" id="identity_proof" name="identity_proof" onchange="updateFileName(this, 'identity_proof_name')" hidden>
-							<span class="text-primary" style="cursor: pointer;">
-							<i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload
-							</span>
-							</label>
-							<div id="identity_proof_name" class="file-name mt-2 text-muted small"></div>
-							</div>
-							@error('identity_proof') <span class="text-danger">{{ $message }}</span> @enderror
-							</div>
+                            {{-- Identity Proof --}}
+                            <div class="form-group mb-3">
+                                <label>Upload Identity Proof (PAN/Adhar)</label>
+                                <div class="upload-file form-control p-2">
+                                    <label class="w-100 m-0 d-flex align-items-center justify-content-between">
+                                        <input type="file" id="identity_proof" name="identity_proof" onchange="updateFileName(this, 'identity_proof_name')" hidden>
+                                        <span class="text-primary" style="cursor: pointer;">
+                                            <i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload
+                                        </span>
+                                    </label>
+                                    <div id="identity_proof_name" class="file-name mt-2 text-muted small"></div>
+                                </div>
+                                @error('identity_proof') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
 
                             {{-- Terms --}}
                             <div class="mb-3 d-flex flex-column sign_chek">
@@ -185,6 +188,6 @@
 @endsection
 
 @section('jquery_scripts')
-<link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet"/>
+<link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet" />
 <script src="{{ asset('assets/js/validations/toastr.min.js') }}"></script>
 @endsection

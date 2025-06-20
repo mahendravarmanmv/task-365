@@ -194,7 +194,7 @@
                     <div class="col-xxl-6 col-xl-3 col-lg-3 col-md-6 col-sm-12 pe-md-5">
                         <div class="footer-widget footer-widget-info">
                             <div class="footer-logo">
-                                <a href="index.html"><img src="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" alt="Footer Logo"
+                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" alt="Footer Logo"
                                         class="img-fluid" style="width: 120px;" /></a>
                             </div>
                             <div class="footer-widget-contact">

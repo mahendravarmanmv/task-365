@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="container-fluid p-0 h-100">
+    <a href="{{ route('home') }}" class="position-absolute top-0 end-0 m-4 text-decoration-none fw-bold">
+        ← Back to Home
+    </a>
     <div class="row g-0 align-items-center h-100">
         <div class="col-md-6">
             <div class="travel-auth-img">
