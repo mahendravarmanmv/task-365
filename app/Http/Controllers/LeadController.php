@@ -35,8 +35,7 @@ class LeadController extends Controller
             $selectedCategory = null;
         } else {
             // Not logged in and no category selected — show nothing or all
-            $leads = collect();
-            $selectedCategory = null;
+            return redirect()->route('login')->with('error', 'Please login to view your leads.');
         }
 
         // Safe wishlist fetch: only if logged in

@@ -26,7 +26,7 @@
 
                                         {{ $banner->banner_description ?? '' }}
                                     </p>
-                                    <div class="slider-btn-wrapper"><a href="javasceipt:void(0);"
+                                    <div class="slider-btn-wrapper"><a href="{{ route('leads.index') }}"
                                             class="style-2 me-3 active_btn">To
                                             shop</a><a href="{{ url('about-us') }}" class="theme-btn style-2 ">Read
                                             More</a> </div>
