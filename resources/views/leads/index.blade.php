@@ -36,7 +36,9 @@
             <div class="col-12 mb-1">
                 <h6 id="leadsCount" class="text-muted">Total Leads: {{ count($leads) }}</h6>
             </div>
-
+            @php
+            use App\Helpers\CustomHelper;
+            @endphp
             @forelse($leads as $lead)
             <div class="col-md-12  mb-4 ">
                 <div class="procuct_card" data-date="{{ $lead->created_at->timestamp }}">
@@ -57,7 +59,7 @@
                                 <div class="procut_btn d-flex flex-column align-items-start">
                                     <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center mb-2 gap-2 gap-sm-0">
 
-                                        
+
                                         @if(in_array($lead->id, $purchasedLeadIds))
                                         <a href="#" class="grey-btn py-2 disabled">{{ $lead->button_text }}</a>
                                         @elseif($lead->stock == 0 || $lead->stock < 1)
@@ -66,11 +68,11 @@
                                             <a href="{{ route('leads.show', $lead->id) }}" class="theme-btn py-2">{{ $lead->button_text }}</a>
                                             @endif
 
-                                        <span class="fav ms-3" data-lead-id="{{ $lead->id }}"><i class="fa-solid fa-heart {{ in_array($lead->id, $wishlistedIds) ? 'text-danger' : 'text-white' }}"></i></span>
-                                        
+                                            <span class="fav ms-3" data-lead-id="{{ $lead->id }}"><i class="fa-solid fa-heart {{ in_array($lead->id, $wishlistedIds) ? 'text-danger' : 'text-white' }}"></i></span>
+
                                     </div>
                                     <!--<p class="wishlist-msg mt-1 text-success small d-none">Wishlist added</p>-->
-                                    <h6 class="mt-1 mb-0"><strong>Lead Cost:</strong> ₹ {{ $lead->lead_cost }}</h6>
+                                    <h6 class="mt-1 mb-0"><strong>Lead Cost:</strong> ₹ {{ CustomHelper::formatIndianCurrency($lead->lead_cost ) }}</h6>
                                     <p class="mt-2 mb-0">
                                         @if($lead->stock != 0)
                                         <strong>Stock:</strong>
@@ -110,6 +112,6 @@
 
 @section('jquery_scripts')
 <script src="{{ asset('assets/js/validations/leads.js') }}?v={{ now()->timestamp }}"></script>
-<link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet"/>
+<link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet" />
 <script src="{{ asset('assets/js/validations/toastr.min.js') }}"></script>
 @endsection

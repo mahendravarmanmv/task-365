@@ -53,9 +53,9 @@
                         <div class="menu d-inline-block">
                             <div class="topbar d-flex">
                                 <ul>
-                                    <li class="position-relative"><a href="javasceipt:void(0);" class="search-btn"><i
+                                    <!--<li class="position-relative"><a href="javasceipt:void(0);" class="search-btn"><i
                                                 class="fa-solid fa-magnifying-glass"></i></a><span></span></li>
-                                    <li><a href="javasceipt:void(0);"><i class="fa-solid fa-cart-plus"></i></a></li>
+                                    <li><a href="javasceipt:void(0);"><i class="fa-solid fa-cart-plus"></i></a></li>-->
                                     <!--<li><a href="javasceipt:void(0);" data-bs-toggle="offcanvas"
                                         data-bs-target="#offcanvaslogin" aria-controls="offcanvasRight">Login</a></li>-->
                                     @if (auth()->check())
@@ -71,7 +71,9 @@
                                     @else
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                     @endif
-
+                                    @if (auth()->guest())
+                                    <li><a href="{{ route('signup') }}">Signup</a></li>
+                                    @endif
                                 </ul>
 
                             </div>
@@ -88,7 +90,7 @@
                                     @endif
 
                                     @if (auth()->check())
-                                    <li class="{{ request()->routeIs('leads.index') ? 'active' : '' }}">
+                                    <li class="{{ request()->is('leads*') ? 'active' : '' }}">
                                         <a href="{{ route('leads.index') }}">Leads</a>
                                     </li>
                                     @endif
