@@ -14,9 +14,12 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\EmailOtpController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::get('/signup', [RegisteredUserController::class, 'create'])->name('signup');
 Route::post('/signup', [RegisteredUserController::class, 'store']);

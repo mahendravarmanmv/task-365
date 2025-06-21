@@ -231,33 +231,30 @@
                         </div>
                     </div>
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="footer-widget-menu-wrapper ps-0">
-                            <div class="footer-widget widget_nav_menu">
-                                <h2 class="footer-widget-title">Categories
-                                </h2>
-                                <div class="d-flex">
-                                    <ul class="menu br-right footer_link pe-5">
-                                        <li><a href="javasceipt:void(0);">Mobile Software Developers</a></li>
-                                        <li><a href="javasceipt:void(0);">Astrology</a></li>
-                                        <li><a href="javasceipt:void(0);">Software Developers</a></li>
-                                        <li><a href="javasceipt:void(0);">Web Developers</a></li>
-                                        <li><a href="javasceipt:void(0);">Auditing Services</a></li>
-                                        <li><a href="javasceipt:void(0);">Commercial Interior Designers</a></li>
-                                        <li><a href="javasceipt:void(0);">Commercial Photographers</a></li>
+    <div class="footer-widget-menu-wrapper ps-0">
+        <div class="footer-widget widget_nav_menu">
+            <h2 class="footer-widget-title">Categories</h2>
+            <div class="d-flex">
+                @php
+                    $chunks = $footerCategories->chunk(ceil($footerCategories->count() / 2));
+                @endphp
 
-                                    </ul>
-                                    <ul class="menu br-right footer_link">
-                                        <li><a href="javasceipt:void(0);">E-Commerce professionals</a></li>
-                                        <li><a href="javasceipt:void(0);">Logo Designers</a></li>
-                                        <li><a href="javasceipt:void(0);">Packers and Movers</a></li>
-                                        <li><a href="javasceipt:void(0);">Portrait Photographers</a></li>
-                                        <li><a href="javasceipt:void(0);">Residential Interior Designers</a></li>
-                                        <li><a href="javasceipt:void(0);">Travel Agents</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                @foreach($chunks as $chunk)
+                    <ul class="menu br-right footer_link {{ !$loop->last ? 'pe-5' : '' }}">
+                        @foreach($chunk as $category)
+                            <li>
+                                <a href="{{ route('leads.index', ['category' => $category->id]) }}">
+                                    {{ $category->category_title }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
                     <!--<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                         <div class="footer-widget-menu-wrapper ps-0">
                             <div class="footer-widget widget_nav_menu">
