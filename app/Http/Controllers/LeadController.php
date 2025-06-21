@@ -11,30 +11,39 @@ use App\Models\Wishlist;
 
 class LeadController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $categoryId = request()->category;
+        $categoryId = $request->input('category');
+
+        // Validate category ID if present
+        if ($categoryId && !is_numeric($categoryId)) {
+            return response()->view('errors.400', [], 400);
+        }
+
+        $selectedCategory = null;
 
         if ($categoryId) {
-            // Show leads for a specific category
+            // Ensure the category exists
+            $selectedCategory = Category::find($categoryId);
+            if (!$selectedCategory) {
+                return response()->view('errors.404', [], 404);
+            }
+
+            // Show leads for the selected category
             $leads = Lead::where('category_id', $categoryId)
                 ->with(['category', 'websiteType'])
                 ->latest()
                 ->get();
-
-            $selectedCategory = Category::find($categoryId);
         } elseif ($user) {
-            // Logged-in user: show leads for their categories
+            // Logged-in user: show leads from their associated categories
             $categoryIds = $user->categories->pluck('id');
             $leads = Lead::whereIn('category_id', $categoryIds)
                 ->with(['category', 'websiteType'])
                 ->latest()
                 ->get();
-
-            $selectedCategory = null;
         } else {
-            // Not logged in and no category selected — show nothing or all
+            // Not logged in and no category selected
             return redirect()->route('login')->with('error', 'Please login to view your leads.');
         }
 
@@ -43,7 +52,7 @@ class LeadController extends Controller
             ? Wishlist::where('user_id', $user->id)->pluck('lead_id')->toArray()
             : [];
 
-        // Get all lead_ids already purchased by this user
+        // Purchased lead IDs: only if logged in
         $purchasedLeadIds = $user
             ? Payment::where('email', $user->email)
             ->where('status', 1)
@@ -51,51 +60,73 @@ class LeadController extends Controller
             ->toArray()
             : [];
 
-        return view('leads.index', compact('leads', 'selectedCategory', 'wishlistedIds', 'purchasedLeadIds'));
+        return view('leads.index', compact(
+            'leads',
+            'selectedCategory',
+            'wishlistedIds',
+            'purchasedLeadIds'
+        ));
     }
+
     public function show(Lead $lead)
     {
-        // Authorize if needed: check if user has access to this lead's category
         $user = Auth::user();
-        // 1. Authorize category access
-        $categoryIds = $user->categories->pluck('id');
 
-        if (!$categoryIds->contains($lead->category_id)) {
-            abort(403); // Forbidden
+        // 1. Check authentication
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please login to view this lead.');
         }
 
-        // 2. Prevent re-purchase of already purchased lead
-        $alreadyPurchased = Payment::where('email', $user->email) // or use 'user_id' if available
+        // 2. Check if the user has access to this lead's category
+        $userCategoryIds = $user->categories->pluck('id'); // make sure 'categories' is a valid relation
+
+        if (!$userCategoryIds->contains($lead->category_id)) {
+            return response()->view('errors.403', [], 403); // custom 403 page
+        }
+
+        // 3. Check if the lead is already purchased
+        $alreadyPurchased = Payment::where('email', $user->email)
             ->where('lead_id', $lead->id)
-            ->where('status', 1) // successful payment
+            ->where('status', 1)
             ->exists();
 
         if ($alreadyPurchased) {
             return redirect()->route('leads.index')
                 ->with('error', 'You have already purchased this lead.');
         }
-        // 3. Show lead view if all checks pass
+
+        // 4. All checks passed — show the lead
         return view('leads.show', compact('lead'));
     }
+
     public function payment(Lead $lead)
     {
-        // Optional: Authorization check
         $user = Auth::user();
-         // 1. Optional: Authorization check
-        if (!$user->categories->pluck('id')->contains($lead->category_id)) {
-            abort(403); // Forbidden
+
+        // 1. Check authentication
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please login to continue to payment.');
         }
-        // 2. Prevent access if lead already purchased
-        $alreadyPurchased = Payment::where('email', $user->email) // or 'user_id' if available
+
+        // 2. Check if the user has access to the lead's category
+        $userCategoryIds = $user->categories->pluck('id'); // categories must be a proper relation
+
+        if (!$userCategoryIds->contains($lead->category_id)) {
+            return response()->view('errors.403', [], 403); // or redirect with message
+        }
+
+        // 3. Check if the lead is already purchased
+        $alreadyPurchased = Payment::where('email', $user->email) // Use user_id if preferred
             ->where('lead_id', $lead->id)
-            ->where('status', 1) // successful payment
+            ->where('status', 1)
             ->exists();
 
         if ($alreadyPurchased) {
             return redirect()->route('leads.index')
-                ->with('error', 'You have already purchased this lead. Payment not allowed again.');
+                ->with('error', 'You have already purchased this lead. Payment is not allowed again.');
         }
-        // 3. Show payment page if all checks pass
+
+        // 4. All checks passed — show the payment page
         return view('leads.payment', compact('lead'));
     }
 }

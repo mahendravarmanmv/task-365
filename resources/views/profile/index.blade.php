@@ -70,7 +70,7 @@
                                     <p class="text-success mb-2"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
                                 </div>
                                 <div>
-                                    <a href="{{ route('leads.show', $lead->id) }}" class="btn btn-sm btn-outline-primary">View Lead</a>
+                                    <a href="{{ route('leads.show', $lead->id) }}" class="btn btn-sm btn-outline-primary">Buy Lead</a>
                                 </div>
                             </div>
                         </div>
