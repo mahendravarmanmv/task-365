@@ -51,7 +51,7 @@
 
                         <!-- Buttons -->
                         <div class="d-flex justify-content-center gap-4 mt-4">
-                            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary rounded-pill px-4 py-2 shadow-sm">
+                            <a href="{{ route('leads.show', $lead->id) }}" class="btn btn-outline-secondary rounded-pill px-4 py-2 shadow-sm">
                                 ← Back
                             </a>
                             <button type="submit" class="btn rounded-pill text-white px-4 py-2 shadow-sm" style="background-color: #033796;">

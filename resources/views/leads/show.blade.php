@@ -1,7 +1,7 @@
 @extends('layouts.app-home')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('assets/css/leads/show.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/leads/show.css?v=0.1') }}" />
 <div class="container py-0">
     <div class="row justify-content-center">
         <div class="col-lg-8">
