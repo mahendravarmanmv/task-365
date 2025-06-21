@@ -1,35 +1,7 @@
 @extends('layouts.app-home')
 
 @section('content')
-<style>
-    .lead-section {
-        background-color: #f8f9fa;
-        border-radius: 1rem;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-        padding: 2rem;
-    }
-
-    .info-label {
-        font-weight: 600;
-        color: #6c757d;
-    }
-
-    .info-value {
-        font-size: 1.05rem;
-        font-weight: 500;
-        color: #212529;
-    }
-
-    .custom-payment-btn {
-        background-color: #033796;
-        color: white;
-    }
-
-    .custom-payment-btn:hover {
-        background-color: #022e6b;
-    }
-</style>
-
+<link rel="stylesheet" href="{{ asset('assets/css/leads/show.css') }}" />
 <div class="container py-0">
     <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -43,14 +15,14 @@
                 <!-- Header Section -->
                 <div class="lead-header d-flex flex-column flex-md-row justify-content-between align-items-start mb-3">
                     <div class="text-center text-md-start mb-2 mb-md-0">
-                       <strong>Lead Name:</strong> {{ $lead->lead_name }}
+                        <strong>Lead Name:</strong> {{ $lead->lead_name }}
                     </div>
                     <div class="text-center text-md-end">
                         <strong>Category:</strong> {{ $lead->category->category_title }}
                     </div>
                 </div>
 
-                
+
 
                 <!-- Details Two-Column Grid -->
                 <div class="row mb-4">
@@ -68,7 +40,10 @@
                     </div>
                     <div class="col-sm-6 mb-3 text-center text-md-end">
                         <div class="info-label">Lead Cost</div>
-                        <div class="info-value text-danger">₹{{ $lead->lead_cost }}</div>
+                        @php
+                        use App\Helpers\CustomHelper;
+                        @endphp
+                        <div class="info-value text-danger">₹{{ CustomHelper::formatIndianCurrency($lead->lead_cost) }}</div>
                     </div>
                     <div class="col-sm-6 mb-3 text-center text-md-start">
                         <div class="info-label">Timeline</div>

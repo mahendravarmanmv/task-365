@@ -1,0 +1,26 @@
+.lead-section {
+        background-color: #f8f9fa;
+        border-radius: 1rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #6c757d;
+    }
+
+    .info-value {
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: #212529;
+    }
+
+    .custom-payment-btn {
+        background-color: #033796;
+        color: white;
+    }
+
+    .custom-payment-btn:hover {
+        background-color: #022e6b;
+    }

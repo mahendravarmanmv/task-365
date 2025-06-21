@@ -5,7 +5,7 @@
 <meta name="wishlist-toggle-url" content="{{ route('wishlist.toggle') }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="is-authenticated" content="{{ auth()->check() ? '1' : '0' }}">
-<link rel="stylesheet" href="{{ asset('assets/css/leads.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/leads/leads.css') }}" />
 <div class="procuct_sec page-breadcrumb-area page-bg py-5 mb-3">
     <div class="container">
         @if(session('error'))
