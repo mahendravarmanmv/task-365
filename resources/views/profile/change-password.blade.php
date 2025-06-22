@@ -68,5 +68,5 @@
 
 @section('jquery_scripts')
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/js/validations/change-password.js') }}"></script>
+<script src="{{ asset('assets/js/validations/change-password.js?v=0.1') }}"></script>
 @endsection

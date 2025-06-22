@@ -182,7 +182,7 @@
     </div>
 </div>
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/js/validations/signup/signup.js') }}"></script>
+<script src="{{ asset('assets/js/validations/signup/signup.js?v=0.1') }}"></script>
 <script src="{{ asset('assets/js/validations/signup/email-otp.js') }}"></script>
 <script src="{{ asset('assets/js/validations/signup/mobile-otp.js') }}"></script>
 @endsection

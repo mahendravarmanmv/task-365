@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <title>Task 365</title>
 
-    <link rel="icon" type="image/png" href="assets/images/task-img/Task-365-Logo.png" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
