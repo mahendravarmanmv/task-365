@@ -1,3 +1,42 @@
+let resendPhoneInterval;
+let lastPhoneSent = "";
+
+function startResendPhoneTimer(duration = 60) {
+    let time = duration;
+    const sendBtn = document.getElementById('send-otp-mobile');
+    const timerText = document.getElementById('resend-timer-phone');
+
+    timerText.textContent = `Resend in ${time}s`;
+
+    clearInterval(resendPhoneInterval);
+    resendPhoneInterval = setInterval(() => {
+        time--;
+        if (time <= 0) {
+            clearInterval(resendPhoneInterval);
+            timerText.textContent = '';
+            sendBtn.disabled = false;
+            sendBtn.innerText = 'Resend OTP';
+        } else {
+            timerText.textContent = `Resend in ${time}s`;
+        }
+    }, 1000);
+}
+function handlePhoneChange() {
+    const currentPhone = document.getElementById('phone').value.trim();
+    if (currentPhone !== lastPhoneSent) {
+        clearInterval(resendPhoneInterval);
+        document.getElementById('resend-timer-phone').textContent = '';
+
+        const sendBtn = document.getElementById('send-otp-mobile');
+        sendBtn.disabled = false;
+        sendBtn.innerText = 'Send OTP';
+
+        document.getElementById('otp-section').style.display = 'none';
+        document.getElementById('status-message').innerHTML = '';
+    }
+}
+
+
 // Initialize OTPLESS SDK
 const callback = (eventCallback) => {
   const ONETAP = () => {
@@ -46,12 +85,12 @@ const phoneAuth = () => {
   if (!phone) {
 	  
 	$("#phone").addClass("error");
-	phoneError.after('<label id="phone-error" class="error" for="mobile">Please enter your mobile number registered with WhatsApp.</label>');
+	phoneError.after('<label id="phone-error" class="error" for="phone">Please enter your mobile number registered with WhatsApp.</label>');
     return;
   }
 
   if (!/^[6-9]\d{9}$/.test(phone)) {
-	phoneError.after('<label id="phone-error" class="error" for="mobile">Enter a valid 10-digit Indian mobile number starting with 6-9.</label>');
+	phoneError.after('<label id="phone-error" class="error" for="phone">Enter a valid 10-digit Indian mobile number starting with 6-9.</label>');
     return;
   }
 
@@ -66,7 +105,9 @@ const phoneAuth = () => {
   .then(response => response.json())
   .then(data => {
     if (data.exists) {
-	  phoneError.after('<label id="phone-error" class="error" for="mobile">'+data.message+'</label>');
+      $("#phone-error").remove();
+			$("#phone").addClass("error");
+	  phoneError.after('<label id="phone-error" class="error" for="phone">'+data.message+'</label>');
       return;
     }
 
@@ -83,6 +124,9 @@ const phoneAuth = () => {
 	  $("label[for='phone'].error").remove(); // remove error message label
       document.getElementById("status-message").innerHTML = "<div class='alert alert-info'>OTP sent to your phone number!</div>";
       document.getElementById("send-otp-mobile").innerText = "OTP Sent";
+      lastPhoneSent = phone;
+startResendPhoneTimer();
+
     }).catch((err) => {
       console.error("OTP Send Error: ", err);
       document.getElementById("status-message").innerHTML = "<div class='alert alert-danger'>Error: " + err.message + "</div>";

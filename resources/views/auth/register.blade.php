@@ -37,12 +37,13 @@
                             <div class="form-group mb-3">
                                 <label>Email</label>
                                 <div class="input-group">
-                                    <input type="text" name="email" id="email" value="{{ old('email') }}" placeholder="Enter Email" class="form-control">
+                                    <input type="text" name="email" id="email" value="{{ old('email') }}" placeholder="Enter Email" class="form-control" oninput="handleEmailChange()">
                                     <button type="button" class="btn btn-outline-primary" id="send-otp-email" onclick="sendemailOtp()">Send OTP</button>
                                 </div>
-                                <!--<div class="text-danger mt-1" id="email-check-message"></div>-->
+                                <div id="resend-timer" class="text-muted small mt-1"></div>
                                 @error('email') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                             </div>
+
 
                             {{-- Email OTP --}}
                             <div class="form-group mb-3" id="email-otp-section" style="display: none;">
@@ -80,13 +81,14 @@
                             <div class="form-group mb-3">
                                 <label>Mobile</label>
                                 <div class="input-group">
-                                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter Mobile Number" class="form-control">
+                                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter Mobile Number" class="form-control" oninput="handlePhoneChange()">
                                     <button type="button" class="btn btn-outline-primary" id="send-otp-mobile" onclick="phoneAuth()">Send OTP</button>
                                 </div>
-                                <!--<div id="phone-error" class="text-danger mt-1"></div>-->
-                                <p><small class="text-muted notemessage">Note : Please enter your WhatsApp number. OTP will be sent to WhatsApp only.</small></p>
+                                <div id="resend-timer-phone" class="text-muted small mt-1"></div>
+                                <p><small class="text-muted notemessage">Note: Please enter your WhatsApp number. OTP will be sent to WhatsApp only.</small></p>
                                 @error('phone') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                             </div>
+
 
                             {{-- Phone OTP --}}
                             <div class="form-group mb-3" id="otp-section" style="display: none;">
@@ -183,8 +185,8 @@
 </div>
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/js/validations/signup/signup.js?v=0.1') }}"></script>
-<script src="{{ asset('assets/js/validations/signup/email-otp.js') }}"></script>
-<script src="{{ asset('assets/js/validations/signup/mobile-otp.js') }}"></script>
+<script src="{{ asset('assets/js/validations/signup/email-otp.js?v=0.1') }}"></script>
+<script src="{{ asset('assets/js/validations/signup/mobile-otp.js?v=0.1') }}"></script>
 @endsection
 
 @section('jquery_scripts')
