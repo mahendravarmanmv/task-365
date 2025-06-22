@@ -65,7 +65,13 @@ class RegisteredUserController extends Controller
                 'string',
                 'regex:/^[6-9]\d{9}$/',
                 'different:phone',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($value && User::where('phone', $value)->orWhere('alternative_number', $value)->exists()) {
+                        $fail('The alternative number is already registered.');
+                    }
+                },
             ],
+
 
             'category' => ['required', 'array'],
             'category.*' => ['exists:categories,id'],

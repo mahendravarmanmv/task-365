@@ -22,7 +22,7 @@ class User extends Authenticatable
         'company_name',
         'website',
         'phone',
-        'whatsapp_number',
+        'alternative_number',
         'category',
         'business_proof',
         'identity_proof',
