@@ -41,6 +41,12 @@ $(document).ready(function () {
         return element.files[0].size <= param;
     }, "File size must be less than 2MB.");
 
+    // Add strong password method
+    $.validator.addMethod("strongPassword", function (value, element) {
+        return this.optional(element) ||
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/.test(value);
+    }, "Password must contain at least 1 uppercase, 1 lowercase, 1 number, 1 special character and be 8 characters long.");
+
 
     // Main validation
     $('#signupform').validate({
@@ -58,7 +64,8 @@ $(document).ready(function () {
 			
             password: {
                 required: true,
-                minlength: 8
+                minlength: 8,
+                strongPassword: true 
             },
             phone: {
                 required: true,
