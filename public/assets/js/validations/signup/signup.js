@@ -137,6 +137,12 @@ $(document).ready(function () {
                 required: "You must agree to the Terms and Privacy Policy."
             }
         },
+        highlight: function (element) {
+            $(element).addClass("is-invalid").removeClass("is-valid");
+        },
+        unhighlight: function (element) {
+            $(element).addClass("is-valid").removeClass("is-invalid");
+        },
 		errorPlacement: function (error, element) {
 			if (element.attr("type") === "checkbox") {
 			error.insertAfter(element.closest('.form-group'));
