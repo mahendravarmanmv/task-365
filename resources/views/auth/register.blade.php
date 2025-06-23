@@ -1,7 +1,7 @@
 @extends('layouts.app-register')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('assets/css/signup.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/signup.css?v=0.1') }}" />
 <script id="otpless-sdk" src="https://otpless.com/v4/headless.js" data-appid="{{ config('otp.app_id') }}"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -184,7 +184,7 @@
     </div>
 </div>
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/js/validations/signup/signup.js?v=0.1') }}"></script>
+<script src="{{ asset('assets/js/validations/signup/signup.js?v=0.2') }}"></script>
 <script src="{{ asset('assets/js/validations/signup/email-otp.js?v=0.1') }}"></script>
 <script src="{{ asset('assets/js/validations/signup/mobile-otp.js?v=0.1') }}"></script>
 @endsection
