@@ -1,15 +1,26 @@
-    $('#forgot-password-form').on('submit', function (e) {
-        $('.text-danger').remove();
-        const email = $('input[name="email"]').val();
-        let isValid = true;
-
-        if (!email) {
-            $('input[name="email"]').after('<div class="text-danger">Email is required</div>');
-            isValid = false;
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-            $('input[name="email"]').after('<div class="text-danger">Enter valid email</div>');
-            isValid = false;
+$(document).ready(function () {
+    $("#forgot-password-form").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            email: {
+                required: "Please enter your email address",
+                email: "Please enter a valid email address"
+            }
+        },
+        highlight: function (element) {
+            $(element).addClass("is-invalid").removeClass("is-valid");
+        },
+        unhighlight: function (element) {
+            $(element).addClass("is-valid").removeClass("is-invalid");
+        },
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            error.insertAfter(element);
         }
-
-        if (!isValid) e.preventDefault();
     });
+});

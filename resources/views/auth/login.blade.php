@@ -25,7 +25,7 @@
                         </span>
                         <h1>Welcome to TASK365</h1>
                         <p>Your journey starts here.</p>
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}" id="login-form">
                             @csrf
                             <div class="auth-form">
                                 <div class="form-group mb-3">
@@ -57,5 +57,9 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('jquery_scripts')
+<script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/js/validations/login.js') }}"></script>
 @endsection

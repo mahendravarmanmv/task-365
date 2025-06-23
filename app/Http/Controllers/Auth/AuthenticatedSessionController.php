@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         if (!Auth::user()->approved) {
             Auth::logout();
             throw ValidationException::withMessages([
-                'email' => 'Your account is not approved yet. Please contact support.',
+                'login' => 'Your account is not approved yet. Please contact support.',
             ]);
         }
 
