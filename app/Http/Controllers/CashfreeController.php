@@ -103,6 +103,44 @@ class CashfreeController extends Controller
         return redirect()->to($responseData->payment_link);
     }
 
+    public function paymentfailed($order_id)
+    {
+        $url = "https://sandbox.cashfree.com/pg/orders/{$order_id}/payments";
+
+        $headers = [
+            "Content-Type: application/json",
+            "x-api-version: 2022-01-01", // Use the correct version
+            "x-client-id: " . env('CASHFREE_API_KEY'),
+            "x-client-secret: " . env('CASHFREE_API_SECRET')
+        ];
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => $headers,
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            return response()->json(['success' => false, 'error' => $err]);
+        }
+
+        $data = json_decode($response, true); // You can change to false if you want object
+
+        return response()->json(['success' => true, 'data' => $data]);
+    }
+
     public function success(Request $request)
     {
         $orderId = $request->input('order_id');
@@ -146,6 +184,11 @@ class CashfreeController extends Controller
 
         if ($payment) {
             $status = ($responseData->order_status === 'PAID') ? 1 : 0;
+
+            if ($payment && $payment->status !== 1) {               
+                $failedResponse = $this->paymentfailed($orderId);               
+                $responseData = $failedResponse;
+            }
 
             $payment->update([
                 'status' => $status,
