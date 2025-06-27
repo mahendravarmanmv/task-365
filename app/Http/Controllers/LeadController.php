@@ -54,7 +54,7 @@ class LeadController extends Controller
 
         // Purchased lead IDs: only if logged in
         $purchasedLeadIds = $user
-            ? Payment::where('email', $user->email)
+            ? Payment::where('user_id', $user->id)
             ->where('status', 1)
             ->pluck('lead_id')
             ->toArray()
@@ -85,7 +85,7 @@ class LeadController extends Controller
         }
 
         // 3. Check if the lead is already purchased
-        $alreadyPurchased = Payment::where('email', $user->email)
+        $alreadyPurchased = Payment::where('user_id', $user->id)
             ->where('lead_id', $lead->id)
             ->where('status', 1)
             ->exists();
@@ -116,7 +116,7 @@ class LeadController extends Controller
         }
 
         // 3. Check if the lead is already purchased
-        $alreadyPurchased = Payment::where('email', $user->email) // Use user_id if preferred
+        $alreadyPurchased = Payment::where('user_id', $user->id) // Use user_id if preferred
             ->where('lead_id', $lead->id)
             ->where('status', 1)
             ->exists();

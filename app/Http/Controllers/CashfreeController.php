@@ -18,17 +18,19 @@ class CashfreeController extends Controller
     public function payment(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'phone' => 'required|digits:10',
-            'amount' => 'required|numeric|min:1',
-        ]);
+        'amount' => 'required|numeric|min:1',
+    ]);
+	$user = auth()->user(); // Assumes the user is logged in
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please login to proceed with the payment.');
+    }
+	 $lead_id = $request->lead_id;	 
 
-        // Check for duplicate purchase
-        $existing = Payment::where('email', $request->email)
-            ->where('lead_id', $request->lead_id)
-            ->where('status', 1)
-            ->exists();
+        // ✅ Check for duplicate purchase by user_id instead of email
+    $existing = Payment::where('user_id', $user->id)
+        ->where('lead_id', $lead_id)
+        ->where('status', 1)
+        ->exists();
 
         if ($existing) {
             return redirect()->route('leads.index')->with('error', 'You have already purchased this lead.');
@@ -56,9 +58,9 @@ class CashfreeController extends Controller
             "order_currency" => "INR",
             "customer_details" => [
                 "customer_id" => $customerId,
-                "customer_name" => $request->name,
-                "customer_email" => $request->email,
-                "customer_phone" => $request->phone,
+                 "customer_name" => $user->name,
+            "customer_email" => $user->email,
+            "customer_phone" => $user->phone, // Make sure phone exists in users table
             ],
             "order_meta" => [
                 "return_url" => route('cashfree.success') . "?order_id={order_id}&order_token={order_token}&lead_id=" . $lead_id
@@ -90,13 +92,11 @@ class CashfreeController extends Controller
 
         // Store payment details in database
         $payment = Payment::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'amount' => $request->amount,
-            'order_id' => $orderId,
-            'lead_id' => $lead_id,
-            'status' => 0, // pending
+            'user_id' => $user->id,
+        'amount' => $request->amount,
+        'order_id' => $orderId,
+        'lead_id' => $lead_id,
+        'status' => 0, // pending
         ]);
 
         // Redirect to Cashfree payment page
@@ -199,7 +199,7 @@ class CashfreeController extends Controller
             ]);
 
             if ($status === 1) {
-                Lead::where('id', $lead_id)->decrement('stock');
+                Lead::where('lead_unique_id', $lead_id)->decrement('stock');
                 // Send email notification to task365.in@gmail.com
                 Mail::to('task365.in@gmail.com')->send(new PaymentSuccessMail($payment));
                 return redirect('payment/result')->with([
