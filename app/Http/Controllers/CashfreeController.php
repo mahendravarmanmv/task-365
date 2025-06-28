@@ -199,7 +199,7 @@ class CashfreeController extends Controller
             ]);
 
             if ($status === 1) {
-                Lead::where('lead_unique_id', $lead_id)->decrement('stock');
+                Lead::where('id', $lead_id)->decrement('stock');
                 // Send email notification to task365.in@gmail.com
                 Mail::to('task365.in@gmail.com')->send(new PaymentSuccessMail($payment));
                 return redirect('payment/result')->with([

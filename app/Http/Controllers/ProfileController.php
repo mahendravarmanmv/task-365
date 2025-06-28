@@ -22,7 +22,7 @@ class ProfileController extends Controller
 
     // Get all successful payments for the user
     $payments = Payment::with('lead') // assumes a 'lead' relationship exists
-        ->where('email', $user->email)
+        ->where('user_id', $user->id)
         ->where('status', 1)
         ->latest()
         ->get();
