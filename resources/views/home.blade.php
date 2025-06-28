@@ -4,7 +4,7 @@
 
 
 <!-- Slider Section Start !-->
-<div class="slider-area style-2">
+<div class="slider-area style-2 d-none d-md-block">
     <div class="slider-arrow-btn-wrapper">
         <button type="button" class="header-slider-arrow-btn prev-btn" id="trigger_header_slider_prev"><i
                 class="fa-solid fa-arrow-left"></i></button>
@@ -14,7 +14,7 @@
     <div class="slider-wrapper" id="slider-wrapper">
         <!-- single slider start -->
         <div class="single-slider-wrapper">
-            <div class="single-slider " style="background-image: url('./assets/images/task-img/banner-1.jpg')">
+            <div class="single-slider " style="background-image: url('{{ asset('assets/images/task-img/banner-1.jpg') }}');">
                 <div class="container h-100 align-self-center">
                     <div class="row h-100">
                         <div class="col-md-6 align-self-center order-2 order-md-1">
@@ -126,9 +126,9 @@
                     @foreach($categories as $category)
                     <?php
                     $content = $category->category_description;
-                    $limit =70;
+                    $limit =40;
                     ?>
-                    <div class="col-lg-4 col-md-6 masonry-portfolio-item resort beach wow fadeInUp"
+                    <div class="col-lg-3 col-md-6 masonry-portfolio-item resort beach wow fadeInUp"
                         data-wow-delay="0s">
                         <div class="location-card style-2">
                             <div class="image-wrapper">
