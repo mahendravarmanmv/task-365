@@ -2,15 +2,14 @@
 
 @section('content')
 <!-- Meta Tags and CSS (Required for Wishlist Toggle) -->
-<link rel="stylesheet" href="{{ asset('assets/css/leads.css') }}" />
-
+<link rel="stylesheet" href="{{ asset('assets/css/leads/leads.css') }}?v=0.1" />
 <div class="container py-1">
     <h4 class="mb-3 text-center">My Profile</h4>
 
     <!-- Bootstrap Tabs -->
     <ul class="nav nav-tabs" id="profileTabs" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="leads-tab" data-bs-toggle="tab" data-bs-target="#leads" type="button">My Leads</button>
+            <button class="nav-link active" id="leads-tab" data-bs-toggle="tab" data-bs-target="#leads" type="button">Order History</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="wishlist-tab" data-bs-toggle="tab" data-bs-target="#wishlist" type="button">Wishlist</button>
@@ -57,7 +56,7 @@
         <!-- 🟨 Wishlist Tab -->
         <div class="tab-pane fade pb-5" id="wishlist" role="tabpanel">
             @if($wishlist->isEmpty())
-            <div class="alert alert-info">Your wishlist is empty.</div>
+            <div class="alert">Your wishlist is empty.</div>
             @else
             <div class="row row-cols-1 row-cols-md-2 g-4">
                 @foreach($wishlist as $wishlistItem)
@@ -85,59 +84,75 @@
         </div>
 
         <!-- 🟩 My Info Tab -->
-        <div class="tab-pane fade" id="info" role="tabpanel">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card p-4 shadow-sm mb-5 rounded-3 border-0">
-                            <h5 class="mb-4 border-bottom pb-2 fw-bold text-dark">My Information</h5>
+<div class="tab-pane fade" id="info" role="tabpanel">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card border-0 shadow rounded-4 overflow-hidden">
+                    <div class="card-header text-white py-2">
+                        <h5 class="mb-0"><i class="fas fa-user-circle me-2"></i> My Information</h5>
+                    </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered mb-4">
-                                    <tbody>
-                                        <tr>
-                                            <th class="bg-light text-dark fw-bold w-25 text-start">Name</th>
-                                            <td class="text-start">{{ $user->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light text-dark fw-bold text-start">Email</th>
-                                            <td class="text-start">{{ $user->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light text-dark fw-bold text-start">Phone</th>
-                                            <td class="text-start">{{ $user->phone }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light text-dark fw-bold text-start">Company</th>
-                                            <td class="text-start">{{ $user->company_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light text-dark fw-bold text-start">Website</th>
-                                            <td class="text-start">{{ $user->website }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <h6 class="mb-3 fw-bold text-dark">Assigned Categories</h6>
-                            @if($categoryList->isEmpty())
-                            <p class="text-muted mb-3">No categories assigned.</p>
-                            @else
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                @foreach($categoryList as $category)
-                                <span class="badge bg-secondary text-light px-3 py-2 rounded-pill">{{ $category }}</span>
-                                @endforeach
-                            </div>
-                            @endif
-
-                            <a href="{{ route('change.password.form') }}" class="btn btn-sm btn-outline-primary mt-2">
-                                <i class="fa fa-key me-1"></i> Update Password
-                            </a>
+                    <div class="card-body">
+                        <!-- User Info Table -->
+                        <div class="table-responsive mb-4">
+                            <table class="table table-hover align-middle">
+                                <tbody>
+                                    <tr>
+                                        <th class="text-muted w-25"><i class="fas fa-user me-1 text-primary"></i> Name</th>
+                                        <td>{{ $user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-muted"><i class="fas fa-envelope me-1 text-primary"></i> Email</th>
+                                        <td>{{ $user->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-muted"><i class="fas fa-phone-alt me-1 text-primary"></i> Phone</th>
+                                        <td>{{ $user->phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-muted"><i class="fas fa-building me-1 text-primary"></i> Company</th>
+                                        <td>{{ $user->company_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-muted"><i class="fas fa-globe me-1 text-primary"></i> Website</th>
+                                        <td>{{ $user->website }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+
+                        <!-- Categories -->
+                        <h6 class="fw-semibold text-dark mb-3"><i class="fas fa-tags me-2 text-primary"></i> Assigned Categories</h6>
+
+						@if($categoryList->isEmpty())
+						<p class="text-muted">No categories assigned.</p>
+						@else
+						<div class="d-flex flex-wrap gap-2">
+						@foreach($categoryList as $category)
+							<span class="badge rounded-pill text-white px-3 py-2"
+								  style="background: linear-gradient(135deg, #007bff, #0056b3); box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+								<i class="fas fa-check-circle me-1"></i> {{ $category }}
+							</span>
+						@endforeach
+						</div>
+						@endif
+
+
+                        <!-- Password Update -->
+                        <div class="text-end mt-2">
+    <a href="{{ route('change.password.form') }}" class="btn btn-outline-primary btn-sm">
+        <i class="fas fa-key me-1"></i> Update Password
+    </a>
+</div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
 
     </div>
 </div>
