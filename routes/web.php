@@ -117,6 +117,8 @@ Route::middleware('auth')->group(function () {
     
 	Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
     Route::get('/leads/{lead}/payment', [LeadController::class, 'payment'])->name('leads.payment');
+    Route::get('/leads/view/{id}', [LeadController::class, 'viewlead'])->name('leads.viewlead');
+
 
     Route::post('/payment/create', [PaymentController::class, 'createOrder'])->name('payment.create');
     Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');

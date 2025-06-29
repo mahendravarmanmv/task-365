@@ -129,4 +129,11 @@ class LeadController extends Controller
         // 4. All checks passed — show the payment page
         return view('leads.payment', compact('lead'));
     }
+    public function viewlead($id)
+    {
+        $lead = Lead::with(['category', 'websiteType'])->findOrFail($id);
+
+        return view('leads.view', compact('lead'));
+    }
+
 }

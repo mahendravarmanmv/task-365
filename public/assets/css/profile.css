@@ -1,0 +1,54 @@
+/* Increase width of all Toastr messages */
+#toast-container > .toast {
+    width: 400px !important; /* You can change this value */
+    word-wrap: break-word;
+    
+    font-size: 13px !important;     /* Optional: smaller font */
+    line-height: 1.5 !important;    /* Tighter line spacing */
+    min-height: auto !important;    /* Remove fixed min-height */
+    opacity: 1 !important;
+}
+/* Default tab */
+    .nav-tabs .nav-link {
+        color: #033796; /* Blue for inactive tabs */
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    /* On hover */
+    .nav-tabs .nav-link:hover {
+        background-color: #f0f4ff;
+        color: #022d76;
+    }
+
+    /* Active tab */
+    .nav-tabs .nav-link.active {
+        background-color: #033796;
+        color: #ffffff;
+        border-color: #033796 #033796 #fff; /* Bottom border matches background */
+        font-weight: 600;
+        border-radius: 6px 6px 0 0;
+    }
+	h5 {
+    font-size: 20px;
+	}
+	h6 {
+    font-size: unset;
+	}
+	.text-primary{
+		color : #033796 !important;
+	}
+	
+	/* Custom pill size */
+.nav-tabs .nav-link {
+    font-size: 15px;         /* Make it smaller/larger as needed */
+    padding: 8px 20px;       /* Control top/bottom & left/right space */
+    border-radius: 10px;     /* Rounded corners */
+}
+
+/* Active tab appearance (optional override) */
+.nav-tabs .nav-link.active {
+    font-weight: 600;
+    background-color: #003f99;  /* Darker blue */
+    color: white;
+}
