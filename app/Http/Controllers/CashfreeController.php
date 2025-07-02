@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Lead;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PaymentSuccessMail;
+use App\Mail\UserInvoiceMail;
 
 class CashfreeController extends Controller
 {
@@ -202,6 +203,8 @@ class CashfreeController extends Controller
                 Lead::where('id', $lead_id)->decrement('stock');
                 // Send email notification to task365.in@gmail.com
                 Mail::to('task365.in@gmail.com')->send(new PaymentSuccessMail($payment));
+                // ✅ Send invoice to user
+                Mail::to($payment->user->email)->send(new UserInvoiceMail($payment));
                 return redirect('payment/result')->with([
                     'success' => 'Payment Successful!',
                     'payment' => $payment,
