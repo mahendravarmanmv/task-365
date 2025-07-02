@@ -201,6 +201,10 @@ class CashfreeController extends Controller
 
             if ($status === 1) {
                 Lead::where('id', $lead_id)->decrement('stock');
+
+                // Load necessary relationships
+                $payment->load(['lead.category', 'user']);
+
                 // Send email notification to task365.in@gmail.com
                 Mail::to('task365.in@gmail.com')->send(new PaymentSuccessMail($payment));
                 // ✅ Send invoice to user
