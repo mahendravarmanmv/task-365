@@ -5,7 +5,7 @@
     <title>Invoice</title>
     <style>
         body { font-family: DejaVu Sans, sans-serif; font-size: 14px; }
-        .header { background-color: #e60000; color: white; padding: 10px; text-align: center; }
+        .header { background-color: #033796; color: white; padding: 10px; text-align: center; }
         .highlight { color: #e60000; font-weight: bold; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
@@ -18,7 +18,7 @@
 
 {{-- Logo --}}
     <div class="logo-container">
-        <img src="{{ public_path('assets/images/Task-365-Logo.png') }}" alt="Task365 Logo" height="60">
+        <img src="{{ public_path('assets/images/Task-365-Logo.png') }}" alt="Task365 Logo" height="60" style="margin-bottom:20px;">
     </div>
 
     <div class="header">
