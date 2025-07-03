@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PaymentFailedMail;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Lead;
@@ -198,6 +199,13 @@ class CashfreeController extends Controller
                 'payment_method' => $responseData->payment_method ?? null,
                 'lead_id' => $lead_id,
             ]);
+
+            if ($status === 0) {
+                // Load user & lead relationship
+                $payment->load(['lead', 'user']);
+                // Send failure email
+                Mail::to($payment->user->email)->send(new PaymentFailedMail($payment));
+            }
 
             if ($status === 1) {
                 Lead::where('id', $lead_id)->decrement('stock');
