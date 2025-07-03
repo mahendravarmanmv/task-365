@@ -42,5 +42,6 @@
             ✉️ <a href="mailto:support@task365.in">support@task365.in</a>
         </p>
     </div>
+	@include('emails.disclaimer')
 </body>
 </html>

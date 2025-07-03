@@ -5,3 +5,4 @@
 <p><strong>Amount:</strong> ₹{{ $payment->amount }}</p>
 <p><strong>Order ID:</strong> {{ $payment->order_id }}</p>
 <p><strong>Status:</strong> Successful</p>
+@include('emails.disclaimer')

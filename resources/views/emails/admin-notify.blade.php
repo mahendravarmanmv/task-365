@@ -22,5 +22,6 @@
     <p>Best regards, <br>
     Task365 System Notification<br>
     🌐 <a href="https://www.task365.in">www.task365.in</a></p>
+	@include('emails.disclaimer')
 </body>
 </html>

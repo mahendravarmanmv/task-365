@@ -15,3 +15,5 @@
 </ul>
 
 <p style="margin-top: 20px;">Regards,<br>Task365 Team</p>
+
+@include('emails.disclaimer')

@@ -51,6 +51,6 @@
             </td>
         </tr>
     </table>
-
+@include('emails.disclaimer')
 </body>
 </html>
