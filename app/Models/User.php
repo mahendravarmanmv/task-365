@@ -56,4 +56,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Category::class, 'user_categories')->withTimestamps();
     }
+	
+	// In User.php model
+	public function isRejected(): bool
+	{
+	return $this->rejected == 1;
+	}
+
+	public function isApproved(): bool
+	{
+	return $this->approved == 1;
+	}
+
 }

@@ -322,8 +322,8 @@
                     <div class="footer-bottom-wrapper">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="copyright-text">
-                                    <p> © {{ date('Y') }} Copyright</a></p>
+                                <div class="copyright-text">                                    
+									<p> © {{ date('Y') }} Task365. A company of Lorhan Spot Earn Pvt. Ltd. All rights reserved</a></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">

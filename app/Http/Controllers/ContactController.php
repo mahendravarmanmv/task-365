@@ -27,7 +27,7 @@ class ContactController extends Controller
         // Send Email
         Mail::to('task365.in@gmail.com')->send(new ContactFormMail($validated));
 
-        return redirect()->route('contact')->with('success', 'Thank you for contacting us. Our team will get back to you within 24 hours.');
+        return redirect()->route('contact')->with('success', 'Thank you for contacting us. We’ll get back to you within 12–24 hours.   -  after  filling form of contact us.');
 
     }
 }

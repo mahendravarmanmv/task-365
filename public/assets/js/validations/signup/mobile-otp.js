@@ -162,6 +162,9 @@ const verifyOTP = () => {
 	  
 	  $("#phone").removeClass("error"); // remove red border
 	  $("label[for='phone'].error").remove(); // remove error message label
+	  
+	  clearInterval(resendPhoneInterval);
+	  document.getElementById('resend-timer-phone').textContent = '';//timer removed or empty
 
       document.getElementById("send-otp-mobile").innerText = "OTP Sent";
       document.getElementById("otp_verified").value = "1"; // Correctly match "accepted"

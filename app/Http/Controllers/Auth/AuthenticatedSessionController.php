@@ -28,12 +28,19 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 		
 		// Check if the user is approved
-        if (!Auth::user()->approved) {
-            Auth::logout();
-            throw ValidationException::withMessages([
-                'login' => 'Your account is not approved yet. Please contact support.',
-            ]);
-        }
+		if (Auth::user()->isRejected()) {
+		Auth::logout();
+		throw ValidationException::withMessages([
+		'login' => "Your vendor profile couldn't be approved. Please contact support for further assistance.",
+		]);
+		}
+
+		if (!Auth::user()->isApproved()) {
+		Auth::logout();
+		throw ValidationException::withMessages([
+		'login' => 'Your account is not approved yet. Please contact support.',
+		]);
+		}
 
         $request->session()->regenerate();
 

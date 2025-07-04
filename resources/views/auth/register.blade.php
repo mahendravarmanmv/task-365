@@ -151,9 +151,19 @@
                                     <div id="identity_proof_name" class="file-name mt-2 text-muted small"></div>
                                 </div>
                                 @error('identity_proof') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>                            
+							
+							{{-- Promotional Communication Consent --}}
+                            <div class="mb-3 d-flex flex-column sign_chek">
+                                <div class="form-group d-flex align-items-start">
+                                    <input class="form-check-input me-2 mt-1" type="checkbox" name="Promotional" id="Promotional" checked disabled>
+                                    <label for="Promotional" class="text-start">
+                                        I agree to receive updates, promotional messages, and lead-related communication via SMS, WhatsApp, or Email.                                     
+                                    </label>
+                                </div>                                
                             </div>
-
-                            {{-- Terms --}}
+							
+							{{-- Terms --}}
                             <div class="mb-3 d-flex flex-column sign_chek">
                                 <div class="form-group d-flex align-items-start">
                                     <input class="form-check-input me-2 mt-1" type="checkbox" name="agree_terms" id="agree_terms" {{ old('agree_terms') ? 'checked' : '' }}>

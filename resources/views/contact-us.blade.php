@@ -5,6 +5,9 @@
 <!-- Page Header Start -->
 <div class="page-breadcrumb-area page-bg">
     <div class="container">
+	@if (session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                                @endif
         <div class="row mb-md-5 mb-3">
             <div class="col-md-12">
                 <div class="breadcrumb-wrapper">
@@ -37,11 +40,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                @endif
-
-                                @if (session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
-                                @endif
+                                @endif                                
 
                                 <div class="comment-respond">
                                     <form id="contactForm" method="POST" action="{{ route('contact.submit') }}">
@@ -122,13 +121,4 @@
 @section('jquery_scripts')
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/js/validations/contact-us.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        @if(session('success'))
-        $('html, body').animate({
-            scrollTop: 500 // scroll 500px from the top
-        }, 600);
-        @endif
-    });
-</script>
 @endsection
