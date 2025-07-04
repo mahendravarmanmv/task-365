@@ -4,7 +4,6 @@
 
 <style>
 #cat-grid .content-wrapper {
-    height: 180px;
     margin: 0;
     padding: 15px;
     background: #e6efff;
