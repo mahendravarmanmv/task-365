@@ -2,6 +2,24 @@
 
 @section('content')
 
+<style>
+#cat-grid .content-wrapper {
+    height: 180px;
+    margin: 0;
+    padding: 15px;
+    background: #e6efff;
+    border-radius: 0px;
+}
+#cat-grid .content-wrapper * {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+#cat-grid .location-card.style-2 .content-wrapper .content-inner .content-title a {
+    font-size: 20px;
+}
+</style>
 
 <!-- Slider Section Start !-->
 <div class="slider-area style-2 d-none d-md-block">
@@ -118,7 +136,7 @@
                     </p>
                 </div>
             </div>
-            <div class="isotope-grid">
+            <div id="cat-grid" class="" style="height:100% !important;">
                 <div class="row gy-4">
                     @if($categories->isEmpty())
 
@@ -128,10 +146,10 @@
                     $content = $category->category_description;
                     $limit =40;
                     ?>
-                    <div class="col-lg-3 col-md-6 masonry-portfolio-item resort beach wow fadeInUp"
+                    <div class="col-lg-3 col-md-6 resort beach wow fadeInUp"
                         data-wow-delay="0s">
                         <div class="location-card style-2">
-                            <div class="image-wrapper">
+                            <div class="image-wrapper" >
                                 <a href="{{ route('leads.index', ['category' => $category->id]) }}" class="image-inner">
                                     <img src="{{ 'https://admin.task365.in/storage/' . $category->category_image }}"
                                         alt="{{ $category->category_title }}">
