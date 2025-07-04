@@ -194,9 +194,9 @@
     </div>
 </div>
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/js/validations/signup/signup.js?v=0.2') }}"></script>
-<script src="{{ asset('assets/js/validations/signup/email-otp.js?v=0.1') }}"></script>
-<script src="{{ asset('assets/js/validations/signup/mobile-otp.js?v=0.1') }}"></script>
+<script src="{{ asset('assets/js/validations/signup/signup.js') }}?v=0.3"></script>
+<script src="{{ asset('assets/js/validations/signup/email-otp.js') }}?v=0.1"></script>
+<script src="{{ asset('assets/js/validations/signup/mobile-otp.js') }}?v=0.2"></script>
 @endsection
 
 @section('jquery_scripts')
