@@ -31,6 +31,14 @@ class LoginRequest extends FormRequest
             'password' => ['required', 'string'],
         ];
     }
+	
+	protected function prepareForValidation()
+	{
+	$this->merge([
+		'login' => trim($this->input('login')),
+		'password' => trim($this->input('password')),
+	]);
+	}
 
     /**
      * Attempt to authenticate the request's credentials.

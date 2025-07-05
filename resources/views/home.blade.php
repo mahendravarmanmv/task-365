@@ -197,9 +197,7 @@
                         {{ $category->category_title }}
                     </a>
                 </h3>
-                <p class="title">
-                    {{ strlen($category->category_description) > $limit ? substr($category->category_description, 0, $limit) . '...' : $category->category_description }}
-                </p>
+                
             </div>
         </div>
     </div>

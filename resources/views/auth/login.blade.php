@@ -42,8 +42,9 @@
                                     <a href="{{ route('forgot-password') }}" class="fw-bold">Forgot Password?</a>
                                 </div>
                                 <div class=" form-group mb-3">
-                                    <button type="submit" class="btn theme-btn w-100 text-center d-block">Sign
-                                        In</button>
+                                    <button type="submit" id="login-btn" class="btn theme-btn w-100 text-center d-block">
+                                        Sign In
+                                    </button>
                                 </div>
                                 <div class="form-group text-center">
                                     <p>Don’t have an account? <a href="{{ route('signup') }}" class="fw-bold">Sign Up</a></p>
@@ -60,5 +61,5 @@
 
 @section('jquery_scripts')
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/js/validations/login.js') }}"></script>
+<script src="{{ asset('assets/js/validations/login.js') }}?v=0.2"></script>
 @endsection

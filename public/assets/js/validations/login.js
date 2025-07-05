@@ -1,11 +1,10 @@
 $(document).ready(function () {
     // Custom validator for email or 10-digit phone
     $.validator.addMethod("emailOrPhone", function(value, element) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[6-9]\d{9}$/; // Use Indian format if needed
-    return this.optional(element) || emailRegex.test(value) || phoneRegex.test(value);
-}, "Enter valid email or Indian mobile number");
-
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[6-9]\d{9}$/; // Use Indian format if needed
+        return this.optional(element) || emailRegex.test(value) || phoneRegex.test(value);
+    }, "Enter valid email or Indian mobile number");
 
     $("#login-form").validate({
         rules: {
@@ -36,6 +35,11 @@ $(document).ready(function () {
         errorPlacement: function (error, element) {
             error.addClass("invalid-feedback");
             error.insertAfter(element);
+        },
+        submitHandler: function(form) {
+			// Disable button and show spinner
+			$('#login-btn').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Logging in...');          
+            form.submit();
         }
     });
 });
