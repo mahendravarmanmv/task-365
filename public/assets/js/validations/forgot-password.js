@@ -21,6 +21,10 @@ $(document).ready(function () {
         errorPlacement: function (error, element) {
             error.addClass("invalid-feedback");
             error.insertAfter(element);
+        },
+		submitHandler: function (form) {
+            $('button[type="submit"]').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
+            form.submit();
         }
     });
 });
