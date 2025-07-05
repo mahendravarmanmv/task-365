@@ -1,0 +1,53 @@
+#cat-grid .content-wrapper {
+    background: #ffffff;
+    border-radius: 0 0 12px 12px;
+    padding: 10px 0;
+    box-shadow: none;
+    flex: unset !important;
+    height: auto !important;
+}
+
+
+#cat-grid .content-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+#cat-grid .image-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+
+    max-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f6fb;
+}
+
+#cat-grid .image-wrapper img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+#cat-grid .image-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+#cat-grid .content-title a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2e6bc6;
+    text-decoration: none;
+}
+
+#cat-grid .content-title a:hover {
+    text-decoration: underline;
+}
+
+#cat-grid .title {
+    font-size: 14px;
+    color: #6c757d;
+    margin-top: 8px;
+}

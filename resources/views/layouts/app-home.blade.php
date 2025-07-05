@@ -193,7 +193,7 @@
         <div class="footer-sec">
             <div class="container">
                 <div class="row">
-                    <div class="col-xxl-6 col-xl-3 col-lg-3 col-md-6 col-sm-12 pe-md-5">
+                    <div class="col-xxl-5 col-xl-3 col-lg-3 col-md-6 col-sm-12 pe-md-5">
                         <div class="footer-widget footer-widget-info">
                             <div class="footer-logo">
                                 <a href="{{ route('home') }}"><img src="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" alt="Footer Logo"
@@ -212,7 +212,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
+                    <div class="col-xxl-3 col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
                         <div class="footer-widget-menu-wrapper ps-0">
                             <div class="footer-widget widget_nav_menu">
                                 <h2 class="footer-widget-title">Useful Links</h2>

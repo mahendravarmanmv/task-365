@@ -41,10 +41,8 @@
                                 <div class="form-group text-end mb-3">
                                     <a href="{{ route('forgot-password') }}" class="fw-bold">Forgot Password?</a>
                                 </div>
-                                <div class=" form-group mb-3">
-                                    <button type="submit" id="login-btn" class="btn theme-btn w-100 text-center d-block">
-                                        Sign In
-                                    </button>
+                                <div class=" form-group mb-3">                                    
+                                    <button type="submit" id="login-btn" class="theme-btn w-100 text-center d-block">Sign In</button>
                                 </div>
                                 <div class="form-group text-center">
                                     <p>Don’t have an account? <a href="{{ route('signup') }}" class="fw-bold">Sign Up</a></p>

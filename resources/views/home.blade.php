@@ -2,60 +2,7 @@
 
 @section('content')
 
-<style>
-#cat-grid .content-wrapper {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#cat-grid .content-wrapper:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
-}
-
-#cat-grid .image-wrapper {
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 15px;
-    max-height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f2f6fb;
-}
-
-#cat-grid .image-wrapper img {
-    max-height: 100%;
-    width: auto;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-#cat-grid .image-wrapper:hover img {
-    transform: scale(1.05);
-}
-
-#cat-grid .content-title a {
-    font-size: 18px;
-    font-weight: 600;
-    color: #2e6bc6;
-    text-decoration: none;
-}
-
-#cat-grid .content-title a:hover {
-    text-decoration: underline;
-}
-
-#cat-grid .title {
-    font-size: 14px;
-    color: #6c757d;
-    margin-top: 8px;
-}
-</style>
-
+<link rel="stylesheet" href="{{ asset('assets/css/homepage.css') }}" />
 
 <!-- Slider Section Start !-->
 <div class="slider-area style-2 d-none d-md-block">
@@ -190,18 +137,16 @@
                     alt="{{ $category->category_title }}" class="img-fluid">
             </a>
         </div>
-        <div class="content-wrapper flex-grow-1 d-flex flex-column justify-content-between">
-            <div class="content-inner text-center">
-                <h3 class="content-title w-100">
-                    <a href="{{ route('leads.index', ['category' => $category->id]) }}">
-                        {{ $category->category_title }}
-                    </a>
-                </h3>
-                
-            </div>
+        <div class="content-wrapper text-center p-2">
+            <h3 class="content-title mb-0">
+                <a href="{{ route('leads.index', ['category' => $category->id]) }}">
+                    {{ $category->category_title }}
+                </a>
+            </h3>
         </div>
     </div>
 </div>
+
 
                     @endforeach
                     @endif
