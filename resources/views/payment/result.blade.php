@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     @endif
-      <a href="{{ url('/') }}" class="theme-btn">Go to Home</a>
+      <a href="{{ route('profile') }}" class="theme-btn">Go to Profile</a>
     </div>
   </div>
 

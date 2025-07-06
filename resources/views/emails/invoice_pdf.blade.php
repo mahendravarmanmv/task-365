@@ -12,6 +12,17 @@
         th { background-color: #f2f2f2; }
         .section-title { margin-top: 30px; font-weight: bold; color: #e60000; }
         .small-text { font-size: 12px; color: #666; }
+		.disclaimer {
+            font-size: 11px;
+            color: #666;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -75,6 +86,11 @@
     <br><br>
     <p class="small-text">Thanks for using <strong>Task365.in</strong>!</p>
     <p class="small-text">We hope to serve you again soon.</p>
+	
+	{{-- Footer Disclaimer --}}
+<div class="disclaimer">
+    <strong>Disclaimer:</strong> All lead information provided is based on available data at the time of purchase. It has been shared in good faith and is backed by sufficient evidence. Task365.in does not guarantee conversion or responsiveness of the lead as final results depend on your follow up and communication methods. As leads are shared instantly with proof, purchases are final and non-refundable.
+</div>
 
 </body>
 </html>

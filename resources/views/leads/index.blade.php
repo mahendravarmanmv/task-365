@@ -85,6 +85,11 @@
                                     </p>
                                     <!-- ✅ Unique Lead ID below stock -->
                                     <p class="mt-2 mb-0 text-success"><strong>Lead ID:</strong> {{ $lead->lead_unique_id }}</p>
+									@if($lead->lead_file)
+									<a href="{{ 'https://admin.task365.in/storage/' . $lead->lead_file }}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-2" style="font-size: 12px;">
+									Leads Proof
+									</a>
+									@endif
                                 </div>
 
 

@@ -54,6 +54,16 @@
                         <div class="info-value">{{ $lead->stock }}</div>
                     </div>
                 </div>
+				
+				@if($lead->lead_file)
+				<div class="mb-4 text-center text-md-start">
+				
+				<a href="{{ 'https://admin.task365.in/storage/' . $lead->lead_file }}" target="_blank" class="btn btn-sm btn-outline-primary">
+				View Lead Proof
+				</a>
+				</div>
+				@endif
+
 
                 <!-- Description -->
                 <div class="mb-4 text-center text-md-start">
