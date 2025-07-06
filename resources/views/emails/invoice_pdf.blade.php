@@ -21,8 +21,10 @@
             right: 0;
             padding-top: 10px;
             border-top: 1px solid #ccc;
-            text-align: center;
+            text-align: left;
         }
+
+
     </style>
 </head>
 <body>
@@ -36,13 +38,20 @@
         <h2>Thanks for your order!</h2>
     </div>
 
-    <p>Hi {{ $payment->user->name }},</p>
+	<p>Hi {{ $payment->user->name }},</p>
 
-    <p>
-        Just to let you know — we’ve received your order 
-        <span class="highlight">[Order #{{ $payment->order_id }}] ({{ \Carbon\Carbon::parse($payment->created_at)->format('F d, Y') }})</span>, 
-        and it is now being processed.
-    </p>
+	<p>
+	Thank you for your purchase!<br>
+	We’ve successfully received your lead request 
+	<span class="highlight">[Lead #{{ $payment->lead->lead_unique_id ?? $payment->order_id }}]</span> 
+	on {{ \Carbon\Carbon::parse($payment->created_at)->format('F d, Y') }}.
+	</p>
+
+	<p>
+	Your lead details are now available in your dashboard.<br>
+	Please log in to view the information and take the next steps.
+	</p>
+
 
     <table>
         <thead>
@@ -89,7 +98,12 @@
 	
 	{{-- Footer Disclaimer --}}
 <div class="disclaimer">
-    <strong>Disclaimer:</strong> All lead information provided is based on available data at the time of purchase. It has been shared in good faith and is backed by sufficient evidence. Task365.in does not guarantee conversion or responsiveness of the lead as final results depend on your follow up and communication methods. As leads are shared instantly with proof, purchases are final and non-refundable.
+    <strong>Disclaimer:</strong> All lead information provided is based on available data at the time of purchase with 
+    <a href="https://www.task365.in" style="color: #666; text-decoration: underline;" target="_blank">Task365.in</a>. 
+    It has been shared in good faith and is backed by sufficient evidence. Lorhan Spot Earn Private Limited 
+    (<a href="https://www.task365.in" style="color: #666; text-decoration: underline;" target="_blank">Task365.in</a>) 
+    does not guarantee conversion or responsiveness of the lead as final results depend on your follow up and communication methods. 
+    As leads are shared instantly with proof, purchases are final and non-refundable.
 </div>
 
 </body>

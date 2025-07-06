@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
   <div class="d-flex min-vh-100 justify-content-center align-items-center px-3">
-    <div class="bg-white shadow rounded-4 p-5 text-center" style="max-width: 480px; width: 100%;">
+    <div class="bg-white shadow rounded-4 p-5 text-center" style="max-width: 650px; width: 100%;">
       
 		@if (session('success'))
       <h4 class="fw-bold text-success mb-3">Payment Successful!</h2>
