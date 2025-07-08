@@ -30,12 +30,17 @@ $(document).ready(function () {
             subject: "Please enter your company name",
             comment: "Please enter your message (at least 10 characters)"
         },
-        errorElement: 'div',
         errorPlacement: function (error, element) {
-            error.addClass('text-danger');
+            error.addClass("invalid-feedback");
             error.insertAfter(element);
         },
-		submitHandler: function (form) {
+        highlight: function (element) {
+            $(element).addClass('is-invalid').removeClass('is-valid');
+        },
+        unhighlight: function (element) {
+            $(element).removeClass('is-invalid').addClass('is-valid');
+        },
+        submitHandler: function (form) {
             $('button[type="submit"]').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
             form.submit();
         }

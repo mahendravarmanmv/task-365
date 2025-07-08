@@ -1,13 +1,13 @@
 @extends('layouts.app-home')
 
 @section('content')
-
+<link href="{{ asset('assets/css/contact-us.css') }}" rel="stylesheet" />
 <!-- Page Header Start -->
 <div class="page-breadcrumb-area page-bg">
     <div class="container">
-	@if (session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
-                                @endif
+        @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
         <div class="row mb-md-5 mb-3">
             <div class="col-md-12">
                 <div class="breadcrumb-wrapper">
@@ -40,7 +40,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                @endif                                
+                                @endif
 
                                 <div class="comment-respond">
                                     <form id="contactForm" method="POST" action="{{ route('contact.submit') }}">
@@ -48,23 +48,23 @@
                                         <div class="row g-4">
                                             <div class="col-xl-6">
                                                 <label for="author">Your Name</label>
-                                                <input name="author" id="author" type="text" placeholder="Enter your name">
+                                                <input name="author" id="author" type="text" class="form-control" placeholder="Enter your name">
                                             </div>
                                             <div class="col-xl-6">
                                                 <label for="email">Your Email</label>
-                                                <input name="email" id="email" type="email" placeholder="Enter your email">
+                                                <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email">
                                             </div>
                                             <div class="col-xl-6">
                                                 <label for="phone">Phone Number</label>
-                                                <input name="phone" id="phone" type="text" placeholder="Phone number">
+                                                <input name="phone" id="phone" type="text" class="form-control" placeholder="Phone number">
                                             </div>
                                             <div class="col-xl-6">
                                                 <label for="subject">Company</label>
-                                                <input name="subject" id="subject" type="text" placeholder="Enter company">
+                                                <input name="subject" id="subject" type="text" class="form-control" placeholder="Enter company">
                                             </div>
                                             <div class="col-xl-12">
                                                 <label for="comment">Your Message</label>
-                                                <textarea name="comment" id="comment" rows="4" placeholder="Enter your message"></textarea>
+                                                <textarea name="comment" id="comment" rows="4" class="form-control" placeholder="Enter your message"></textarea>
                                             </div>
                                             <div class="col-12">
                                                 <button class="theme-btn" type="submit">Submit Now</button>

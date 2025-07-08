@@ -12091,7 +12091,7 @@ ul.children {
   font-weight: 400;
   padding: 15px 24px;
   color: #041126;
-  border: 1px solid #e7e7e7 !important;
+  /*border: 1px solid #e7e7e7 !important;*/
   border-radius: 8px;
   font-size: 16px;
   line-height: 170%;
