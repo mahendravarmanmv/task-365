@@ -102,7 +102,7 @@
                                     <div class="item-icon"><i class="fas fa-phone"></i></div>
                                     <div class="item-text headline pera-content">
                                         <h3>Phone:</h3>
-                                        <p>+91 8790399660</p>
+                                        <p>+91 9989926633</p>
                                     </div>
                                 </div>
                             </div>

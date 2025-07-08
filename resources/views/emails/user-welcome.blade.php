@@ -30,7 +30,7 @@
 
         <p><strong>Need Help?</strong><br>
         For any queries or to speed up the process, feel free to contact us on WhatsApp:<br>
-        <strong>+91-8790399660</strong></p>
+        <strong>+91-9989926633</strong></p>
 
         <p>We appreciate your interest and look forward to working together!</p>
 

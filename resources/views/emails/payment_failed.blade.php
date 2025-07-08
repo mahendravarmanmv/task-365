@@ -31,7 +31,7 @@
     <p>Best regards,<br>
     Team Task365<br>
     📧 support@task365.in<br>
-    📞 +91-8790399660<br>
+    📞 +91-9989926633<br>
     🌐 <a href="https://www.task365.in">www.task365.in</a></p>
 	@include('emails.disclaimer')
 </body>

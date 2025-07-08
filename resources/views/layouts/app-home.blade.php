@@ -165,7 +165,7 @@
                             <span><i class="fa-solid fa-location-dot"></i>Flat No. 07/3, Second Floor, 18th Main Jaya Nagar, 9th Block Banglore, Bangalore, Karnataka - 560041 India</span>
                             <span><a href="mailto:hello@transico.com"><i
                                         class="fa-solid fa-envelope"></i>task365.in@gmail.com</a> </span>
-                            <span><a href="tel:+918790399660"><i class="fa-solid fa-phone"></i>+91 8790399660</a></span>
+                            <span><a href="tel:+919989926633"><i class="fa-solid fa-phone"></i>+91 9989926633</a></span>
                         </div>
                         <div class="social-profile">
                             <a href="javasceipt:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
@@ -283,7 +283,7 @@
                                 <div class="footer-widget-contact">
                                     <div class="footer-contact">
                                         <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                                        <div class="contact-text"><a href="tel:+918790399660">+91 8790399660</a></div>
+                                        <div class="contact-text"><a href="tel:+919989926633">+91 9989926633</a></div>
                                     </div>
                                 </div>
                             </div>
