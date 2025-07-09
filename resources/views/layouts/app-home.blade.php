@@ -1,12 +1,9 @@
 <!doctype html>
 <html lang="en" class="h-100">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="">
-
-
     <title>Task 365</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/task-img/Task-365-Logo.png') }}" />
 
@@ -15,7 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Fasthand&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}" />
@@ -30,9 +26,7 @@
      <script async src="https://www.googletagmanager.com/gtag/js?id=G-T37WSTDEWP"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-T37WSTDEWP'); </script>
      <script type="text/javascript">     (function(c,l,a,r,i,t,y){         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);     })(window, document, "clarity", "script", "rzv4tc8p76"); </script>
 </head>
-
 <body>
-
     <!-- Header Start !-->
     <header class="header-area">
         <!-- Header Nav Menu Start -->
@@ -52,12 +46,7 @@
                     <div class="col-xl-10 col-lg-10 col-md-6 col-6 d-flex align-items-center justify-content-end">
                         <div class="menu d-inline-block">
                             <div class="topbar d-flex">
-                                <ul>
-                                    <!--<li class="position-relative"><a href="javasceipt:void(0);" class="search-btn"><i
-                                                class="fa-solid fa-magnifying-glass"></i></a><span></span></li>
-                                    <li><a href="javasceipt:void(0);"><i class="fa-solid fa-cart-plus"></i></a></li>-->
-                                    <!--<li><a href="javasceipt:void(0);" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvaslogin" aria-controls="offcanvasRight">Login</a></li>-->
+                                <ul>                                    
                                     @if (auth()->check())
                                     <li>
                                         <a href="{{ route('logout') }}"
@@ -94,11 +83,6 @@
                                         <a href="{{ route('leads.index') }}">Leads</a>
                                     </li>
                                     @endif
-
-                                    <!--<li class="{{ request()->routeIs('blog') ? 'active' : '' }}">
-                                        <a href="{{ route('blog') }}">Blog</a>
-                                    </li>--->
-
                                     <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
                                         <a href="{{ route('about') }}">About Us</a>
                                     </li>
@@ -106,31 +90,9 @@
                                     <li class="{{ request()->routeIs('contact') ? 'active' : '' }}">
                                         <a href="{{ route('contact') }}">Contact Us</a>
                                     </li>
-                                    
-                                    <!-- <li class="{{ request()->routeIs('faq') ? 'active' : '' }}">
-                                        <a href="{{ route('faq') }}">FAQs</a>
-                                    </li>-->
-                                    <!-- <li><a href="javasceipt:void(0);">More</a></li> -->
-                                    <!-- <li class="dropdown"><a href="javasceipt:void(0);" class="profile-link">More</a>
-                                        <ul class="submenu">
-                                            <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
-                                            <li><a href="{{ route('faq') }}">FAQs</a></li>
-                                        </ul>
-                                    </li>-->
                                 </ul>
                             </nav>
-                        </div>
-                        <!-- Header Button Start !-->
-                        <!-- <div class="header-btn">
-                            <div class="search-btn-wrapper">
-                                    <a href="javasceipt:void(0);" class="search-btn">
-                                        <i class="icon-search"></i>
-                                    </a>
-                            </div>
-                            <a href="javasceipt:void(0);" class="user-login-btn">
-                                <i class="icon-user"></i>
-                            </a>
-                        </div> -->
+                        </div>                       
                         <!-- Header Button Start !-->
                         <!-- Mobile Menu Toggle Button Start !-->
                         <div class="mobile-menu-bar d-lg-none text-end">
@@ -183,10 +145,7 @@
     <div class="body-overlay"></div>
 
     @include('common.login-form')
-
     @yield('content')
-
-
 
     <!--- Start Footer !-->
     <footer class="footer bg-light-black">
@@ -200,8 +159,7 @@
                                         class="img-fluid" style="width: 120px;" /></a>
                             </div>
                             <div class="footer-widget-contact">
-                                <div class="footer-contact align-items-start">
-                                    <!-- <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div> -->
+                                <div class="footer-contact align-items-start">                                    
                                     <div class="contact-text w-100">
                                     <p style="justify-content: center;">At Task365, we are a results-driven digital marketing company specializing in lead generation across a wide range of business categories. Our mission is to streamline the customer acquisition process for business owners by delivering ready-to-convert leads, thereby eliminating the hassle and high costs typically associated with traditional digital marketing efforts.</p>    
                                     <p>Flat No. 07/3, Second Floor, 18th Main Jaya
@@ -218,14 +176,10 @@
                                 <h2 class="footer-widget-title">Useful Links</h2>
                                 <ul class="menu footer_link">
                                     <li><a href="{{ route('home') }}">Home</a></li>
-                                    <li><a href="{{ route('about') }}">About Us</a></li>
-                                    <!--<li><a href="{{ route('faq') }}">FAQs</a></li>
-                                    <li><a href="{{ route('blog') }}">Blog</a></li>--->
+                                    <li><a href="{{ route('about') }}">About Us</a></li>                                    
                                     <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                                     <li><a href="{{ route('terms') }}">Terms and Conditions</a></li>
-                                    <li><a href="{{ route('refund-policy') }}">Refund Policy</a></li>
-                                    <!--<li><a href="{{ route('shipping') }}">Shipping</a></li>
-                                    <li><a href="javasceipt:void(0);">Track Order</a></li>-->
+                                    <li><a href="{{ route('refund-policy') }}">Refund Policy</a></li>                                    
                                 </ul>
                             </div>
                         </div>
@@ -254,27 +208,6 @@
         </div>
     </div>
 </div>
-
-                    <!--<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="footer-widget-menu-wrapper ps-0">
-                            <div class="footer-widget widget_nav_menu">
-                                <h2 class="footer-widget-title">Recent Posts
-                                </h2>
-                                <ul class="menu">
-                                    <li class="read_more_content"><a href="javasceipt:void(0);">Exploring Atlanta’s modern
-                                            homes</a>
-                                        <p class="mb-1">September 9, 2022</p>
-                                        <a href="javasceipt:void(0);" class="read_more">Read More »</a>
-                                    </li>
-                                    <li class="read_more_content"><a href="javasceipt:void(0);">Green interior design
-                                            inspiration</a>
-                                        <p class="mb-1">September 9, 2022</p>
-                                        <a href="javasceipt:void(0);" class="read_more">Read More »</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>-->
                     <div class="divider"></div>
                     <div class="row">
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 ">
@@ -373,8 +306,6 @@
         </div>
     </div>
     <!-- Scroll Up Section End -->
-
-
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
@@ -391,8 +322,6 @@
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-
     @yield('jquery_scripts')
 </body>
-
 </html>
