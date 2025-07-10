@@ -5,14 +5,14 @@
     <title>Payment Failed</title>
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6;">
-    <p>Dear {{ $payment->user->name }},</p>
+    <p>Dear {{ ucfirst($payment->user->name) }},</p>
 
     <p>We hope you're doing well.</p>
 
     <p>This is to inform you that your recent payment attempt for Task365 was <strong>unsuccessful</strong>. Please find the payment details below:</p>
 
     <ul>
-        <li><strong>Vendor Name:</strong> {{ $payment->user->name }}</li>
+        <li><strong>Vendor Name:</strong> {{ ucfirst($payment->user->name) }}</li>
         <li><strong>Task Reference:</strong> {{ $payment->lead->lead_name ?? 'N/A' }}</li>
         <li><strong>Amount:</strong> ₹{{ number_format($payment->amount, 2) }}</li>
         <li><strong>Payment Date:</strong> {{ $payment->updated_at->format('d-m-Y H:i A') }}</li>
