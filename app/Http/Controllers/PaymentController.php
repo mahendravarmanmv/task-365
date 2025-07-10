@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cashfree\PG\CashfreePG;
 use App\Models\Lead;
+use App\Models\Payment;
 
 class PaymentController extends Controller
 {
@@ -51,8 +52,14 @@ class PaymentController extends Controller
     }
     public function result(Request $request)
     {
+		// Option 1: Get latest successful payment for the logged-in user
+    $payment = auth()->check()
+        ? Payment::where('user_id', auth()->id())
+            ->latest()
+            ->first()
+        : null;
         $error = session('error', 'Something went wrong with your payment.');
-        return view('payment.result', compact('error'));
+        return view('payment.result', compact('error', 'payment'));
     }
 
 }

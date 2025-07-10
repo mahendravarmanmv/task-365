@@ -32,7 +32,7 @@
                                 <h5 class="mb-0">Payment Details</h5>
                             </div>
                             <div class="card-body">
-                                <p><strong>Payment ID:</strong> {{ session('payment')->payment_id }}</p>
+                                <p><strong>Payment ID:</strong> {{ $payment->other['original']['data'][0]['cf_payment_id'] ?? 'Not Available' }}</p>
                                 <p><strong>Order Id:</strong> {{ session('payment')->order_id }}</p>
                                 <p><strong>Amount:</strong> ₹{{ session('payment')->amount }}</p>
                             </div>

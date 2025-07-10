@@ -23,7 +23,7 @@ class UserInvoiceMail extends Mailable
     {
         $pdf = Pdf::loadView('emails.invoice_pdf', ['payment' => $this->payment]);      
 					
-		return $this->subject('Your Payment Invoice')
+		return $this->subject('Thank You for Your Purchase – Invoice & Lead Details Attached')
 		->view('emails.invoice_body') // your blade view
 		->attachData($pdf->output(), 'invoice.pdf');
     }

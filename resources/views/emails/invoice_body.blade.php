@@ -1,8 +1,13 @@
 <p>Dear {{ $payment->user->name }},</p>
 
-<p>Thank you for your payment. Please find the attached invoice for your records.</p>
+<p>
+    Thank you for your purchase!<br>
+    Please find the invoice attached to this email for your reference.
+</p>
 
-<h3 style="margin-top: 20px;">Lead Details</h3>
+<p>
+    Here are the lead details for your order:
+</p>
 
 <ul style="line-height: 1.6;">
     <li><strong>Lead Name:</strong> {{ $payment->lead->lead_name ?? 'N/A' }}</li>
