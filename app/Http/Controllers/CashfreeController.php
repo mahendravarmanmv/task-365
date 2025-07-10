@@ -107,7 +107,12 @@ class CashfreeController extends Controller
 
     public function paymentfailed($order_id)
     {
-        $url = "https://sandbox.cashfree.com/pg/orders/{$order_id}/payments";
+        // Set base URL based on .env CASHFREE_ENV
+        $baseUrl = env('CASHFREE_ENV') === 'sandbox'
+            ? "https://sandbox.cashfree.com"
+            : "https://api.cashfree.com";
+		
+        $url = "{$baseUrl}/pg/orders/{$order_id}/payments";
 
         $headers = [
             "Content-Type: application/json",
