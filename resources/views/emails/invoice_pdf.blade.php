@@ -86,9 +86,9 @@
 
     <div class="section-title">Billing Address</div>
     <p>
-        {{ $payment->user->name }}<br>
+        {{ ucfirst($payment->user->name) }}<br>
         {{ $payment->user->company_name ?? '' }}<br>
-        {{ $payment->user->email }}<br>
+        {{ ucfirst($payment->user->email) }}<br>
         {{ $payment->user->phone ?? '' }}
     </p>
 

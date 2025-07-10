@@ -1,4 +1,4 @@
-<p>Dear {{ $payment->user->name }},</p>
+<p>Dear {{ ucfirst($payment->user->name) }},</p>
 
 <p>
     Thank you for your purchase!<br>

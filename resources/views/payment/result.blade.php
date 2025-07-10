@@ -48,6 +48,10 @@
     // Page was reloaded
     window.location.href = "{{ url('/') }}";
   }
+  // Redirect to profile after 5 seconds
+    setTimeout(function () {
+      window.location.href = "{{ route('profile') }}";
+    }, 5000); // 5000 ms = 5 seconds
 </script>
 </body>
 </html>
