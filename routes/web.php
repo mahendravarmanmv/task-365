@@ -96,6 +96,11 @@ Route::get('/category-details', function () {
 
 Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
 
+Route::get('/l/{code}', function ($code) {
+    $id = decode_code($code); // Use helper to decode base62 code to ID
+    return redirect("https://task365.in/leads/{$id}");
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
