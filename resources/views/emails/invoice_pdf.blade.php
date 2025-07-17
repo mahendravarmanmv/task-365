@@ -38,7 +38,7 @@
         <h2>Thanks for your order!</h2>
     </div>
 
-	<p>Hi {{ $payment->user->name }},</p>
+	<p>Hi {{ ucfirst($payment->user->name) }},</p>
 
 	<p>
 	Thank you for your purchase!<br>
