@@ -37,6 +37,18 @@
     <div class="header">
         <h2>Thanks for your order!</h2>
     </div>
+	
+	{{-- From Address --}}
+	<div style="margin-top: 20px; margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
+		<strong>From:</strong><br>
+		<strong>TASK 365</strong><br>
+		(A product of <strong>LORHAN SPOT EARN PRIVATE LIMITED</strong>)<br>
+		Flat No. 07/3, 18th Main,<br>
+		Jaya Nagar 9th Block,<br>
+		Bangalore – 560041, India<br>
+		Phone: +919989926633<br>
+		Email: <a href="mailto:support@task365.in" style="color: #333;">support@task365.in</a>
+	</div>
 
 	<p>Hi {{ ucfirst($payment->user->name) }},</p>
 
@@ -79,7 +91,8 @@
             </tr>
             <tr>
                 <td colspan="4" style="text-align: right;"><strong>Payment method:</strong></td>
-                <td>{{ $payment->payment_method ?? 'Cashfree Payments' }}</td>
+				<td>{{ ucfirst($payment->payment_meta['provider'] ?? 'Cashfree Payments') }}</td>
+
             </tr>
         </tfoot>
     </table>

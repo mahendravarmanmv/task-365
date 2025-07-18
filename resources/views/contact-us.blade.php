@@ -14,12 +14,12 @@
                     <div class="page-heading">
                         <h3 class="page-title">Contact Us</h3>
                     </div>
-                    <div class="breadcrumb-list">
+                    <!--<div class="breadcrumb-list">
                         <ul>
                             <li><a href="{{ url('/') }}">Home</a></li>
                             <li class="active"><a href="javascript:void(0);">Contact Us</a></li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

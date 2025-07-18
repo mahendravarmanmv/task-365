@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="d-flex flex-column flex-md-row justify-content-between border-top pt-4 gap-3 text-center text-md-start">
+                <div class="d-flex flex-column flex-md-row justify-content-between border-top pt-2 gap-3 text-center text-md-start">
                     <a href="{{ route('leads.index') }}" class="btn btn-outline-secondary btn-sm rounded-pill w-100 w-md-auto">
                         ← Back to Leads
                     </a>

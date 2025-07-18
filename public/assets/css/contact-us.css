@@ -1,3 +1,6 @@
 label.error {
     color: #dc3545;    
 }
+.page-heading h3, .page-heading .page-title {
+	font-size: 40px;
+}
