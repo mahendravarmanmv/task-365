@@ -323,14 +323,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="brand_logo_card">
-                    <img src="./assets/images/task-img/w-accessories-brand-1.png" alt="brand" class="img-fluid">
-                    <img src="./assets/images/task-img/w-accessories-brand-2.png" alt="brand" class="img-fluid">
-                    <img src="./assets/images/task-img/w-accessories-brand-3.png" alt="brand" class="img-fluid">
-                    <img src="./assets/images/task-img/w-accessories-brand-4.png" alt="brand" class="img-fluid">
-                    <img src="./assets/images/task-img/w-accessories-brand-5.png" alt="brand" class="img-fluid">
-                    <img src="./assets/images/task-img/w-accessories-brand-6.png" alt="brand" class="img-fluid">
-                    <img src="./assets/images/task-img/w-accessories-brand-7.png" alt="brand" class="img-fluid">
-                    <img src="./assets/images/task-img/w-accessories-brand-8.png" alt="brand" class="img-fluid">
+                    <img src="{{ asset('assets/images/task-img/IMG_4192.png') }}" alt="brand" class="img-fluid">
+                    <img src="{{ asset('assets/images/task-img/IMG_4189.png') }}" alt="brand" class="img-fluid">
+                    <img src="{{ asset('assets/images/task-img/IMG_4188.png') }}" alt="brand" class="img-fluid">
+                    <img src="{{ asset('assets/images/task-img/IMG_4193.png') }}" alt="brand" class="img-fluid">
+                    <img src="{{ asset('assets/images/task-img/IMG_4194.png') }}" alt="brand" class="img-fluid">
+                    <img src="{{ asset('assets/images/task-img/IMG_4191.png') }}" alt="brand" class="img-fluid">
+                    <img src="{{ asset('assets/images/task-img/IMG_4190.png') }}" alt="brand" class="img-fluid">                    
                 </div>
             </div>
         </div>
