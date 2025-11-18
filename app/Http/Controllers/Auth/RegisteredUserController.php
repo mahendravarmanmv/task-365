@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Http;
 
 class RegisteredUserController extends Controller
 {
@@ -144,4 +145,78 @@ class RegisteredUserController extends Controller
             'message' => $exists ? 'Mobile number already exists.' : '',
         ]);
     }
+
+public function sendSmsOtp(Request $request)
+{
+    $request->validate([
+        'phone' => 'required|regex:/^[6-9]\d{9}$/'
+    ]);
+
+    $phone = $request->phone;
+    $otp = rand(100000, 999999);
+
+    session(['sms_otp_'.$phone => $otp]);
+
+    $message = "Dear User, , OTP for registration with Task365 is $otp
+     Thank you for choosing Task365 ( A product of LORHAN SPOT EARN Private Limited).";
+
+    // Encode message
+    $messageEncoded = urlencode($message);
+
+    $url = "https://www.smsstriker.com/API/sms.php";
+
+    $params = [
+        'username'   => env('SMS_USERNAME'),
+        'password'   => env('SMS_PASSWORD'),
+        'from'       => env('SMS_SENDER_ID'),
+        'to'         => $phone,
+        'msg'        => $messageEncoded,
+        'type'       => 1,   // normal SMS
+        'dnd_check'  => 0,
+    ];
+
+    try {
+        $response = Http::asForm()->post($url, $params);
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'OTP sent successfully'
+        ]);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status'  => 'error',
+            'message' => 'Failed to send OTP'
+        ]);
+    }
+}
+
+
+
+public function verifySmsOtp(Request $request)
+{
+    $request->validate([
+        'phone' => 'required',
+        'otp' => 'required|digits:6',
+    ]);
+
+    $phone = $request->phone;
+    $otp = $request->otp;
+
+    $storedOtp = session('sms_otp_'.$phone);
+
+    if ($storedOtp && $storedOtp == $otp) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'OTP verified successfully'
+        ]);
+    }
+
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Invalid OTP'
+    ]);
+}
+
+
 }

@@ -25,6 +25,9 @@ Route::get('/signup', [RegisteredUserController::class, 'create'])->name('signup
 Route::post('/signup', [RegisteredUserController::class, 'store']);
 Route::post('/check-phone-exists', [RegisteredUserController::class, 'checkPhoneExists'])->name('check.phone.exists');
 
+Route::post('/send-sms-otp', [RegisteredUserController::class, 'sendSmsOtp']);
+Route::post('/verify-sms-otp', [RegisteredUserController::class, 'verifySmsOtp']);
+
 
 Route::post('/send-otp-email', [EmailOtpController::class, 'sendOtp']);
 Route::post('/verify-otp-email', [EmailOtpController::class, 'verifyOtp']);
